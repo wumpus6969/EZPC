@@ -344,6 +344,7 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   min-height: 34px;
   padding: 0 10px;
   border: 1px solid var(--line);
@@ -352,6 +353,11 @@ h3 {
   color: #21313b;
   font-size: 0.78rem;
   font-weight: 900;
+}
+
+.seller-link strong {
+  color: var(--teal);
+  font-size: 0.76rem;
 }
 
 .seller-link:hover {

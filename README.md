@@ -6,7 +6,7 @@ A modern static PC-parts storefront with:
 - category browsing
 - sale picks
 - a basic PC builder with budget, power, socket, and memory checks
-- seller search links for Amazon, Newegg, Best Buy, Micro Center, and B&H
+- verified direct retailer product-page links with page prices
 
 ## Run locally
 
