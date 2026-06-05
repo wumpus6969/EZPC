@@ -208,6 +208,11 @@ function offerLinks(part, compact = false) {
     .join("");
 }
 
+function lowestOfferBadge(part) {
+  const offer = bestOffer(part);
+  return `<div class="lowest-price">Lowest price: <strong>${formatMoney(offer.price)}</strong> at ${offer.seller}</div>`;
+}
+
 function renderCategories() {
   const categories = [...new Set(parts.map((part) => part.category))];
   document.getElementById("categoryGrid").innerHTML = categories
@@ -244,6 +249,7 @@ function renderDeals() {
           <span class="price">${formatMoney(offer.price)}</span>
           <span class="was">${formatMoney(was)}</span>
         </div>
+        ${lowestOfferBadge(part)}
         <div class="seller-row">${offerLinks(part, true)}</div>
       </article>`;
     })
@@ -275,6 +281,7 @@ function renderProducts(category = "All") {
           <span class="price">${formatMoney(offer.price)}</span>
           <span class="was">${formatMoney(was)}</span>
         </div>
+        ${lowestOfferBadge(part)}
         <div class="seller-row">${offerLinks(part, true)}</div>
       </article>`;
     })
