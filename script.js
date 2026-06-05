@@ -236,6 +236,544 @@ const parts = [
   },
 ];
 
+const expandedParts = [
+  {
+    category: "CPU",
+    name: "AMD Ryzen 5 9600X 6-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 65,
+    specs: "6 cores, Zen 5, efficient AM5 gaming CPU",
+    overview: "AMD's Ryzen 5 9600X is a Ryzen 9000 Series desktop processor for AM5 builds. It gives mainstream gaming systems six Zen 5 cores, DDR5 platform support, PCIe 5.0 platform capability, and a lower default TDP than the larger Ryzen 9 chips.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-5-9600x.html",
+  },
+  {
+    category: "CPU",
+    name: "AMD Ryzen 7 9700X 8-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 65,
+    specs: "8 cores, Zen 5, balanced gaming and creation CPU",
+    overview: "AMD's Ryzen 7 9700X is an 8-core Ryzen 9000 Series processor for AM5 motherboards. It is a balanced pick for gaming, streaming, and everyday creation work with Zen 5 cores, DDR5 memory support, and PCIe 5.0 platform capability.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9700x.html",
+  },
+  {
+    category: "CPU",
+    name: "AMD Ryzen 9 9900X 12-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 120,
+    specs: "12 cores, Zen 5, high-end gaming and productivity",
+    overview: "AMD's Ryzen 9 9900X is a 12-core, 24-thread Ryzen 9000 Series desktop CPU. It suits high-end gaming and heavy multitasking while staying on the AM5 platform with DDR5 memory and modern PCIe support.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9900x.html",
+  },
+  {
+    category: "CPU",
+    name: "AMD Ryzen 9 9950X3D 16-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 170,
+    specs: "16 cores, 3D V-Cache, flagship gaming and creation",
+    overview: "AMD's Ryzen 9 9950X3D combines a 16-core Ryzen 9 desktop CPU with AMD 3D V-Cache technology. It is designed for builders who want strong gaming performance and high multi-threaded throughput on the AM5 platform.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9950x3d.html",
+  },
+  {
+    category: "CPU",
+    name: "AMD Ryzen 9 9900X3D 12-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 120,
+    specs: "12 cores, 3D V-Cache, fast gaming Ryzen 9",
+    overview: "AMD's Ryzen 9 9900X3D brings 3D V-Cache to a 12-core Ryzen 9 desktop processor. It is built for AM5 gaming rigs that still need plenty of cores for streaming, productivity, and background workloads.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9900x3d.html",
+  },
+  {
+    category: "CPU",
+    name: "AMD Ryzen 7 7800X3D 8-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 120,
+    specs: "8 cores, 3D V-Cache, AM5 gaming favorite",
+    overview: "AMD's Ryzen 7 7800X3D is an 8-core AM5 gaming processor built around AMD 3D V-Cache technology. It remains a popular choice for high-FPS gaming systems using DDR5 memory and modern AM5 motherboards.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-7-7800x3d.html",
+  },
+  {
+    category: "CPU",
+    name: "AMD Ryzen 5 7600X 6-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 105,
+    specs: "6 cores, Zen 4, value AM5 gaming CPU",
+    overview: "AMD's Ryzen 5 7600X is a 6-core Zen 4 desktop processor for AM5 systems. It is a practical entry into DDR5-based Ryzen builds with strong single-threaded performance for gaming-focused machines.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-5-7600x.html",
+  },
+  {
+    category: "CPU",
+    name: "AMD Ryzen 7 7700X 8-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 105,
+    specs: "8 cores, Zen 4, efficient enthusiast CPU",
+    overview: "AMD's Ryzen 7 7700X is an 8-core Zen 4 AM5 processor for gaming and productivity desktops. It supports DDR5 memory and PCIe 5.0 platform features on compatible motherboards.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-7-7700x.html",
+  },
+  {
+    category: "CPU",
+    name: "AMD Ryzen 9 7900X 12-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 170,
+    specs: "12 cores, Zen 4, creator-ready AM5 CPU",
+    overview: "AMD's Ryzen 9 7900X is a 12-core, 24-thread Zen 4 processor for AM5 desktops. It is suited to mixed gaming and creator workloads that benefit from more CPU cores.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-9-7900x.html",
+  },
+  {
+    category: "CPU",
+    name: "AMD Ryzen 9 7950X 16-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 170,
+    specs: "16 cores, Zen 4, high-end productivity CPU",
+    overview: "AMD's Ryzen 9 7950X is a 16-core Zen 4 desktop CPU for AM5 builds. It targets demanding creator, workstation, and enthusiast users who need high multi-threaded performance.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-9-7950x.html",
+  },
+  {
+    category: "GPU",
+    name: "ASUS ROG Astral GeForce RTX 5090 OC 32GB Graphics Card",
+    power: 575,
+    specs: "32GB GDDR7, flagship ROG cooler, factory OC",
+    overview: "ASUS's ROG Astral RTX 5090 OC is a flagship GeForce RTX 5090 card with 32GB of GDDR7 memory. It is built for top-tier 4K gaming, AI workloads, and high-end creator systems that can support its power and case-clearance needs.",
+    oemUrl: "https://www.asus.com/motherboards-components/graphics-cards/rog-astral/rog-astral-rtx5090-o32g-gaming/",
+  },
+  {
+    category: "GPU",
+    name: "ASUS TUF Gaming GeForce RTX 5080 OC 16GB Graphics Card",
+    power: 360,
+    specs: "16GB GDDR7, TUF triple-fan RTX 5080",
+    overview: "ASUS's TUF Gaming RTX 5080 OC is a GeForce RTX 5080 card with 16GB of GDDR7 memory. The TUF design focuses on durable components, a large cooler, and a practical factory-overclocked profile for high-end gaming rigs.",
+    oemUrl: "https://www.asus.com/motherboards-components/graphics-cards/tuf-gaming/tuf-rtx5080-o16g-gaming/",
+  },
+  {
+    category: "GPU",
+    name: "MSI GeForce RTX 5080 16G Gaming Trio OC Graphics Card",
+    power: 360,
+    specs: "16GB GDDR7, Gaming Trio cooler, factory OC",
+    overview: "MSI's GeForce RTX 5080 Gaming Trio OC is a high-end RTX 5080 card with 16GB of GDDR7 memory. It pairs NVIDIA's current-generation gaming features with MSI's large triple-fan Gaming Trio cooling design.",
+    oemUrl: "https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC",
+  },
+  {
+    category: "GPU",
+    name: "Gigabyte GeForce RTX 5070 Gaming OC 12G Graphics Card",
+    power: 250,
+    specs: "12GB GDDR7, Gaming OC cooler, 1440p-focused GPU",
+    overview: "Gigabyte's RTX 5070 Gaming OC 12G is a factory-overclocked GeForce RTX 5070 card for modern 1440p gaming. It uses Gigabyte's Gaming OC cooling design and current-generation NVIDIA features.",
+    oemUrl: "https://www.gigabyte.com/Graphics-Card/GV-N5070GAMING-OC-12GD",
+  },
+  {
+    category: "GPU",
+    name: "ASUS Dual GeForce RTX 4060 OC 8GB Graphics Card",
+    power: 115,
+    specs: "8GB GDDR6, compact dual-fan 1080p GPU",
+    overview: "ASUS's Dual RTX 4060 OC is a compact GeForce RTX 4060 graphics card with 8GB of GDDR6 memory. It is aimed at efficient 1080p gaming builds and smaller cases that still need current NVIDIA features.",
+    oemUrl: "https://www.asus.com/motherboards-components/graphics-cards/dual/dual-rtx4060-o8g/",
+  },
+  {
+    category: "GPU",
+    name: "MSI GeForce RTX 4070 SUPER 12G Gaming X Slim Graphics Card",
+    power: 220,
+    specs: "12GB GDDR6X, slim triple-fan RTX 4070 SUPER",
+    overview: "MSI's RTX 4070 SUPER Gaming X Slim is a GeForce RTX 4070 SUPER card with 12GB of GDDR6X memory. Its thinner Gaming X Slim cooler targets builders who want strong 1440p performance with better case compatibility.",
+    oemUrl: "https://www.msi.com/Graphics-Card/GeForce-RTX-4070-SUPER-12G-GAMING-X-SLIM",
+  },
+  {
+    category: "GPU",
+    name: "Gigabyte Radeon RX 9070 XT Gaming OC 16G Graphics Card",
+    power: 304,
+    specs: "16GB GDDR6, AMD RDNA gaming GPU",
+    overview: "Gigabyte's Radeon RX 9070 XT Gaming OC 16G is an AMD Radeon graphics card with 16GB of memory and a factory-tuned Gaming OC cooler. It is aimed at high-refresh 1440p and 4K-capable gaming systems.",
+    oemUrl: "https://www.gigabyte.com/Graphics-Card/GV-R907XTGAMING-OC-16GD",
+  },
+  {
+    category: "GPU",
+    name: "ASUS TUF Gaming Radeon RX 7900 XTX OC 24GB Graphics Card",
+    power: 355,
+    specs: "24GB GDDR6, TUF cooler, high-end Radeon card",
+    overview: "ASUS's TUF Gaming Radeon RX 7900 XTX OC is a 24GB AMD Radeon graphics card for high-end gaming and creator workloads. It pairs AMD RDNA 3 performance with ASUS's durable TUF cooler and board design.",
+    oemUrl: "https://www.asus.com/motherboards-components/graphics-cards/tuf-gaming/tuf-rx7900xtx-o24g-gaming/",
+  },
+  {
+    category: "GPU",
+    name: "Sapphire Nitro+ Radeon RX 7900 XTX Vapor-X 24GB Graphics Card",
+    power: 420,
+    specs: "24GB GDDR6, Vapor-X cooler, premium Radeon card",
+    overview: "Sapphire's Nitro+ Radeon RX 7900 XTX Vapor-X is a premium AMD Radeon card with 24GB of GDDR6 memory. It is built around Sapphire's large Vapor-X cooling system and enthusiast board design.",
+    oemUrl: "https://www.sapphiretech.com/en/consumer/nitro-radeon-rx-7900-xtx-vapor-x-24g-gddr6",
+  },
+  {
+    category: "GPU",
+    name: "PNY GeForce RTX 4070 Ti SUPER XLR8 Gaming VERTO OC 16GB Graphics Card",
+    power: 285,
+    specs: "16GB GDDR6X, XLR8 cooler, 1440p/4K NVIDIA GPU",
+    overview: "PNY's XLR8 Gaming VERTO OC RTX 4070 Ti SUPER is a 16GB NVIDIA card for high-refresh 1440p and entry 4K gaming. It uses PNY's triple-fan XLR8 cooler and factory-overclocked tuning.",
+    oemUrl: "https://www.pny.com/pny-geforce-rtx-4070-ti-super-16gb-xlr8-gaming-verto-epic-x-rgb-oc-triple-fan",
+  },
+  {
+    category: "Motherboard",
+    name: "MSI MPG X870E Carbon WiFi AM5 ATX Motherboard",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 60,
+    specs: "X870E, WiFi 7, PCIe 5.0, premium AM5",
+    overview: "MSI's MPG X870E Carbon WiFi is a premium AM5 motherboard for Ryzen 9000, 8000, and 7000 processors. It targets enthusiast builds with PCIe 5.0 connectivity, DDR5 tuning, WiFi 7, and a stronger power design than mainstream boards.",
+    oemUrl: "https://www.msi.com/Motherboard/MPG-X870E-CARBON-WIFI",
+  },
+  {
+    category: "Motherboard",
+    name: "MSI MEG X870E GODLIKE AM5 E-ATX Motherboard",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 75,
+    specs: "X870E, E-ATX, flagship AM5 platform",
+    overview: "MSI's MEG X870E GODLIKE is a flagship AM5 E-ATX motherboard built for extreme Ryzen systems. It focuses on premium power delivery, advanced connectivity, PCIe 5.0 expansion, and high-end tuning features.",
+    oemUrl: "https://www.msi.com/Motherboard/MEG-X870E-GODLIKE",
+  },
+  {
+    category: "Motherboard",
+    name: "ASUS TUF Gaming X870-PLUS WiFi AM5 ATX Motherboard",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 55,
+    specs: "X870, WiFi, durable TUF AM5 board",
+    overview: "ASUS's TUF Gaming X870-PLUS WiFi is an AM5 ATX motherboard designed for Ryzen 9000, 8000, and 7000 processors. It emphasizes durable TUF components, DDR5 support, PCIe 5.0 capability, and modern networking.",
+    oemUrl: "https://www.asus.com/motherboards-components/motherboards/tuf-gaming/tuf-gaming-x870-plus-wifi/",
+  },
+  {
+    category: "Motherboard",
+    name: "Gigabyte X870 AORUS Elite WiFi7 AM5 ATX Motherboard",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 55,
+    specs: "X870, WiFi 7, practical AM5 gaming board",
+    overview: "Gigabyte's X870 AORUS Elite WiFi7 is an AM5 gaming motherboard for Ryzen desktop processors. It brings DDR5 support, WiFi 7, PCIe 5.0 features, and the AORUS build style to a practical ATX layout.",
+    oemUrl: "https://www.gigabyte.com/Motherboard/X870-AORUS-ELITE-WIFI7",
+  },
+  {
+    category: "Motherboard",
+    name: "MSI MAG B650 Tomahawk WiFi AM5 ATX Motherboard",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 45,
+    specs: "B650, WiFi 6E, value AM5 board",
+    overview: "MSI's MAG B650 Tomahawk WiFi is an AM5 ATX motherboard for Ryzen 7000, 8000, and compatible later processors. It is a value-focused DDR5 board with WiFi, 2.5Gbps LAN, M.2 storage support, and MSI's Tomahawk styling.",
+    oemUrl: "https://www.msi.com/Motherboard/MAG-B650-TOMAHAWK-WIFI",
+  },
+  {
+    category: "Motherboard",
+    name: "ASUS ROG Strix B650E-F Gaming WiFi AM5 ATX Motherboard",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 50,
+    specs: "B650E, PCIe 5.0, ROG AM5 gaming board",
+    overview: "ASUS's ROG Strix B650E-F Gaming WiFi is an AM5 motherboard with DDR5 support and B650E platform features. It suits gaming builds that want ROG software, strong connectivity, PCIe 5.0 support, and a lower price than X870E boards.",
+    oemUrl: "https://rog.asus.com/motherboards/rog-strix/rog-strix-b650e-f-gaming-wifi-model/",
+  },
+  {
+    category: "Motherboard",
+    name: "MSI MAG Z890 Tomahawk WiFi LGA1851 ATX Motherboard",
+    socket: "LGA1851",
+    memory: "DDR5",
+    power: 55,
+    specs: "Z890, WiFi, Core Ultra 200 support",
+    overview: "MSI's MAG Z890 Tomahawk WiFi is an LGA1851 ATX motherboard for Intel Core Ultra Series 2 processors. It targets gaming systems with DDR5 support, PCIe 5.0 expansion, fast networking, and MSI's MAG-series durability focus.",
+    oemUrl: "https://www.msi.com/Motherboard/MAG-Z890-TOMAHAWK-WIFI",
+  },
+  {
+    category: "Motherboard",
+    name: "MSI MPG Z890 Carbon WiFi LGA1851 ATX Motherboard",
+    socket: "LGA1851",
+    memory: "DDR5",
+    power: 60,
+    specs: "Z890, WiFi 7, premium Intel platform",
+    overview: "MSI's MPG Z890 Carbon WiFi is a higher-end LGA1851 motherboard for Intel Core Ultra desktop processors. It pairs the Z890 chipset with DDR5 tuning, advanced storage, WiFi 7, and a strong power design.",
+    oemUrl: "https://www.msi.com/Motherboard/MPG-Z890-CARBON-WIFI",
+  },
+  {
+    category: "Motherboard",
+    name: "ASUS ROG Maximus Z890 Hero LGA1851 ATX Motherboard",
+    socket: "LGA1851",
+    memory: "DDR5",
+    power: 70,
+    specs: "Z890, ROG Hero, high-end Intel board",
+    overview: "ASUS's ROG Maximus Z890 Hero is a premium LGA1851 motherboard for Core Ultra desktop processors. It is aimed at enthusiast Intel builds with advanced power delivery, tuning features, fast networking, and high-end storage support.",
+    oemUrl: "https://rog.asus.com/motherboards/rog-maximus/rog-maximus-z890-hero/",
+  },
+  {
+    category: "Motherboard",
+    name: "Gigabyte Z890 AORUS Pro Ice LGA1851 ATX Motherboard",
+    socket: "LGA1851",
+    memory: "DDR5",
+    power: 60,
+    specs: "Z890, WiFi 7, white AORUS Intel board",
+    overview: "Gigabyte's Z890 AORUS Pro Ice is a white-themed LGA1851 motherboard for Intel Core Ultra Series 2 processors. It combines the Z890 chipset with DDR5 support, WiFi 7, PCIe 5.0, and an AORUS power design.",
+    oemUrl: "https://www.gigabyte.com/Motherboard/Z890-AORUS-PRO-ICE",
+  },
+  {
+    category: "Memory",
+    name: "G.Skill Trident Z5 Neo RGB 32GB DDR5-6000 CL30 Kit",
+    memory: "DDR5",
+    power: 8,
+    specs: "2x16GB, DDR5-6000, CL30, AMD EXPO",
+    overview: "G.Skill's Trident Z5 Neo RGB DDR5-6000 CL30 kit is tuned for AMD EXPO platforms and high-performance AM5 gaming builds. The 32GB two-DIMM layout is a common sweet spot for modern gaming PCs.",
+    oemUrl: "https://www.gskill.com/product/165/390/1665020956/F5-6000J3038F16GX2-TZ5NR",
+  },
+  {
+    category: "Memory",
+    name: "G.Skill Trident Z5 RGB 48GB DDR5-7200 CL36 Kit",
+    memory: "DDR5",
+    power: 10,
+    specs: "2x24GB, high-speed DDR5, Intel XMP",
+    overview: "G.Skill's Trident Z5 RGB DDR5-7200 48GB kit gives high-speed Intel XMP memory in two 24GB modules. It targets newer DDR5 platforms where extra capacity and high frequency both matter.",
+    oemUrl: "https://www.gskill.com/product/165/374/1688609229/F5-7200J3646F24GX2-TZ5RK",
+  },
+  {
+    category: "Memory",
+    name: "Corsair Dominator Titanium RGB 64GB DDR5-6000 CL30 Kit",
+    memory: "DDR5",
+    power: 11,
+    specs: "2x32GB, premium DDR5, RGB cooling bar",
+    overview: "Corsair's Dominator Titanium RGB DDR5 kits use a premium heat spreader design and iCUE-controlled RGB lighting. This 64GB class is suited for gaming rigs that also run creator, simulation, or heavy multitasking workloads.",
+    oemUrl: "https://www.corsair.com/us/en/c/memory/dominator-titanium-rgb-ddr5-memory",
+  },
+  {
+    category: "Memory",
+    name: "Kingston Fury Beast RGB 32GB DDR5-6000 CL30 Kit",
+    memory: "DDR5",
+    power: 8,
+    specs: "2x16GB, DDR5-6000, RGB, low latency",
+    overview: "Kingston's Fury Beast RGB DDR5 memory targets gaming systems with XMP and EXPO profile support, RGB lighting, and broad DDR5 motherboard compatibility. The 32GB 6000MT/s CL30 configuration is a popular AM5 pairing.",
+    oemUrl: "https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-rgb-memory",
+  },
+  {
+    category: "Memory",
+    name: "TeamGroup T-Force Delta RGB 32GB DDR5-6400 CL40 Kit",
+    memory: "DDR5",
+    power: 8,
+    specs: "2x16GB, DDR5-6400, RGB gaming kit",
+    overview: "TeamGroup's T-Force Delta RGB DDR5 memory is a gaming-oriented kit family with a wide RGB light bar, DDR5 speeds, and XMP profile support. It is a visually loud choice for showcase builds.",
+    oemUrl: "https://www.teamgroupinc.com/en/product-detail/memory/T-FORCE/delta-rgb-ddr5/delta-rgb-ddr5/",
+  },
+  {
+    category: "Memory",
+    name: "Crucial Pro Overclocking 32GB DDR5-6000 CL36 Kit",
+    memory: "DDR5",
+    power: 7,
+    specs: "2x16GB, low-profile DDR5, XMP/EXPO",
+    overview: "Crucial Pro Overclocking DDR5 memory is a low-profile kit family designed for stable DDR5 performance and easy compatibility. The 32GB DDR5-6000 class is a practical pick for gaming and productivity PCs.",
+    oemUrl: "https://www.crucial.com/memory/ddr5/cp2k16g60c36u5b",
+  },
+  {
+    category: "Memory",
+    name: "Patriot Viper Venom RGB 32GB DDR5-6000 CL30 Kit",
+    memory: "DDR5",
+    power: 8,
+    specs: "2x16GB, DDR5-6000, RGB, gaming memory",
+    overview: "Patriot's Viper Venom RGB DDR5 family is built for gaming PCs with high DDR5 speeds, RGB lighting, and overclocking profiles. A 32GB 6000MT/s CL30 kit fits many current AM5 and Intel gaming systems.",
+    oemUrl: "https://viper.patriotmemory.com/products/viper-venom-rgb-ddr5-performance-memory",
+  },
+  {
+    category: "Memory",
+    name: "Lexar ARES RGB 32GB DDR5-6400 CL32 Kit",
+    memory: "DDR5",
+    power: 8,
+    specs: "2x16GB, DDR5-6400, RGB, low-latency kit",
+    overview: "Lexar's ARES RGB DDR5 memory line targets gaming desktops with DDR5 bandwidth, RGB lighting, and tuned XMP/EXPO profiles. The 32GB 6400MT/s CL32 class pairs well with modern enthusiast platforms.",
+    oemUrl: "https://www.lexar.com/product/lexar-ares-rgb-ddr5-desktop-memory/",
+  },
+  {
+    category: "Storage",
+    name: "Samsung 990 EVO Plus 2TB PCIe 5.0 x2 NVMe M.2 SSD",
+    power: 7,
+    specs: "2TB, PCIe 5.0 x2 / 4.0 x4, efficient NVMe",
+    overview: "Samsung's 990 EVO Plus is a mainstream NVMe SSD line that supports PCIe 5.0 x2 and PCIe 4.0 x4 operation. The 2TB model is a strong single-drive option for OS, game, and project storage.",
+    oemUrl: "https://www.samsung.com/us/computing/memory-storage/solid-state-drives/990-evo-plus-nvme-m-2-ssd-2tb-mz-v9s2t0b-am/",
+  },
+  {
+    category: "Storage",
+    name: "WD Black SN850X 2TB PCIe 4.0 NVMe M.2 SSD",
+    power: 7,
+    specs: "2TB, PCIe 4.0, gaming NVMe drive",
+    overview: "WD Black SN850X is Western Digital's gaming-focused PCIe 4.0 NVMe SSD family. The 2TB version offers high sequential speeds and enough capacity for large game libraries.",
+    oemUrl: "https://www.westerndigital.com/products/internal-drives/wd-black-sn850x-nvme-ssd",
+  },
+  {
+    category: "Storage",
+    name: "Crucial T705 2TB PCIe 5.0 NVMe M.2 SSD",
+    power: 12,
+    specs: "2TB, PCIe 5.0, extreme NVMe storage",
+    overview: "Crucial's T705 is a PCIe 5.0 NVMe SSD for cutting-edge desktop platforms. The 2TB model targets builders who need very high storage bandwidth for large game libraries, media work, and scratch workloads.",
+    oemUrl: "https://www.crucial.com/ssd/t705/ct2000t705ssd3",
+  },
+  {
+    category: "Storage",
+    name: "Crucial T500 2TB PCIe 4.0 NVMe M.2 SSD",
+    power: 8,
+    specs: "2TB, PCIe 4.0, fast value NVMe",
+    overview: "Crucial's T500 is a PCIe 4.0 NVMe SSD line aimed at fast mainstream builds. The 2TB model balances speed, capacity, and thermals for gaming and everyday content work.",
+    oemUrl: "https://www.crucial.com/ssd/t500/ct2000t500ssd8",
+  },
+  {
+    category: "Storage",
+    name: "Seagate FireCuda 540 2TB PCIe 5.0 NVMe M.2 SSD",
+    power: 12,
+    specs: "2TB, PCIe 5.0, high-end gaming SSD",
+    overview: "Seagate's FireCuda 540 is a PCIe 5.0 NVMe SSD built for very high throughput on new desktop platforms. The 2TB drive is aimed at enthusiasts, gamers, and creators who need fast load and transfer performance.",
+    oemUrl: "https://www.seagate.com/products/gaming-drives/pc-gaming/firecuda-540-ssd/",
+  },
+  {
+    category: "Storage",
+    name: "Kingston Fury Renegade 2TB PCIe 4.0 NVMe M.2 SSD",
+    power: 8,
+    specs: "2TB, PCIe 4.0, gaming-focused NVMe",
+    overview: "Kingston's Fury Renegade PCIe 4.0 NVMe SSD is designed for high-performance gaming and enthusiast desktops. The 2TB model gives a roomy fast drive for games and creative files.",
+    oemUrl: "https://www.kingston.com/en/ssd/gaming/kingston-fury-renegade-nvme-m2-ssd",
+  },
+  {
+    category: "Storage",
+    name: "Solidigm P44 Pro 2TB PCIe 4.0 NVMe M.2 SSD",
+    power: 7,
+    specs: "2TB, PCIe 4.0, high-performance SSD",
+    overview: "Solidigm's P44 Pro is a high-performance PCIe 4.0 NVMe SSD line for desktop and laptop upgrades. The 2TB model is a strong fit for OS, applications, and large project storage.",
+    oemUrl: "https://www.solidigm.com/products/client/d6/p44pro.html",
+  },
+  {
+    category: "Storage",
+    name: "Sabrent Rocket 5 2TB PCIe 5.0 NVMe M.2 SSD",
+    power: 12,
+    specs: "2TB, PCIe 5.0, enthusiast NVMe drive",
+    overview: "Sabrent's Rocket 5 is a PCIe 5.0 NVMe SSD for high-end desktop platforms. The 2TB version is aimed at users who want very fast sequential transfers and modern DirectStorage-ready game storage.",
+    oemUrl: "https://sabrent.com/products/sb-rkt5-2tb",
+  },
+  {
+    category: "PSU",
+    name: "Corsair RM850x Shift 850W 80+ Gold ATX 3.1 PSU",
+    power: 0,
+    specs: "850W, modular, side connectors, Gold efficiency",
+    overview: "Corsair's RM850x SHIFT is the 850W member of the RMx SHIFT family with a side-mounted cable interface. It is built for clean cable routing, efficient operation, and modern GPU power needs in compatible cases.",
+    oemUrl: "https://www.corsair.com/us/en/p/psu/cp-9020252-na/rm850x-shift-80-plus-gold-fully-modular-atx-power-supply-cp-9020252-na",
+  },
+  {
+    category: "PSU",
+    name: "Seasonic Vertex GX-1000 1000W 80+ Gold ATX 3.0 PSU",
+    power: 0,
+    specs: "1000W, ATX 3.0, modular, Gold efficiency",
+    overview: "Seasonic's Vertex GX-1000 is a 1000W modular ATX 3.0 power supply built for modern GPUs and high-power gaming systems. It emphasizes 80 PLUS Gold efficiency and Seasonic's enthusiast PSU platform.",
+    oemUrl: "https://seasonic.com/vertex-gx/",
+  },
+  {
+    category: "PSU",
+    name: "be quiet! Straight Power 12 1000W 80+ Platinum PSU",
+    power: 0,
+    specs: "1000W, ATX 3.0, quiet Platinum PSU",
+    overview: "be quiet!'s Straight Power 12 1000W is a quiet, fully modular ATX 3.0 power supply with 80 PLUS Platinum efficiency. It is intended for premium gaming PCs that need high efficiency and low acoustic output.",
+    oemUrl: "https://www.bequiet.com/en/powersupply/4107",
+  },
+  {
+    category: "PSU",
+    name: "EVGA SuperNOVA 1000G FTW 1000W 80+ Gold PSU",
+    power: 0,
+    specs: "1000W, modular, Gold efficiency",
+    overview: "EVGA's SuperNOVA 1000G FTW is a fully modular 1000W power supply for gaming and enthusiast desktops. It targets high-power builds that need modern cabling and reliable power delivery.",
+    oemUrl: "https://www.evga.com/products/product.aspx?pn=220-GT-1000-X1",
+  },
+  {
+    category: "PSU",
+    name: "MSI MPG A1000G PCIE5 1000W 80+ Gold PSU",
+    power: 0,
+    specs: "1000W, PCIe 5.0, modular Gold PSU",
+    overview: "MSI's MPG A1000G PCIE5 is a 1000W modular power supply designed for modern graphics cards and gaming desktops. It includes PCIe 5.0-focused cabling and 80 PLUS Gold efficiency.",
+    oemUrl: "https://www.msi.com/Power-Supply/MPG-A1000G-PCIE5",
+  },
+  {
+    category: "PSU",
+    name: "Thermaltake Toughpower GF A3 1200W 80+ Gold PSU",
+    power: 0,
+    specs: "1200W, ATX 3.0, modular Gold PSU",
+    overview: "Thermaltake's Toughpower GF A3 1200W is a high-capacity modular power supply for modern GPUs and enthusiast desktops. It supports ATX 3.0-era power requirements and 80 PLUS Gold efficiency.",
+    oemUrl: "https://www.thermaltake.com/toughpower-gf-a3-gold-1200w.html",
+  },
+  {
+    category: "PSU",
+    name: "Lian Li Edge 1000W 80+ Platinum ATX 3.1 PSU",
+    power: 0,
+    specs: "1000W, ATX 3.1, modular Platinum PSU",
+    overview: "Lian Li's Edge 1000W is a modular ATX 3.1 power supply with an L-shaped form factor aimed at dual-chamber cases. It targets clean cable routing and high-efficiency power delivery.",
+    oemUrl: "https://lian-li.com/product/edge/",
+  },
+  {
+    category: "Case",
+    name: "Fractal Design North XL Charcoal Black Mesh Case",
+    power: 0,
+    specs: "Large airflow case, wood front, mesh side",
+    overview: "Fractal Design's North XL expands the original North design into a larger case with natural front-panel styling and increased component room. The mesh version favors airflow-focused builds with high-end GPUs.",
+    oemUrl: "https://www.fractal-design.com/products/cases/north/north-xl/charcoal-black/",
+  },
+  {
+    category: "Case",
+    name: "Fractal Design Meshify 2 Compact Black TG Case",
+    power: 0,
+    specs: "Compact ATX airflow case, tempered glass",
+    overview: "Fractal Design's Meshify 2 Compact is an airflow-focused ATX case with a smaller footprint than full-size towers. It suits builders who want strong cooling and clean cable management without an oversized chassis.",
+    oemUrl: "https://www.fractal-design.com/products/cases/meshify/meshify-2-compact/black-tg-dark-tint/",
+  },
+  {
+    category: "Case",
+    name: "NZXT H9 Flow Black Dual-Chamber Case",
+    power: 0,
+    specs: "Dual-chamber airflow case, panoramic glass",
+    overview: "NZXT's H9 Flow is a dual-chamber case with broad glass visibility and airflow-focused paneling. It is designed for showcase gaming PCs with large radiators, clean cable separation, and modern GPU clearance.",
+    oemUrl: "https://nzxt.com/product/h9-flow",
+  },
+  {
+    category: "Case",
+    name: "NZXT H6 Flow RGB Black Compact Dual-Chamber Case",
+    power: 0,
+    specs: "Compact dual-chamber case, angled airflow, RGB fans",
+    overview: "NZXT's H6 Flow RGB is a compact dual-chamber case with an angled front intake layout. It is built for visible component layouts, GPU-focused airflow, and included RGB cooling.",
+    oemUrl: "https://nzxt.com/product/h6-flow-rgb",
+  },
+  {
+    category: "Case",
+    name: "Lian Li O11 Vision Compact Black Case",
+    power: 0,
+    specs: "Showcase case, glass panels, compact O11 layout",
+    overview: "Lian Li's O11 Vision Compact is a showcase-focused case with broad glass visibility and support for tidy high-end builds. It targets builders who want a display-style PC without a full-size tower footprint.",
+    oemUrl: "https://lian-li.com/product/o11-vision-compact/",
+  },
+  {
+    category: "Case",
+    name: "Corsair 5000D Airflow Black Mid-Tower Case",
+    power: 0,
+    specs: "High-airflow ATX case, roomy cable management",
+    overview: "Corsair's 5000D Airflow is a roomy mid-tower case designed around strong front-panel airflow and flexible cooling layouts. It supports large GPUs, multiple radiator positions, and clean cable management.",
+    oemUrl: "https://www.corsair.com/us/en/p/pc-cases/cc-9011210-ww/5000d-airflow-tempered-glass-mid-tower-atx-pc-case-black-cc-9011210-ww",
+  },
+  {
+    category: "Case",
+    name: "Phanteks NV7 Black Showcase Full-Tower Case",
+    power: 0,
+    specs: "Showcase tower, dual glass panels, high-end builds",
+    overview: "Phanteks' NV7 is a showcase full-tower chassis for high-end custom builds. It emphasizes broad glass visibility, large cooling support, and a clean internal layout for premium gaming PCs.",
+    oemUrl: "https://www.phanteks.com/NV7.html",
+  },
+];
+
+parts.push(
+  ...expandedParts.map((part) => ({
+    ...part,
+    offers: part.offers || [{ seller: "OEM", price: null, status: "Product page", url: part.oemUrl }],
+  })),
+);
+
 const categoryDescriptions = {
   CPU: "Verified processor product pages with socket metadata for the builder.",
   GPU: "Exact-model graphics cards with direct retailer product pages.",
@@ -260,18 +798,27 @@ function productImage(part) {
   return part.image || "assets/pc-parts-hero.png";
 }
 
+function pricedOffers(part) {
+  return part.offers.filter((offer) => Number.isFinite(offer.price));
+}
+
 function bestOffer(part) {
-  return [...part.offers].filter((offer) => typeof offer.price === "number").sort((a, b) => a.price - b.price)[0] || part.offers[0];
+  return [...pricedOffers(part)].sort((a, b) => a.price - b.price)[0] || part.offers[0];
 }
 
 function compareAt(part) {
-  const offerWas = part.offers.map((offer) => offer.was).filter(Boolean).sort((a, b) => b - a)[0];
-  return offerWas || Math.round(bestOffer(part).price * 1.12);
+  const offerWas = part.offers.map((offer) => offer.was).filter(Number.isFinite).sort((a, b) => b - a)[0];
+  const price = bestOffer(part).price;
+  return offerWas || (Number.isFinite(price) ? Math.round(price * 1.12) : null);
 }
 
 function formatMoney(value) {
-  if (typeof value !== "number") return "Check price";
+  if (!Number.isFinite(value)) return "Check price";
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: value % 1 ? 2 : 0 }).format(value);
+}
+
+function wasMarkup(value) {
+  return Number.isFinite(value) ? `<span class="was">${formatMoney(value)}</span>` : "";
 }
 
 function offerLinks(part, compact = false) {
@@ -313,7 +860,10 @@ function renderCategories() {
 }
 
 function renderDeals() {
-  const deals = [...parts].sort((a, b) => compareAt(b) - bestOffer(b).price - (compareAt(a) - bestOffer(a).price)).slice(0, 6);
+  const deals = [...parts]
+    .filter((part) => Number.isFinite(bestOffer(part).price))
+    .sort((a, b) => compareAt(b) - bestOffer(b).price - (compareAt(a) - bestOffer(a).price))
+    .slice(0, 6);
   document.getElementById("dealGrid").innerHTML = deals
     .map((part) => {
       const offer = bestOffer(part);
@@ -324,7 +874,7 @@ function renderDeals() {
         <p>${part.specs}</p>
         <div class="price-row">
           <span class="price">${formatMoney(offer.price)}</span>
-          <span class="was">${formatMoney(was)}</span>
+          ${wasMarkup(was)}
         </div>
         ${lowestOfferBadge(part)}
         <div class="seller-row">${offerLinks(part, true)}<a class="seller-link details-link" href="${productUrl(part)}"><span>Details</span><strong>View</strong></a></div>
@@ -356,7 +906,7 @@ function renderProducts(category = "All") {
         <div class="specs">${[part.socket, part.memory, part.power ? `${part.power}W draw` : "", `${part.offers.length} product-page offer${part.offers.length === 1 ? "" : "s"}`].filter(Boolean).join(" | ")}</div>
         <div class="price-row">
           <span class="price">${formatMoney(offer.price)}</span>
-          <span class="was">${formatMoney(was)}</span>
+          ${wasMarkup(was)}
         </div>
         ${lowestOfferBadge(part)}
         <div class="seller-row">${offerLinks(part, true)}<a class="seller-link details-link" href="${productUrl(part)}"><span>Details</span><strong>View</strong></a></div>
@@ -459,7 +1009,7 @@ function renderProductDetail() {
         <p class="hero-copy">${selected.specs}</p>
         <div class="price-row">
           <span class="price">${formatMoney(offer.price)}</span>
-          <span class="was">${formatMoney(was)}</span>
+          ${wasMarkup(was)}
         </div>
         ${lowestOfferBadge(selected)}
         <div class="specs">${[selected.socket, selected.memory, selected.power ? `${selected.power}W draw` : "", `Verified ${verifiedAt}`].filter(Boolean).join(" | ")}</div>
