@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EZPC Parts Market</title>
+    <meta
+      name="description"
+      content="A modern PC parts storefront with exact-model components, sale picks, seller links, and a simple PC builder."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="EZPC home">
+        <span class="brand-mark">EZ</span>
+        <span>EZPC</span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#categories">Categories</a>
+        <a href="#deals">Deals</a>
+        <a href="#builder">Builder</a>
+        <a href="#catalog">Parts</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <img class="hero-image" src="assets/pc-parts-hero.png" alt="PC parts arranged on a modern workbench" />
+        <div class="hero-overlay">
+          <p class="eyebrow">Exact models. Multi-store links. Builder-ready picks.</p>
+          <h1 id="hero-title">Build a better PC without chasing tabs all day.</h1>
+          <p class="hero-copy">
+            Browse specific CPUs, GPUs, boards, memory, cooling, storage, and cases with seller links for
+            Amazon, Newegg, Best Buy, Micro Center, and B&H.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#builder">Start a Build</a>
+            <a class="button secondary" href="#deals">Shop Deals</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-band" aria-label="Store highlights">
+        <div>
+          <strong>48</strong>
+          <span>exact-model parts</span>
+        </div>
+        <div>
+          <strong>5</strong>
+          <span>seller paths per item</span>
+        </div>
+        <div>
+          <strong>3</strong>
+          <span>ready build tiers</span>
+        </div>
+        <div>
+          <strong>Live</strong>
+          <span>builder compatibility notes</span>
+        </div>
+      </section>
+
+      <section class="section" id="categories">
+        <div class="section-heading">
+          <p class="eyebrow">Shop by part</p>
+          <h2>Categories built for real builds</h2>
+        </div>
+        <div class="category-grid" id="categoryGrid"></div>
+      </section>
+
+      <section class="section deals-section" id="deals">
+        <div class="section-heading">
+          <p class="eyebrow">Sale shelf</p>
+          <h2>Strong value picks today</h2>
+        </div>
+        <div class="deal-grid" id="dealGrid"></div>
+      </section>
+
+      <section class="builder-section" id="builder">
+        <div class="builder-copy">
+          <p class="eyebrow">PC builder</p>
+          <h2>Pick parts, track budget, catch obvious mismatches.</h2>
+          <p>
+            Choose a component in every slot and EZPC totals the build, lists power needs, and checks CPU socket
+            and memory generation against the selected motherboard.
+          </p>
+        </div>
+        <div class="builder-panel">
+          <div class="builder-slots" id="builderSlots"></div>
+          <aside class="summary" aria-live="polite">
+            <span class="summary-label">Estimated total</span>
+            <strong id="buildTotal">$0</strong>
+            <span id="buildPower">0W estimated component draw</span>
+            <div class="compatibility" id="compatibility"></div>
+            <div class="seller-list" id="builderLinks"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="catalog">
+        <div class="section-heading catalog-heading">
+          <div>
+            <p class="eyebrow">Full catalog</p>
+            <h2>Specific parts, not vague buckets</h2>
+          </div>
+          <label class="filter-label">
+            <span>Filter</span>
+            <select id="categoryFilter" aria-label="Filter parts by category"></select>
+          </label>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>EZPC Parts Market</span>
+      <span>Seller buttons open exact model searches so listings stay useful as stock changes.</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
