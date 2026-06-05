@@ -689,8 +689,110 @@ select {
   font-weight: 760;
 }
 
+.product-page {
+  width: min(1280px, calc(100% - 28px));
+  margin: -76px auto 0;
+  padding: 150px clamp(4px, 3vw, 36px) 88px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  margin-bottom: 18px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.88fr) minmax(0, 1.12fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.product-media,
+.product-info-panel,
+.retailer-table-wrap {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.product-media {
+  display: grid;
+  min-height: 460px;
+  margin: 0;
+  place-items: center;
+  overflow: hidden;
+}
+
+.product-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info-panel {
+  padding: clamp(24px, 4vw, 44px);
+}
+
+.product-info-panel h1 {
+  font-size: clamp(2.5rem, 6vw, 5.2rem);
+}
+
+.retailer-table-wrap {
+  margin-top: 18px;
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.retailer-table {
+  display: grid;
+  gap: 10px;
+}
+
+.retailer-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 14px;
+  align-items: center;
+  min-height: 58px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.055);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.retailer-row:hover {
+  transform: translateY(-2px);
+  border-color: rgba(141, 240, 180, 0.48);
+  background: rgba(141, 240, 180, 0.08);
+}
+
+.retailer-row span {
+  font-weight: 950;
+}
+
+.retailer-row strong {
+  color: var(--green);
+}
+
+.retailer-row em {
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 800;
+}
+
 @media (max-width: 1040px) {
   .hero,
+  .product-detail-grid,
   .builder-section,
   .builder-panel {
     grid-template-columns: 1fr;
@@ -762,6 +864,7 @@ select {
   .stats-band,
   .section,
   .builder-section,
+  .product-page,
   .footer {
     width: calc(100% - 16px);
   }
@@ -769,5 +872,9 @@ select {
   .filter-label,
   .filter-label select {
     width: 100%;
+  }
+
+  .retailer-row {
+    grid-template-columns: 1fr;
   }
 }
