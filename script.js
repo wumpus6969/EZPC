@@ -1,4 +1,4 @@
-const verifiedAt = "June 5, 2026";
+const verifiedAt = "June 7, 2026";
 
 const parts = [
   {
@@ -773,6 +773,476 @@ parts.push(
     offers: part.offers || [{ seller: "OEM", price: null, status: "Product page", url: part.oemUrl }],
   })),
 );
+
+const lowestPriceOffers = {
+  "AMD Ryzen 7 9800X3D 8-Core AM5 Processor": {
+    seller: "eBay",
+    price: 408.95,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/226979575818?mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339071127&customid=&toolid=10001&mkevt=1"
+  },
+  "AMD Ryzen 9 9950X 16-Core AM5 Processor": {
+    seller: "eBay",
+    price: 469.99,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/227350463994?mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339071127&customid=&toolid=10001&mkevt=1"
+  },
+  "Intel Core Ultra 9 285K LGA1851 Processor": {
+    seller: "Amazon",
+    price: 539,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0DFKC99VL?tag=pgrid05-20"
+  },
+  "Intel Core i7-14700K LGA1700 Processor": {
+    seller: "Newegg",
+    price: 390.97,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16819118466"
+  },
+  "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card": {
+    seller: "Amazon",
+    price: 1355.99,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0DS2R7N4F?tag=pgrid05-20"
+  },
+  "ASUS TUF Gaming GeForce RTX 5070 Ti OC 16GB Graphics Card": {
+    seller: "Best Buy",
+    price: 1069.99,
+    status: "Lowest verified retailer",
+    url: "https://api.bestbuy.com/click/-/6614743/pdp"
+  },
+  "ASUS ROG Strix X870E-E Gaming WiFi AM5 ATX Motherboard": {
+    seller: "Amazon",
+    price: 356,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0DDZNZF76"
+  },
+  "MSI MAG X870 Tomahawk WiFi AM5 ATX Motherboard": {
+    seller: "Amazon",
+    price: 209.99,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0DG3HK897"
+  },
+  "Gigabyte Z890 AORUS Elite WiFi7 LGA1851 ATX Motherboard": {
+    seller: "B&H",
+    price: 259.99,
+    status: "Lowest verified retailer",
+    url: "https://www.bhphotovideo.com/c/product/1857566-REG/gigabyte_z890_a_elite_wifi7_z890_aorus_elite_wifi7.html"
+  },
+  "MSI MAG Z790 Tomahawk WiFi LGA1700 DDR5 Motherboard": {
+    seller: "B&H",
+    price: 209.99,
+    status: "Lowest verified retailer",
+    url: "https://www.bhphotovideo.com/c/product/1731165-REG/msi_mag_z790_tomahawk_wifi.html"
+  },
+  "Corsair Vengeance RGB 64GB DDR5-6400 CL32 Kit": {
+    seller: "Doren Tech",
+    price: 1215.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1689SIC70SKYG8207"
+  },
+  "Silicon Power Zenith RGB 32GB DDR5-6000 CL30 Kit": {
+    seller: "B&H",
+    price: 489.99,
+    status: "Lowest verified retailer",
+    url: "https://www.bhphotovideo.com/c/product/1801359-REG/silicone_power_su032gxlwu60afdfbh_32gb_2x16gb_zenith_ddr5_6000.html"
+  },
+  "Samsung 990 PRO 2TB PCIe 4.0 NVMe M.2 SSD": {
+    seller: "eBay",
+    price: 303.99,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/146214736097"
+  },
+  "Corsair RM1000x Shift 1000W 80+ Gold ATX 3.1 PSU": {
+    seller: "Newegg",
+    price: 182.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16817139350"
+  },
+  "Fractal Design North XL RC Charcoal Black TG Case": {
+    seller: "Newegg",
+    price: 200.98,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16811352237"
+  },
+  "NZXT H7 Flow RGB 2024 Black Mid-Tower Case": {
+    seller: "Newegg",
+    price: 149.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16811146363"
+  },
+  "AMD Ryzen 5 9600X 6-Core AM5 Processor": {
+    seller: "Amazon",
+    price: 179,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0D6NN6TM7?tag=pgrid05-20"
+  },
+  "AMD Ryzen 7 9700X 8-Core AM5 Processor": {
+    seller: "Amazon",
+    price: 298.12,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0DPXP86KX?tag=pgrid05-20"
+  },
+  "AMD Ryzen 9 9900X 12-Core AM5 Processor": {
+    seller: "eBay",
+    price: 340,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/236835430743?mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339071127&customid=&toolid=10001&mkevt=1"
+  },
+  "AMD Ryzen 9 9950X3D 16-Core AM5 Processor": {
+    seller: "eBay",
+    price: 649.99,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/127812411405?mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339071127&customid=&toolid=10001&mkevt=1"
+  },
+  "AMD Ryzen 9 9900X3D 12-Core AM5 Processor": {
+    seller: "B&H",
+    price: 509.99,
+    status: "Lowest verified retailer",
+    url: "https://www.bhphotovideo.com/c/product/1878569-REG/amd_ryzen_9_9900x3d_4_4.html"
+  },
+  "AMD Ryzen 7 7800X3D 8-Core AM5 Processor": {
+    seller: "Amazon",
+    price: 318.99,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0CXQ33KVM?tag=pgrid05-20"
+  },
+  "AMD Ryzen 5 7600X 6-Core AM5 Processor": {
+    seller: "eBay",
+    price: 155,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/257473252640?mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339071127&customid=&toolid=10001&mkevt=1"
+  },
+  "AMD Ryzen 7 7700X 8-Core AM5 Processor": {
+    seller: "Amazon",
+    price: 199.99,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0GYYY8PK2?tag=pgrid05-20"
+  },
+  "AMD Ryzen 9 7900X 12-Core AM5 Processor": {
+    seller: "eBay",
+    price: 284.98,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/227324307094?mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339071127&customid=&toolid=10001&mkevt=1"
+  },
+  "AMD Ryzen 9 7950X 16-Core AM5 Processor": {
+    seller: "eBay",
+    price: 465,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/205803241492?mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339071127&customid=&toolid=10001&mkevt=1"
+  },
+  "ASUS ROG Astral GeForce RTX 5090 OC 32GB Graphics Card": {
+    seller: "Amazon",
+    price: 4329.95,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0DS2WQZ2M?tag=pgrid05-20"
+  },
+  "ASUS TUF Gaming GeForce RTX 5080 OC 16GB Graphics Card": {
+    seller: "Amazon",
+    price: 1599.99,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0DQSMMCSH?tag=pgrid05-20"
+  },
+  "MSI GeForce RTX 5080 16G Gaming Trio OC Graphics Card": {
+    seller: "B&H",
+    price: 1599.95,
+    status: "Lowest verified retailer",
+    url: "https://www.bhphotovideo.com/c/product/1875457-REG/msi_g5080_16gtc_geforce_rtx_5080_gaming.html"
+  },
+  "Gigabyte GeForce RTX 5070 Gaming OC 12G Graphics Card": {
+    seller: "Best Buy",
+    price: 679.99,
+    status: "Lowest verified retailer",
+    url: "https://www.bestbuy.com/site/gigabyte-nvidia-geforce-rtx-5070-gaming-oc-12g-gddr7-pci-express-5-0-graphics-card-black/6621261.p"
+  },
+  "ASUS Dual GeForce RTX 4060 OC 8GB Graphics Card": {
+    seller: "Newegg",
+    price: 367.55,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/asus-dual-rtx4060-o8g-geforce-rtx-4060-8gb-video-card-double-fans/p/N82E16814126665"
+  },
+  "MSI GeForce RTX 4070 SUPER 12G Gaming X Slim Graphics Card": {
+    seller: "eBay",
+    price: 959,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/376876837793?mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339071127&customid=&toolid=10001&mkevt=1"
+  },
+  "Gigabyte Radeon RX 9070 XT Gaming OC 16G Graphics Card": {
+    seller: "Amazon",
+    price: 649.99,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0DS2QG2KW?tag=pgrid05-20"
+  },
+  "ASUS TUF Gaming Radeon RX 7900 XTX OC 24GB Graphics Card": {
+    seller: "Amazon",
+    price: 1099.99,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0BNLSW23M"
+  },
+  "Sapphire Nitro+ Radeon RX 7900 XTX Vapor-X 24GB Graphics Card": {
+    seller: "Amazon",
+    price: 999.99,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0BR6HZZ6Z"
+  },
+  "PNY GeForce RTX 4070 Ti SUPER XLR8 Gaming VERTO OC 16GB Graphics Card": {
+    seller: "Dell",
+    price: 749.99,
+    status: "Lowest verified retailer",
+    url: "https://www.dell.com/en-us/shop/pny-geforce-rtx-4070-ti-super-16gb-verto-overclocked-edition/apd/ac774156/graphic-video-cards"
+  },
+  "MSI MEG X870E GODLIKE AM5 E-ATX Motherboard": {
+    seller: "Newegg",
+    price: 999.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16813144678"
+  },
+  "ASUS TUF Gaming X870-PLUS WiFi AM5 ATX Motherboard": {
+    seller: "Computer Headquarters",
+    price: 179.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1689SIADFRKUW8514"
+  },
+  "ASUS ROG Strix B650E-F Gaming WiFi AM5 ATX Motherboard": {
+    seller: "Silicon Alley Electronics",
+    price: 129.95,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1689SIBDUMKYB7156"
+  },
+  "MSI MAG Z890 Tomahawk WiFi LGA1851 ATX Motherboard": {
+    seller: "Newegg",
+    price: 229.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/msi-mag-z890-tomahawk-wifi-atx-motherboard-intel-z890-lga-1851/p/N82E16813144669"
+  },
+  "MSI MPG Z890 Carbon WiFi LGA1851 ATX Motherboard": {
+    seller: "Newegg",
+    price: 399.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16813144670"
+  },
+  "ASUS ROG Maximus Z890 Hero LGA1851 ATX Motherboard": {
+    seller: "Best Buy",
+    price: 549.99,
+    status: "Lowest verified retailer",
+    url: "https://www.bestbuy.com/product/asus-rog-maximus-z890-hero-socket-lga-1851-intel-z890-atx-ddr5-wi-fi-7-motherboard-black/JJGGLQTZRC"
+  },
+  "Gigabyte Z890 AORUS Pro Ice LGA1851 ATX Motherboard": {
+    seller: "Newegg",
+    price: 299.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/gigabyte-z890-aorus-pro-ice-atx-motherboards-intel-intel-z890-lga-1851/p/N82E16813145524"
+  },
+  "G.Skill Trident Z5 Neo RGB 32GB DDR5-6000 CL30 Kit": {
+    seller: "EvoMicro",
+    price: 488,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1689SIAG5BKUH7798"
+  },
+  "G.Skill Trident Z5 RGB 48GB DDR5-7200 CL36 Kit": {
+    seller: "Newegg",
+    price: 599.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/pl?d=G.Skill+Trident+Z5+RGB+48GB+DDR5-7200+CL36"
+  },
+  "Corsair Dominator Titanium RGB 64GB DDR5-6000 CL30 Kit": {
+    seller: "Newegg",
+    price: 1199.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/pl?d=Corsair+Dominator+Titanium+RGB+64GB+DDR5-6000+CL30"
+  },
+  "Kingston Fury Beast RGB 32GB DDR5-6000 CL30 Kit": {
+    seller: "TELeasy",
+    price: 553.58,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1689SIA8N2KNP9621"
+  },
+  "TeamGroup T-Force Delta RGB 32GB DDR5-6400 CL40 Kit": {
+    seller: "Newegg",
+    price: 429.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/pl?d=TeamGroup+T-Force+Delta+RGB+32GB+DDR5-6400+CL40"
+  },
+  "Crucial Pro Overclocking 32GB DDR5-6000 CL36 Kit": {
+    seller: "Newegg",
+    price: 414.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16820156406"
+  },
+  "Patriot Viper Venom RGB 32GB DDR5-6000 CL30 Kit": {
+    seller: "Newegg",
+    price: 409.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1680RN002U004U6"
+  },
+  "Lexar ARES RGB 32GB DDR5-6400 CL32 Kit": {
+    seller: "Newegg",
+    price: 399.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/pl?d=Lexar+ARES+RGB+32GB+DDR5-6400+CL32"
+  },
+  "Samsung 990 EVO Plus 2TB PCIe 5.0 x2 NVMe M.2 SSD": {
+    seller: "Amazon",
+    price: 409,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0DHLCRF91"
+  },
+  "WD Black SN850X 2TB PCIe 4.0 NVMe M.2 SSD": {
+    seller: "eBay",
+    price: 319,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/298229824506"
+  },
+  "Crucial T705 2TB PCIe 5.0 NVMe M.2 SSD": {
+    seller: "Amazon",
+    price: 392.55,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B0CTS93WML"
+  },
+  "Crucial T500 2TB PCIe 4.0 NVMe M.2 SSD": {
+    seller: "eBay",
+    price: 344.9,
+    status: "Lowest verified retailer",
+    url: "https://www.ebay.com/itm/257387682615"
+  },
+  "Seagate FireCuda 540 2TB PCIe 5.0 NVMe M.2 SSD": {
+    seller: "Amazon",
+    price: 450,
+    status: "Lowest verified retailer",
+    url: "https://www.amazon.com/dp/B08Q55DGGY"
+  },
+  "Kingston Fury Renegade 2TB PCIe 4.0 NVMe M.2 SSD": {
+    seller: "Newegg",
+    price: 389.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/0D9-001B-00582"
+  },
+  "Solidigm P44 Pro 2TB PCIe 4.0 NVMe M.2 SSD": {
+    seller: "Newegg",
+    price: 299.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/pl?d=Solidigm+P44+Pro+2TB"
+  },
+  "Sabrent Rocket 5 2TB PCIe 5.0 NVMe M.2 SSD": {
+    seller: "Sabrent",
+    price: 319.99,
+    status: "Lowest verified retailer",
+    url: "https://sabrent.com/products/sb-rkt5-2tb"
+  },
+  "Corsair RM850x Shift 850W 80+ Gold ATX 3.1 PSU": {
+    seller: "Newegg",
+    price: 149.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16817139351"
+  },
+  "Seasonic Vertex GX-1000 1000W 80+ Gold ATX 3.0 PSU": {
+    seller: "C.N.E Technology",
+    price: 377.33,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1689SIBZW0KPB9293"
+  },
+  "be quiet! Straight Power 12 1000W 80+ Platinum PSU": {
+    seller: "Newegg",
+    price: 159.9,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/pl?d=be+quiet+Straight+Power+12+1000W"
+  },
+  "EVGA SuperNOVA 1000G FTW 1000W 80+ Gold PSU": {
+    seller: "EVGA",
+    price: 189.99,
+    status: "Lowest verified retailer",
+    url: "https://www.evga.com/products/product.aspx?pn=220-GT-1000-X1"
+  },
+  "MSI MPG A1000G PCIE5 1000W 80+ Gold PSU": {
+    seller: "BTE Outlet",
+    price: 375.71,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1689SIAD6HJ8E1641"
+  },
+  "Thermaltake Toughpower GF A3 1200W 80+ Gold PSU": {
+    seller: "Thermaltake",
+    price: 204.98,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1689SIA8EFJUS8785"
+  },
+  "Lian Li Edge 1000W 80+ Platinum ATX 3.1 PSU": {
+    seller: "Newegg",
+    price: 124.6,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1681HU01PP00022"
+  },
+  "Fractal Design North XL Charcoal Black Mesh Case": {
+    seller: "Newegg",
+    price: 207.98,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16811352215"
+  },
+  "Fractal Design Meshify 2 Compact Black TG Case": {
+    seller: "Newegg",
+    price: 147.98,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16811352140"
+  },
+  "Lian Li O11 Vision Compact Black Case": {
+    seller: "Newegg",
+    price: 124.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E1682AM000Z000D8"
+  },
+  "Corsair 5000D Airflow Black Mid-Tower Case": {
+    seller: "Newegg",
+    price: 169.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16811139240"
+  },
+  "Phanteks NV7 Black Showcase Full-Tower Case": {
+    seller: "Newegg",
+    price: 219.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/pl?d=Phanteks+NV7+Black"
+  },
+  "MSI MPG X870E Carbon WiFi AM5 ATX Motherboard": {
+    seller: "Newegg",
+    price: 359.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16813144666"
+  },
+  "Gigabyte X870 AORUS Elite WiFi7 AM5 ATX Motherboard": {
+    seller: "Newegg",
+    price: 249.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16813145519"
+  },
+  "MSI MAG B650 Tomahawk WiFi AM5 ATX Motherboard": {
+    seller: "Newegg",
+    price: 199.99,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16813144557"
+  },
+  "NZXT H9 Flow Black Dual-Chamber Case": {
+    seller: "Newegg",
+    price: 128.98,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16811146370"
+  },
+  "NZXT H6 Flow RGB Black Compact Dual-Chamber Case": {
+    seller: "Newegg",
+    price: 115.98,
+    status: "Lowest verified retailer",
+    url: "https://www.newegg.com/p/N82E16811146359"
+  }
+};
+
+parts.forEach((part) => {
+  const lowestOffer = lowestPriceOffers[part.name];
+  if (!lowestOffer) return;
+
+  const existingOffers = part.offers || [];
+  part.offers = [
+    { ...lowestOffer },
+    ...existingOffers.filter((offer) => offer.url !== lowestOffer.url && offer.seller !== lowestOffer.seller),
+  ];
+});
 
 const categoryDescriptions = {
   CPU: "Verified processor product pages with socket metadata for the builder.",
