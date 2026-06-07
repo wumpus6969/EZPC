@@ -1242,16 +1242,6 @@ parts.forEach((part) => {
         ...existingOffers.filter((offer) => offer.url !== lowestOffer.url && offer.seller !== lowestOffer.seller),
       ]
     : existingOffers;
-
-  const hasAmazonOffer = part.offers.some((offer) => offer.seller === "Amazon" || offer.url.includes("amazon.com"));
-  if (!hasAmazonOffer) {
-    part.offers.push({
-      seller: "Amazon",
-      price: null,
-      status: "Amazon search",
-      url: `https://www.amazon.com/s?k=${encodeURIComponent(part.name)}`,
-    });
-  }
 });
 
 const categoryDescriptions = {
