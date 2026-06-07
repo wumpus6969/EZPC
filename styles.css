@@ -3,6 +3,8 @@
   --paper: #ffffff;
   --paper-soft: #f0f3f4;
   --ink: #111416;
+  --heading: #111416;
+  --dark-surface: #111416;
   --text: #182024;
   --muted: #697279;
   --line: #dce2e5;
@@ -18,12 +20,35 @@
   --speed: 180ms;
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b0d0e;
+  --paper: #14191b;
+  --paper-soft: #101315;
+  --heading: #f4f8f6;
+  --text: #e3e9e6;
+  --muted: #9aa7a1;
+  --line: #273034;
+  --line-strong: #3d4a50;
+  --accent: #79d5a5;
+  --accent-2: #76c7df;
+  --amber: #e5b85f;
+  --red: #ff8f7f;
+  --green: #79d5a5;
+  --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.28);
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+}
+
 * {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+html[data-theme="dark"] {
+  background: var(--bg);
 }
 
 body {
@@ -36,6 +61,13 @@ body {
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   text-rendering: geometricPrecision;
+  transition: background 240ms ease, color 240ms ease;
+}
+
+:root[data-theme="dark"] body {
+  background:
+    linear-gradient(180deg, rgba(20, 25, 27, 0.84), rgba(11, 13, 14, 0.96) 42rem),
+    var(--bg);
 }
 
 body::before {
@@ -61,6 +93,10 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+button {
+  font: inherit;
+}
+
 :focus-visible {
   outline: 3px solid rgba(37, 122, 154, 0.28);
   outline-offset: 3px;
@@ -82,6 +118,7 @@ a {
   background: rgba(17, 20, 22, 0.78);
   box-shadow: 0 18px 60px rgba(17, 20, 22, 0.2);
   backdrop-filter: blur(18px);
+  gap: 8px;
 }
 
 .brand,
@@ -139,6 +176,57 @@ a {
   background: rgba(255, 255, 255, 0.13);
   color: #ffffff;
   transform: translateY(-1px);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 11px 0 7px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(247, 250, 249, 0.82);
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 900;
+  transition: transform var(--speed) ease, background var(--speed) ease, border-color var(--speed) ease, color var(--speed) ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.theme-toggle-icon {
+  position: relative;
+  display: inline-flex;
+  width: 34px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.theme-toggle-icon::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
+  transition: transform 220ms ease, background 220ms ease;
+}
+
+:root[data-theme="dark"] .theme-toggle-icon::before {
+  transform: translateX(14px);
+  background: #8fd7b3;
 }
 
 .hero {
@@ -942,6 +1030,108 @@ select:focus {
   font-weight: 800;
 }
 
+:root[data-theme="dark"] body::before {
+  opacity: 0.24;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+:root[data-theme="dark"] .stats-band {
+  background: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+:root[data-theme="dark"] .stats-band div,
+:root[data-theme="dark"] .category-card,
+:root[data-theme="dark"] .deal-card,
+:root[data-theme="dark"] .product-card,
+:root[data-theme="dark"] .builder-panel,
+:root[data-theme="dark"] .slot,
+:root[data-theme="dark"] .footer,
+:root[data-theme="dark"] .back-link,
+:root[data-theme="dark"] .product-media,
+:root[data-theme="dark"] .retailer-table-wrap,
+:root[data-theme="dark"] .retailer-row {
+  background: var(--paper);
+}
+
+:root[data-theme="dark"] .category-card:hover,
+:root[data-theme="dark"] .deal-card:hover,
+:root[data-theme="dark"] .product-card:hover {
+  background: #182023;
+  border-color: rgba(121, 213, 165, 0.42);
+}
+
+:root[data-theme="dark"] h2,
+:root[data-theme="dark"] h3,
+:root[data-theme="dark"] .stats-band strong,
+:root[data-theme="dark"] .price,
+:root[data-theme="dark"] .slot label,
+:root[data-theme="dark"] .seller-link,
+:root[data-theme="dark"] .back-link:hover {
+  color: var(--heading);
+}
+
+:root[data-theme="dark"] .category-icon {
+  border-color: rgba(121, 213, 165, 0.28);
+  background: rgba(121, 213, 165, 0.12);
+  color: var(--accent);
+}
+
+:root[data-theme="dark"] .deal-tag {
+  border-color: rgba(229, 184, 95, 0.3);
+  background: rgba(229, 184, 95, 0.12);
+  color: var(--amber);
+}
+
+:root[data-theme="dark"] .seller-link,
+:root[data-theme="dark"] select {
+  background-color: #101416;
+}
+
+:root[data-theme="dark"] .seller-link:hover {
+  background: rgba(118, 199, 223, 0.12);
+  border-color: rgba(118, 199, 223, 0.42);
+}
+
+:root[data-theme="dark"] select {
+  border-color: var(--line);
+  color: var(--heading);
+  background:
+    linear-gradient(45deg, transparent 50%, var(--muted) 50%) right 18px center / 6px 6px no-repeat,
+    linear-gradient(135deg, var(--muted) 50%, transparent 50%) right 12px center / 6px 6px no-repeat,
+    #101416;
+}
+
+:root[data-theme="dark"] select:hover {
+  border-color: var(--line-strong);
+  background-color: #12191b;
+}
+
+:root[data-theme="dark"] .category-pill {
+  border-color: rgba(118, 199, 223, 0.34);
+  background: rgba(118, 199, 223, 0.12);
+}
+
+:root[data-theme="dark"] .specs {
+  color: #b9c5c0;
+}
+
+:root[data-theme="dark"] .product-info-panel,
+:root[data-theme="dark"] .summary {
+  background: #0f1213;
+}
+
+:root[data-theme="dark"] .product-overview,
+:root[data-theme="dark"] .compatibility {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+:root[data-theme="dark"] .retailer-row:hover {
+  background: rgba(121, 213, 165, 0.08);
+  border-color: rgba(121, 213, 165, 0.38);
+}
+
 @keyframes reveal {
   from {
     opacity: 0;
@@ -1025,6 +1215,11 @@ select:focus {
   .nav {
     width: 100%;
     overflow-x: auto;
+  }
+
+  .theme-toggle {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .nav a {

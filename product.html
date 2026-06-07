@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EZPC Product</title>
     <meta name="description" content="Detailed PC part page with product info, retailer prices, and product photos." />
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("ezpc-theme") || "light";
+    </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -19,6 +22,10 @@
         <a href="index.html#builder">Builder</a>
         <a href="index.html#catalog">Parts</a>
       </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" data-theme-toggle>
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-text">Dark</span>
+      </button>
     </header>
 
     <main class="product-page">
