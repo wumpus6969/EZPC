@@ -1043,13 +1043,13 @@ const lowestPriceOffers = {
     seller: "Newegg",
     price: 599.99,
     status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/pl?d=G.Skill+Trident+Z5+RGB+48GB+DDR5-7200+CL36"
+    url: "https://www.newegg.com/g-skill-trident-z5-rgb-series-48gb-ddr5-7200-cas-latency-cl36-desktop-memory-black/p/N82E16820374458"
   },
   "Corsair Dominator Titanium RGB 64GB DDR5-6000 CL30 Kit": {
-    seller: "Newegg",
+    seller: "Best Buy",
     price: 1199.99,
     status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/pl?d=Corsair+Dominator+Titanium+RGB+64GB+DDR5-6000+CL30"
+    url: "https://www.bestbuy.com/product/corsair-dominator-titanium-64gb-2-x-32gb-ddr5-6000-cl30-36-36-76-1-40v-intel-xmp-amd-expo-gray/J39QHTCXCW/sku/6645750"
   },
   "Kingston Fury Beast RGB 32GB DDR5-6000 CL30 Kit": {
     seller: "TELeasy",
@@ -1061,7 +1061,7 @@ const lowestPriceOffers = {
     seller: "Newegg",
     price: 429.99,
     status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/pl?d=TeamGroup+T-Force+Delta+RGB+32GB+DDR5-6400+CL40"
+    url: "https://www.newegg.com/team-group-t-force-delta-eco-32gb-2-x-16gb-ddr5-6000-pc5-48000-cas-latency-cl38-desktop-memory-silver/p/N82E16820985328"
   },
   "Crucial Pro Overclocking 32GB DDR5-6000 CL36 Kit": {
     seller: "Newegg",
@@ -1074,12 +1074,6 @@ const lowestPriceOffers = {
     price: 409.99,
     status: "Lowest verified retailer",
     url: "https://www.newegg.com/p/N82E1680RN002U004U6"
-  },
-  "Lexar ARES RGB 32GB DDR5-6400 CL32 Kit": {
-    seller: "Newegg",
-    price: 399.99,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/pl?d=Lexar+ARES+RGB+32GB+DDR5-6400+CL32"
   },
   "Samsung 990 EVO Plus 2TB PCIe 5.0 x2 NVMe M.2 SSD": {
     seller: "Amazon",
@@ -1121,7 +1115,7 @@ const lowestPriceOffers = {
     seller: "Newegg",
     price: 299.99,
     status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/pl?d=Solidigm+P44+Pro+2TB"
+    url: "https://www.newegg.com/solidigm-2tb-p44-pro/p/N82E16820318013?Item=9SIA12KJBU7994"
   },
   "Sabrent Rocket 5 2TB PCIe 5.0 NVMe M.2 SSD": {
     seller: "Sabrent",
@@ -1145,7 +1139,7 @@ const lowestPriceOffers = {
     seller: "Newegg",
     price: 159.9,
     status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/pl?d=be+quiet+Straight+Power+12+1000W"
+    url: "https://www.newegg.com/be-quiet-straight-power-atx-3-0-compatible-1000-w-80-plus-platinum-certified-power-supplies-black/p/1HU-004H-000T2?item=1HU-004H-000T2"
   },
   "EVGA SuperNOVA 1000G FTW 1000W 80+ Gold PSU": {
     seller: "EVGA",
@@ -1199,7 +1193,7 @@ const lowestPriceOffers = {
     seller: "Newegg",
     price: 219.99,
     status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/pl?d=Phanteks+NV7+Black"
+    url: "https://www.bestbuy.com/product/phanteks-nv7-full-tower-chassis-high-airflow-rgb-lighting-tempered-glass-12-fan-positions-black-black/J3Z8XVHYS3/sku/11401248"
   },
   "MSI MPG X870E Carbon WiFi AM5 ATX Motherboard": {
     seller: "Newegg",
