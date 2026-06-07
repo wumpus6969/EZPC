@@ -1250,21 +1250,40 @@ const categoryDescriptions = {
 
 const builderCategories = ["CPU", "GPU", "Motherboard", "Memory", "Storage", "PSU", "Case"];
 
+function storedTheme() {
+  try {
+    return localStorage.getItem("ezpc-theme");
+  } catch (error) {
+    return null;
+  }
+}
+
+function saveTheme(theme) {
+  try {
+    localStorage.setItem("ezpc-theme", theme);
+  } catch (error) {
+    // The toggle still works for the current page if storage is unavailable.
+  }
+}
+
 function applyTheme(theme) {
   const nextTheme = theme === "dark" ? "dark" : "light";
   document.documentElement.dataset.theme = nextTheme;
-  localStorage.setItem("ezpc-theme", nextTheme);
+  if (document.body) {
+    document.body.dataset.theme = nextTheme;
+  }
+  saveTheme(nextTheme);
 
   document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
     const isDark = nextTheme === "dark";
+    toggle.dataset.activeTheme = nextTheme;
     toggle.setAttribute("aria-pressed", String(isDark));
     toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
-    toggle.querySelector(".theme-toggle-text").textContent = isDark ? "Light" : "Dark";
   });
 }
 
 function initThemeToggle() {
-  applyTheme(localStorage.getItem("ezpc-theme") || document.documentElement.dataset.theme || "light");
+  applyTheme(storedTheme() || document.documentElement.dataset.theme || "light");
 
   document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
     toggle.addEventListener("click", () => {
