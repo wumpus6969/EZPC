@@ -3481,6 +3481,9 @@ function renderBuilder() {
             <span class="picker-caret" aria-hidden="true"></span>
           </button>
           <div class="picker-menu" id="picker-menu-${category}" role="listbox" aria-label="${category} picker">
+            <div class="picker-search" role="presentation">
+              <input type="search" placeholder="Search ${category}" aria-label="Search ${category} parts" data-picker-search="${category}" autocomplete="off" />
+            </div>
             ${menuOptions}
           </div>
         </div>
@@ -3498,6 +3501,20 @@ function renderBuilder() {
       if (event.key === "Escape") closePickers();
     });
   });
+  document.querySelectorAll("[data-picker-search]").forEach((input) => {
+    input.addEventListener("input", () => filterPickerOptions(input));
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closePickers();
+        return;
+      }
+      if (event.key !== "Enter") return;
+      event.preventDefault();
+      const firstVisible = input.closest(".picker-menu").querySelector('.picker-option:not([hidden]):not([data-picker-value=""])');
+      firstVisible?.click();
+    });
+    input.addEventListener("click", (event) => event.stopPropagation());
+  });
   document.querySelectorAll(".picker-option").forEach((option) => {
     option.addEventListener("click", () => {
       const picker = option.closest(".part-picker");
@@ -3514,11 +3531,38 @@ function renderBuilder() {
   applyMotion(document.getElementById("builder"));
 }
 
+function filterPickerOptions(input) {
+  const query = input.value.trim().toLowerCase();
+  const menu = input.closest(".picker-menu");
+  const options = [...menu.querySelectorAll(".picker-option")];
+  let visibleCount = 0;
+
+  options.forEach((option) => {
+    const isEmptyChoice = option.dataset.pickerValue === "";
+    const matches = !query || isEmptyChoice || option.textContent.toLowerCase().includes(query);
+    option.hidden = !matches;
+    if (matches && !isEmptyChoice) visibleCount += 1;
+  });
+
+  menu.querySelector(".picker-empty-results")?.remove();
+  if (!visibleCount && query) {
+    const empty = document.createElement("div");
+    empty.className = "picker-empty-results";
+    empty.textContent = "No matching parts";
+    menu.appendChild(empty);
+  }
+}
+
 function closePickers() {
   document.querySelectorAll(".part-picker.is-open").forEach((picker) => {
     picker.classList.remove("is-open");
     picker.closest(".slot")?.classList.remove("picker-active");
     picker.querySelector(".picker-trigger").setAttribute("aria-expanded", "false");
+    const search = picker.querySelector("[data-picker-search]");
+    if (search) {
+      search.value = "";
+      filterPickerOptions(search);
+    }
   });
 }
 
@@ -3532,6 +3576,8 @@ function togglePicker(trigger) {
   trigger.setAttribute("aria-expanded", String(!isOpen));
   if (!isOpen) {
     window.requestAnimationFrame(() => {
+      const search = picker.querySelector("[data-picker-search]");
+      search?.focus({ preventScroll: true });
       picker.querySelector(".picker-menu")?.scrollIntoView({ block: "nearest", inline: "nearest" });
     });
   }
