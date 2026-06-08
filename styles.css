@@ -322,7 +322,7 @@ button {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+  grid-template-columns: minmax(0, 1fr);
   align-items: end;
   min-height: min(760px, calc(100vh - 26px));
   width: min(1280px, calc(100% - 28px));
