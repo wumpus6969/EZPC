@@ -2354,8 +2354,13 @@ h3 {
 
 .hero-part {
   display: grid;
-  grid-template-columns: 74px minmax(0, 1fr) auto;
-  gap: 12px;
+  grid-template-columns: 74px minmax(0, 1fr);
+  grid-template-areas:
+    "img cat"
+    "img name"
+    "img price";
+  column-gap: 12px;
+  row-gap: 2px;
   align-items: center;
   min-height: 92px;
   padding: 10px 12px;
@@ -2374,6 +2379,8 @@ h3 {
 }
 
 .hero-part img {
+  grid-area: img;
+  align-self: center;
   width: 74px;
   height: 74px;
   padding: 7px;
@@ -2382,6 +2389,10 @@ h3 {
   border-radius: 8px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(229, 241, 247, 0.92));
 }
+
+.hero-part > span { grid-area: cat; }
+.hero-part > strong { grid-area: name; }
+.hero-part > em { grid-area: price; }
 
 .hero-part span,
 .hero-part em {
@@ -2392,7 +2403,7 @@ h3 {
 
 .hero-part span {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0;
   color: #73e8bf;
   text-transform: uppercase;
 }
