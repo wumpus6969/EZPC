@@ -2830,13 +2830,24 @@ function bestOffer(part) {
   return [...pricedOffers(part)].sort((a, b) => a.price - b.price)[0] || part.offers[0];
 }
 
-const CATALOG_PAGE_SIZE = 9;
+const CATALOG_ROWS = 3;
 const catalogState = {
   category: "All",
   sort: "featured",
   filters: {},
-  visibleCount: CATALOG_PAGE_SIZE,
+  visibleCount: 9,
 };
+
+function catalogColumnCount() {
+  const grid = document.getElementById("productGrid");
+  if (!grid) return 3;
+  const tracks = getComputedStyle(grid).gridTemplateColumns.split(" ").filter(Boolean);
+  return Math.max(tracks.length, 1);
+}
+
+function catalogPageSize() {
+  return catalogColumnCount() * CATALOG_ROWS;
+}
 
 function partPrice(part) {
   return bestOffer(part).price;
@@ -3142,7 +3153,7 @@ function applyMotion(root = document) {
 
 function initPressMotion() {
   document.addEventListener("pointerdown", (event) => {
-    const target = event.target.closest(".button, .seller-link, .picker-trigger, .picker-option, .select-picker-trigger, .select-picker-option, .category-card, .deal-card, .product-card");
+    const target = event.target.closest(".button, .seller-link, .picker-trigger, .picker-option, .select-picker-trigger, .select-picker-option, .category-card, .deal-card, .product-card, .load-more");
     if (!target) return;
     target.classList.add("is-pressing");
     window.setTimeout(() => target.classList.remove("is-pressing"), 180);
@@ -3425,7 +3436,9 @@ function filteredProducts() {
 }
 
 function renderProducts({ append = false } = {}) {
-  if (!append) catalogState.visibleCount = CATALOG_PAGE_SIZE;
+  const pageSize = catalogPageSize();
+  if (!append) catalogState.visibleCount = pageSize;
+  else if (catalogState.visibleCount < pageSize) catalogState.visibleCount = pageSize;
   const visible = filteredProducts();
   const grid = document.getElementById("productGrid");
   const loadMoreWrap = document.getElementById("loadMoreWrap");
@@ -3476,14 +3489,14 @@ function renderProducts({ append = false } = {}) {
 
   const remaining = visible.length - shown.length;
   if (remaining > 0 && loadMoreWrap) {
-    const nextBatch = Math.min(remaining, CATALOG_PAGE_SIZE);
-    loadMoreWrap.innerHTML = `<button class="load-more" type="button" id="loadMoreBtn">
+    const nextBatch = Math.min(remaining, pageSize);
+    loadMoreWrap.innerHTML = `<button class="load-more" type="button" id="loadMoreBtn" aria-label="Load ${nextBatch} more parts, ${remaining} remaining">
       <span class="load-more-label">Load ${nextBatch} more</span>
-      <span class="load-more-meta">${remaining} part${remaining === 1 ? "" : "s"} remaining</span>
+      <span class="load-more-meta" aria-live="polite">${remaining} part${remaining === 1 ? "" : "s"} remaining</span>
       <span class="load-more-glow" aria-hidden="true"></span>
     </button>`;
     document.getElementById("loadMoreBtn").addEventListener("click", () => {
-      catalogState.visibleCount += CATALOG_PAGE_SIZE;
+      catalogState.visibleCount += catalogPageSize();
       renderProducts({ append: true });
       const focusTarget = document.querySelectorAll("#productGrid .product-card")[shown.length];
       focusTarget?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -3797,6 +3810,13 @@ function initCleanUrl() {
 initThemeToggle();
 initPressMotion();
 initCleanUrl();
+
+let catalogResizeRaf;
+window.addEventListener("resize", () => {
+  if (!document.getElementById("productGrid")) return;
+  cancelAnimationFrame(catalogResizeRaf);
+  catalogResizeRaf = requestAnimationFrame(() => renderProducts({ append: true }));
+});
 
 if (document.getElementById("productDetail")) {
   renderProductDetail();
