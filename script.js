@@ -3070,11 +3070,10 @@ function partMatchesCatalogFilters(part, defs, ignoredKey = "") {
 }
 
 function availableOptionsFor(definition, defs) {
-  const ignoredKey = catalogState.filters[definition.key] ? "" : definition.key;
   return [
     ...new Set(
       categoryBaseParts()
-        .filter((part) => partMatchesCatalogFilters(part, defs, ignoredKey))
+        .filter((part) => partMatchesCatalogFilters(part, defs, definition.key))
         .map((part) => definition.value(part))
         .filter(Boolean),
     ),
