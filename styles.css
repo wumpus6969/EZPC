@@ -2230,7 +2230,6 @@ body[data-theme="light"] .retailer-row:hover {
 }
 
 @media (max-width: 720px) {
-  .topbar,
   .section-heading,
   .footer {
     align-items: flex-start;
@@ -2241,9 +2240,25 @@ body[data-theme="light"] .retailer-row:hover {
     top: 8px;
     width: calc(100% - 16px);
     margin-top: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 8px;
   }
 
-  .nav {
+  .topbar .brand {
+    order: 1;
+    flex: 0 0 auto;
+  }
+
+  .topbar .theme-toggle {
+    order: 2;
+    flex: 0 0 auto;
+  }
+
+  .topbar .nav {
+    order: 3;
+    flex: 1 1 100%;
     width: 100%;
     overflow-x: auto;
   }
