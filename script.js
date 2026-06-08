@@ -2830,10 +2830,12 @@ function bestOffer(part) {
   return [...pricedOffers(part)].sort((a, b) => a.price - b.price)[0] || part.offers[0];
 }
 
+const CATALOG_PAGE_SIZE = 9;
 const catalogState = {
   category: "All",
   sort: "featured",
   filters: {},
+  visibleCount: CATALOG_PAGE_SIZE,
 };
 
 function partPrice(part) {
@@ -3422,12 +3424,17 @@ function filteredProducts() {
   });
 }
 
-function renderProducts() {
+function renderProducts({ append = false } = {}) {
+  if (!append) catalogState.visibleCount = CATALOG_PAGE_SIZE;
   const visible = filteredProducts();
   const grid = document.getElementById("productGrid");
+  const loadMoreWrap = document.getElementById("loadMoreWrap");
   const baseCount = categoryBaseParts().length;
   const label = catalogState.category === "All" ? "parts" : `${catalogState.category.toLowerCase()} parts`;
-  document.getElementById("resultCount").textContent = `Showing ${visible.length} of ${baseCount} ${label}`;
+  const shownCount = Math.min(catalogState.visibleCount, visible.length);
+  document.getElementById("resultCount").textContent = `Showing ${shownCount} of ${baseCount} ${label}`;
+
+  if (loadMoreWrap) loadMoreWrap.innerHTML = "";
 
   if (!visible.length) {
     grid.innerHTML = `<div class="empty-state">
@@ -3438,7 +3445,8 @@ function renderProducts() {
     return;
   }
 
-  grid.innerHTML = visible
+  const shown = visible.slice(0, catalogState.visibleCount);
+  grid.innerHTML = shown
     .map((part) => {
       const offer = bestOffer(part);
       const was = compareAt(part);
@@ -3465,6 +3473,22 @@ function renderProducts() {
     })
     .join("");
   applyMotion(grid);
+
+  const remaining = visible.length - shown.length;
+  if (remaining > 0 && loadMoreWrap) {
+    const nextBatch = Math.min(remaining, CATALOG_PAGE_SIZE);
+    loadMoreWrap.innerHTML = `<button class="load-more" type="button" id="loadMoreBtn">
+      <span class="load-more-label">Load ${nextBatch} more</span>
+      <span class="load-more-meta">${remaining} part${remaining === 1 ? "" : "s"} remaining</span>
+      <span class="load-more-glow" aria-hidden="true"></span>
+    </button>`;
+    document.getElementById("loadMoreBtn").addEventListener("click", () => {
+      catalogState.visibleCount += CATALOG_PAGE_SIZE;
+      renderProducts({ append: true });
+      const focusTarget = document.querySelectorAll("#productGrid .product-card")[shown.length];
+      focusTarget?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
 }
 
 function renderBuilder() {
