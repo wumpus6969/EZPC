@@ -3235,7 +3235,6 @@ function renderCategories() {
     .map((category) => {
       const count = parts.filter((part) => part.category === category).length;
       return `<a class="category-card" href="#catalog" data-filter-link="${category}">
-        <span class="category-icon">${category.slice(0, 2).toUpperCase()}</span>
         <h3>${category}</h3>
         <p>${categoryDescriptions[category]}</p>
         <strong>${count} verified models</strong>
