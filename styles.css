@@ -1380,14 +1380,61 @@ body[data-theme="dark"] .picker-search input:focus {
   color: #ffafa3;
 }
 
+.summary .seller-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
 .summary .seller-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 14px;
   border-color: rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
+  text-align: left;
+}
+
+.summary .seller-link .seller-link-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.summary .seller-link .seller-link-category {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.summary .seller-link .seller-link-name {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .summary .seller-link strong {
+  flex: 0 0 auto;
+  margin: 0;
   color: #8fd7b3;
+  font-size: 1rem;
+  font-weight: 900;
+  white-space: nowrap;
 }
 
 .summary .seller-link:hover {

@@ -3124,6 +3124,19 @@ function lowestOfferBadge(part) {
   return `<div class="lowest-price">Lowest price: <strong>${formatMoney(offer.price)}</strong> at ${offer.seller}</div>`;
 }
 
+function cheapestOfferLink(part) {
+  const offer = bestOffer(part);
+  if (!offer) return "";
+  const priceLabel = Number.isFinite(offer.price) ? formatMoney(offer.price) : "Check";
+  return `<a class="seller-link summary-seller-link" href="${offer.url}" target="_blank" rel="noopener noreferrer" title="${offer.status} at ${offer.seller}">
+    <span class="seller-link-meta">
+      <span class="seller-link-category">${part.category}</span>
+      <span class="seller-link-name">${offer.seller}</span>
+    </span>
+    <strong>${priceLabel}</strong>
+  </a>`;
+}
+
 let motionObserver;
 
 function applyMotion(root = document) {
@@ -3712,7 +3725,7 @@ function updateBuilder() {
     compatibility.textContent = "Select CPU, motherboard, and memory to run basic compatibility checks.";
   }
 
-  document.getElementById("builderLinks").innerHTML = selected.slice(0, 3).map((part) => offerLinks(part, true)).join("");
+  document.getElementById("builderLinks").innerHTML = selected.map((part) => cheapestOfferLink(part)).join("");
 }
 
 function renderProductDetail() {
