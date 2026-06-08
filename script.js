@@ -3707,8 +3707,45 @@ function renderProductDetail() {
     </section>`;
 }
 
+function cleanUrl() {
+  const cleaned = window.location.pathname.replace(/\/index\.html$/, "/");
+  history.replaceState(null, "", cleaned + window.location.search);
+}
+
+function initCleanUrl() {
+  const scrollToHash = (hash) => {
+    if (!hash || hash === "#") return;
+    const id = decodeURIComponent(hash.slice(1));
+    const target = document.getElementById(id);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  if (window.location.hash) {
+    const initialHash = window.location.hash;
+    window.requestAnimationFrame(() => {
+      scrollToHash(initialHash);
+      cleanUrl();
+    });
+  } else {
+    cleanUrl();
+  }
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href*="#"]');
+    if (!link) return;
+    const url = new URL(link.href, window.location.href);
+    if (url.origin !== window.location.origin) return;
+    if (url.pathname !== window.location.pathname && url.pathname.replace(/\/index\.html$/, "/") !== window.location.pathname) return;
+    if (!url.hash) return;
+    event.preventDefault();
+    scrollToHash(url.hash);
+    cleanUrl();
+  });
+}
+
 initThemeToggle();
 initPressMotion();
+initCleanUrl();
 
 if (document.getElementById("productDetail")) {
   renderProductDetail();
