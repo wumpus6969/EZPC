@@ -3255,6 +3255,34 @@ function renderCategories() {
   applyMotion(grid);
 }
 
+function renderHeroDeals() {
+  const market = document.getElementById("heroMarket");
+  if (!market) return;
+
+  const candidates = parts
+    .filter((part) => Number.isFinite(bestOffer(part).price))
+    .map((part) => {
+      const offer = bestOffer(part);
+      const was = Number.isFinite(offer.was) ? offer.was : compareAt(part);
+      const savings = Number.isFinite(was) ? was - offer.price : 0;
+      return { part, offer, was, savings };
+    })
+    .sort((a, b) => b.savings - a.savings)
+    .slice(0, 6);
+
+  market.innerHTML = candidates
+    .map(({ part, offer, was }) => {
+      const showWas = Number.isFinite(was) && was > offer.price;
+      return `<a class="hero-part" href="${productUrl(part)}">
+        <img src="${productImage(part)}" alt="${part.name}" />
+        <span>${part.category}</span>
+        <strong>${part.name}</strong>
+        <em>${formatMoney(offer.price)}${showWas ? ` <s>${formatMoney(was)}</s>` : ""}</em>
+      </a>`;
+    })
+    .join("");
+}
+
 function renderDeals() {
   const deals = [...parts]
     .filter((part) => Number.isFinite(bestOffer(part).price))
@@ -3750,6 +3778,7 @@ if (document.getElementById("productDetail")) {
   renderProductDetail();
   applyMotion(document);
 } else {
+  renderHeroDeals();
   renderCategories();
   renderDeals();
   renderFilter();

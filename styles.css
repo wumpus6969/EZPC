@@ -2320,11 +2320,36 @@ h3 {
   transform: translateY(-2px);
 }
 
+.hero-market-block {
+  display: grid;
+  gap: 12px;
+  max-width: 420px;
+  animation: riseIn 700ms ease 120ms both;
+}
+
+.hero-market-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .hero-market {
   display: grid;
   gap: 10px;
   max-width: 420px;
-  animation: riseIn 700ms ease 120ms both;
+}
+
+.hero-part {
+  text-decoration: none;
+}
+
+.hero-part em s {
+  margin-left: 6px;
+  color: rgba(191, 239, 255, 0.6);
+  font-size: 0.7rem;
 }
 
 .hero-part {
