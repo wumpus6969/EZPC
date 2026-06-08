@@ -2818,7 +2818,7 @@ const categoryImageMap = {
 };
 
 function productImage(part) {
-  return categoryImageMap[part.category] || part.image || "assets/pc-parts-hero.png";
+  return window.productImageMap?.[slugify(part.name)] || part.image || categoryImageMap[part.category] || "assets/pc-parts-hero.png";
 }
 
 function productThumb(part, className = "part-thumb") {
