@@ -4113,3 +4113,43 @@ if (document.getElementById("productDetail")) {
   updateBuilder();
   applyMotion(document);
 }
+
+// Merge nightly price snapshot (prices.json) and re-render anything
+// that displays a price. Silent on failure so a missing or malformed
+// file never blocks the rest of the UI.
+(async function applyNightlyPrices() {
+  try {
+    const res = await fetch("prices.json", { cache: "no-store" });
+    if (!res.ok) return;
+    const payload = await res.json();
+    const map = payload && payload.prices;
+    if (!map || typeof map !== "object") return;
+
+    let touched = 0;
+    parts.forEach((part) => {
+      if (!Array.isArray(part.offers)) return;
+      part.offers.forEach((offer) => {
+        const key = `${part.name}|${offer.seller}`;
+        const entry = map[key];
+        if (!entry || typeof entry.price !== "number") return;
+        if (offer.price !== entry.price) {
+          offer.price = entry.price;
+          touched++;
+        }
+      });
+    });
+
+    if (!touched) return;
+
+    if (document.getElementById("productDetail")) {
+      renderProductDetail();
+    } else {
+      if (typeof renderHeroDeals === "function") renderHeroDeals();
+      if (typeof renderDeals === "function") renderDeals();
+      if (typeof renderProducts === "function") renderProducts({ append: true });
+      if (typeof updateBuilder === "function") updateBuilder();
+    }
+  } catch {
+    // ignore
+  }
+})();
