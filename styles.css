@@ -1416,7 +1416,7 @@ body[data-theme="dark"] .picker-search input:focus {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .summary .seller-link .seller-link-name {
@@ -2098,6 +2098,34 @@ body[data-theme="light"] .seller-link {
 body[data-theme="light"] .seller-link:hover {
   background: #eef7fa;
   border-color: rgba(37, 122, 154, 0.34);
+}
+
+body[data-theme="light"] .summary .seller-link,
+:root[data-theme="light"] .summary .seller-link {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+body[data-theme="light"] .summary .seller-link:hover,
+:root[data-theme="light"] .summary .seller-link:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+body[data-theme="light"] .summary .seller-link .seller-link-category,
+:root[data-theme="light"] .summary .seller-link .seller-link-category {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+body[data-theme="light"] .summary .seller-link .seller-link-name,
+:root[data-theme="light"] .summary .seller-link .seller-link-name {
+  color: #ffffff;
+}
+
+body[data-theme="light"] .summary .seller-link strong,
+:root[data-theme="light"] .summary .seller-link strong {
+  color: #73e8bf;
 }
 
 body[data-theme="light"] select {
