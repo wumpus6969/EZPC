@@ -45,15 +45,37 @@
       <section class="hero" id="home" aria-labelledby="hero-title">
         <img class="hero-image" src="assets/pc-parts-hero.png" alt="PC parts arranged on a modern workbench" />
         <div class="hero-overlay">
-          <p class="eyebrow">Verified parts intelligence</p>
-          <h1 id="hero-title">A fluid parts desk for serious PC builds.</h1>
-          <p class="hero-copy">
-            Browse specific CPUs, GPUs, boards, memory, storage, power supplies, and cases with verified
-            product-page links from retailers like B&H, Best Buy, and Newegg.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#builder">Start a Build</a>
-            <a class="button secondary" href="#deals">Shop Deals</a>
+          <div class="hero-copy-block">
+            <p class="eyebrow">Verified PC parts market</p>
+            <h1 id="hero-title">Build from real parts, real prices, real product pages.</h1>
+            <p class="hero-copy">
+              Shop exact CPUs, GPUs, boards, memory, storage, PSUs, and cases with product images, lowest verified
+              prices, and direct retailer links.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#builder">Start a Build</a>
+              <a class="button secondary" href="#catalog">Browse Parts</a>
+            </div>
+          </div>
+          <div class="hero-market" aria-label="Featured parts">
+            <article class="hero-part">
+              <img src="https://storage-asset.msi.com/global/picture/product/product_173710004234f04a0f44dd01f025e8bee23592ca90.webp" alt="MSI GeForce RTX 5080 Gaming Trio OC" />
+              <span>GPU</span>
+              <strong>RTX 5080 Gaming Trio</strong>
+              <em>$1,399.95</em>
+            </article>
+            <article class="hero-part">
+              <img src="https://m.media-amazon.com/images/I/71NMFO0iUhL._AC_SL1500_.jpg" alt="AMD Ryzen 7 9800X3D processor" />
+              <span>CPU</span>
+              <strong>Ryzen 7 9800X3D</strong>
+              <em>$433.00</em>
+            </article>
+            <article class="hero-part">
+              <img src="https://m.media-amazon.com/images/I/81MDzB7gqwL._AC_SL1500_.jpg" alt="ASUS ROG Strix X870E-E motherboard" />
+              <span>Board</span>
+              <strong>ROG Strix X870E-E</strong>
+              <em>AM5 / DDR5</em>
+            </article>
           </div>
         </div>
       </section>
@@ -101,10 +123,26 @@
             <p class="eyebrow">Full catalog</p>
             <h2>Specific parts, not vague buckets</h2>
           </div>
-          <label class="filter-label">
-            <span>Filter</span>
-            <select id="categoryFilter" aria-label="Filter parts by category"></select>
-          </label>
+          <div class="catalog-controls" aria-label="Catalog controls">
+            <label class="filter-field">
+              <span>Category</span>
+              <select id="categoryFilter" aria-label="Filter parts by category"></select>
+            </label>
+            <label class="filter-field">
+              <span>Sort</span>
+              <select id="sortFilter" aria-label="Sort parts">
+                <option value="featured">Featured</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="name-asc">Name: A to Z</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="filter-panel" id="filterPanel" aria-label="Catalog filters"></div>
+        <div class="catalog-meta">
+          <span id="resultCount" aria-live="polite"></span>
+          <button class="clear-filters" id="clearFilters" type="button">Reset filters</button>
         </div>
         <div class="product-grid" id="productGrid"></div>
       </section>

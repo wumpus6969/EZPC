@@ -2811,10 +2811,14 @@ function productImage(part) {
   return window.productImageMap?.[slugify(part.name)] || part.image || "";
 }
 
+function imageErrorHandler() {
+  return "this.replaceWith(Object.assign(document.createElement('span'),{className:this.className+' image-fallback',textContent:'Image unavailable'}))";
+}
+
 function productThumb(part, className = "part-thumb") {
   const image = productImage(part);
   return image
-    ? `<img class="${className}" src="${image}" alt="${part.name}" loading="lazy" />`
+    ? `<img class="${className}" src="${image}" alt="${part.name}" loading="lazy" onerror="${imageErrorHandler()}" />`
     : `<span class="${className} part-thumb-missing" aria-label="Image pending for ${part.name}">Image pending</span>`;
 }
 
@@ -2824,6 +2828,257 @@ function pricedOffers(part) {
 
 function bestOffer(part) {
   return [...pricedOffers(part)].sort((a, b) => a.price - b.price)[0] || part.offers[0];
+}
+
+const catalogState = {
+  category: "All",
+  sort: "featured",
+  filters: {},
+};
+
+function partPrice(part) {
+  return bestOffer(part).price;
+}
+
+function partText(part) {
+  return `${part.name} ${part.specs || ""} ${part.overview || ""}`;
+}
+
+function manufacturerOf(part) {
+  const name = part.name;
+  const brandPatterns = [
+    ["be quiet!", /^be quiet!/i],
+    ["Cooler Master", /^Cooler Master/i],
+    ["Fractal Design", /^Fractal Design/i],
+    ["G.Skill", /^G\.Skill/i],
+    ["Lian Li", /^Lian Li/i],
+    ["Silicon Power", /^Silicon Power/i],
+    ["TeamGroup", /^TeamGroup/i],
+    ["Western Digital", /^(WD|Western Digital)\b/i],
+    ["SeaSonic", /^SeaSonic|^Seasonic/i],
+    ["SanDisk", /^SanDisk/i],
+    ["HYTE", /^Hyte|^HYTE/i],
+  ];
+  const match = brandPatterns.find(([, pattern]) => pattern.test(name));
+  return match ? match[0] : name.split(" ")[0];
+}
+
+function matchValue(text, patterns) {
+  const match = patterns.find(({ pattern }) => pattern.test(text));
+  return match?.value || "";
+}
+
+function cpuSeries(part) {
+  const text = partText(part);
+  return matchValue(text, [
+    { value: "AMD Ryzen 9000 Series", pattern: /Ryzen\s+[579]\s+9\d{3}X?3?D?/i },
+    { value: "AMD Ryzen 8000 Series", pattern: /Ryzen\s+[579]\s+8\d{3}/i },
+    { value: "AMD Ryzen 7000 Series", pattern: /Ryzen\s+[579]\s+7\d{3}/i },
+    { value: "AMD Ryzen 5000 Series", pattern: /Ryzen\s+[579]\s+5\d{3}/i },
+    { value: "Intel Core Ultra 200 Series", pattern: /Core Ultra\s+\d+\s+2\d{2}/i },
+    { value: "Intel 14th Gen Core", pattern: /i[579]-14\d{3}/i },
+    { value: "Intel 12th Gen Core", pattern: /i[579]-12\d{3}/i },
+  ]);
+}
+
+function gpuSeries(part) {
+  const text = partText(part);
+  return matchValue(text, [
+    { value: "NVIDIA RTX 5000 Series", pattern: /RTX\s+50\d{2}/i },
+    { value: "NVIDIA RTX 4000 Series", pattern: /RTX\s+40\d{2}/i },
+    { value: "AMD Radeon RX 9000 Series", pattern: /RX\s+9\d{3}/i },
+    { value: "AMD Radeon RX 7000 Series", pattern: /RX\s+7\d{3}/i },
+  ]);
+}
+
+function storageCapacity(part) {
+  const text = partText(part);
+  const tb = text.match(/(\d+(?:\.\d+)?)\s*TB/i);
+  if (tb) return `${Number(tb[1])}TB`;
+  const gb = text.match(/(\d{3,4})\s*GB/i);
+  return gb ? `${gb[1]}GB` : "";
+}
+
+function memoryCapacity(part) {
+  const match = partText(part).match(/(\d+)\s*GB/i);
+  return match ? `${match[1]}GB` : "";
+}
+
+function memorySpeed(part) {
+  const match = partText(part).match(/DDR[45][-\s]?(\d{4,5})/i);
+  return match ? `${match[1]} MT/s` : "";
+}
+
+function casLatency(part) {
+  const match = partText(part).match(/\bCL\s?(\d{2})\b/i);
+  return match ? `CL${match[1]}` : "";
+}
+
+function gpuVram(part) {
+  const match = partText(part).match(/(\d+)\s*GB\s+GDDR/i);
+  return match ? `${match[1]}GB` : "";
+}
+
+function chipset(part) {
+  return matchValue(partText(part), [
+    { value: "X870E", pattern: /\bX870E\b/i },
+    { value: "X870", pattern: /\bX870\b/i },
+    { value: "B850", pattern: /\bB850\b/i },
+    { value: "B650", pattern: /\bB650(E)?\b/i },
+    { value: "A620", pattern: /\bA620\b/i },
+    { value: "Z890", pattern: /\bZ890\b/i },
+    { value: "Z790", pattern: /\bZ790\b/i },
+    { value: "B760", pattern: /\bB760\b/i },
+  ]);
+}
+
+function formFactor(part) {
+  return matchValue(partText(part), [
+    { value: "Mini-ITX", pattern: /Mini[-\s]?ITX/i },
+    { value: "Micro-ATX", pattern: /Micro[-\s]?ATX|mATX/i },
+    { value: "E-ATX", pattern: /\bE-ATX\b/i },
+    { value: "ATX", pattern: /\bATX\b/i },
+    { value: "SFX", pattern: /\bSFX\b/i },
+  ]);
+}
+
+function storageInterface(part) {
+  return matchValue(partText(part), [
+    { value: "PCIe 5.0 NVMe", pattern: /PCIe\s*5\.0|Gen\s*5/i },
+    { value: "PCIe 4.0 NVMe", pattern: /PCIe\s*4\.0|Gen\s*4/i },
+    { value: "PCIe 3.0 NVMe", pattern: /PCIe\s*3\.0|Gen\s*3/i },
+    { value: "SATA", pattern: /\bSATA\b/i },
+    { value: "USB4 / Thunderbolt", pattern: /USB4|Thunderbolt/i },
+    { value: "USB 3.x", pattern: /USB\s*3/i },
+  ]);
+}
+
+function wattage(part) {
+  const match = partText(part).match(/(\d{3,4})\s*W/i);
+  return match ? `${match[1]}W` : "";
+}
+
+function psuEfficiency(part) {
+  return matchValue(partText(part), [
+    { value: "80+ Platinum", pattern: /Platinum/i },
+    { value: "80+ Gold", pattern: /Gold/i },
+    { value: "80+ Bronze", pattern: /Bronze/i },
+  ]);
+}
+
+function caseStyle(part) {
+  return matchValue(partText(part), [
+    { value: "Full tower", pattern: /Full[-\s]?Tower|North XL/i },
+    { value: "Mid tower", pattern: /Mid[-\s]?Tower|Compact/i },
+    { value: "Small form factor", pattern: /Mini[-\s]?ITX|SFF|A4-H2O|Terra/i },
+    { value: "Dual chamber", pattern: /Dual[-\s]?Chamber|O11|H9|NV/i },
+    { value: "Open showcase", pattern: /showcase|curved glass|panoramic/i },
+  ]);
+}
+
+function caseColor(part) {
+  return matchValue(partText(part), [
+    { value: "White", pattern: /\bWhite\b|Snow/i },
+    { value: "Black", pattern: /\bBlack\b|Charcoal/i },
+    { value: "Silver / Gray", pattern: /\bSilver\b|\bGrey\b|\bGray\b/i },
+    { value: "Blue", pattern: /\bBlue\b/i },
+    { value: "Beige", pattern: /\bBeige\b|Jade/i },
+  ]);
+}
+
+function seriesOf(part) {
+  if (part.category === "CPU") return cpuSeries(part);
+  if (part.category === "GPU") return gpuSeries(part);
+  if (part.category === "Motherboard") return chipset(part);
+  if (part.category === "Memory") return part.memory || matchValue(partText(part), [{ value: "DDR5", pattern: /DDR5/i }, { value: "DDR4", pattern: /DDR4/i }]);
+  if (part.category === "Storage") return storageInterface(part);
+  if (part.category === "PSU") return psuEfficiency(part);
+  if (part.category === "Case") return caseStyle(part);
+  return "";
+}
+
+function filterDefinitions(category) {
+  const definitions = [
+    { key: "manufacturer", label: "Manufacturer", value: manufacturerOf },
+    { key: "series", label: category === "All" ? "Series / type" : `${category} series`, value: seriesOf },
+  ];
+  const categoryDefinitions = {
+    CPU: [
+      { key: "socket", label: "Socket", value: (part) => part.socket || "" },
+      { key: "memory", label: "Memory platform", value: (part) => part.memory || "" },
+    ],
+    GPU: [{ key: "vram", label: "VRAM", value: gpuVram }],
+    Motherboard: [
+      { key: "socket", label: "Socket", value: (part) => part.socket || "" },
+      { key: "memory", label: "Memory", value: (part) => part.memory || "" },
+      { key: "formFactor", label: "Form factor", value: formFactor },
+    ],
+    Memory: [
+      { key: "memoryType", label: "DDR type", value: (part) => part.memory || "", always: true },
+      { key: "capacity", label: "Capacity", value: memoryCapacity },
+      { key: "speed", label: "Speed", value: memorySpeed },
+      { key: "cas", label: "Latency", value: casLatency },
+    ],
+    Storage: [
+      { key: "capacity", label: "Capacity", value: storageCapacity },
+      { key: "interface", label: "Interface", value: storageInterface },
+    ],
+    PSU: [
+      { key: "wattage", label: "Wattage", value: wattage },
+      { key: "efficiency", label: "Efficiency", value: psuEfficiency },
+      { key: "standard", label: "Standard", value: (part) => (/\bATX\s*3\.1\b/i.test(partText(part)) ? "ATX 3.1" : /\bATX\s*3\.0\b/i.test(partText(part)) ? "ATX 3.0" : formFactor(part)) },
+    ],
+    Case: [
+      { key: "caseStyle", label: "Case style", value: caseStyle },
+      { key: "color", label: "Color", value: caseColor },
+    ],
+  };
+  return category === "All" ? definitions : [...definitions, ...(categoryDefinitions[category] || [])];
+}
+
+function optionSort(a, b) {
+  const numberA = Number((a.match(/\d+(?:\.\d+)?/) || [Number.NaN])[0]);
+  const numberB = Number((b.match(/\d+(?:\.\d+)?/) || [Number.NaN])[0]);
+  if (Number.isFinite(numberA) && Number.isFinite(numberB) && numberA !== numberB) return numberA - numberB;
+  return a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
+}
+
+function categoryBaseParts() {
+  return catalogState.category === "All" ? parts : parts.filter((part) => part.category === catalogState.category);
+}
+
+function selectedFilterDefs() {
+  return filterDefinitions(catalogState.category).filter((definition) => {
+    const options = [...new Set(categoryBaseParts().map((part) => definition.value(part)).filter(Boolean))];
+    return definition.always ? options.length > 0 : options.length > 1;
+  });
+}
+
+function partMatchesCatalogFilters(part, defs, ignoredKey = "") {
+  const price = partPrice(part);
+  const minPrice = Number(catalogState.filters.minPrice);
+  const maxPrice = Number(catalogState.filters.maxPrice);
+
+  if (ignoredKey !== "minPrice" && Number.isFinite(minPrice) && catalogState.filters.minPrice && (!Number.isFinite(price) || price < minPrice)) return false;
+  if (ignoredKey !== "maxPrice" && Number.isFinite(maxPrice) && catalogState.filters.maxPrice && (!Number.isFinite(price) || price > maxPrice)) return false;
+
+  return defs.every((definition) => {
+    if (definition.key === ignoredKey) return true;
+    const selected = catalogState.filters[definition.key];
+    return !selected || definition.value(part) === selected;
+  });
+}
+
+function availableOptionsFor(definition, defs) {
+  const ignoredKey = catalogState.filters[definition.key] ? "" : definition.key;
+  return [
+    ...new Set(
+      categoryBaseParts()
+        .filter((part) => partMatchesCatalogFilters(part, defs, ignoredKey))
+        .map((part) => definition.value(part))
+        .filter(Boolean),
+    ),
+  ].sort(optionSort);
 }
 
 function compareAt(part) {
@@ -2857,9 +3112,127 @@ function lowestOfferBadge(part) {
   return `<div class="lowest-price">Lowest price: <strong>${formatMoney(offer.price)}</strong> at ${offer.seller}</div>`;
 }
 
+let motionObserver;
+
+function applyMotion(root = document) {
+  const targets = root.querySelectorAll(".builder-section, .category-card, .deal-card, .product-card, .slot, .summary, .retailer-row");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    targets.forEach((target) => target.classList.add("in-view"));
+    return;
+  }
+
+  motionObserver ||= new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("in-view");
+        motionObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px" },
+  );
+
+  targets.forEach((target, index) => {
+    target.classList.add("reveal-item");
+    target.style.setProperty("--reveal-delay", `${Math.min(index % 8, 7) * 42}ms`);
+    motionObserver.observe(target);
+  });
+}
+
+function initPressMotion() {
+  document.addEventListener("pointerdown", (event) => {
+    const target = event.target.closest(".button, .seller-link, .picker-trigger, .picker-option, .select-picker-trigger, .select-picker-option, .category-card, .deal-card, .product-card");
+    if (!target) return;
+    target.classList.add("is-pressing");
+    window.setTimeout(() => target.classList.remove("is-pressing"), 180);
+  });
+}
+
+function selectPickerLabel(select) {
+  const label = select.closest(".filter-field")?.querySelector("span")?.textContent?.trim();
+  return label || select.getAttribute("aria-label") || "Menu";
+}
+
+function syncSelectPicker(select) {
+  const picker = select.nextElementSibling?.classList.contains("select-picker") ? select.nextElementSibling : null;
+  if (!picker) return;
+  const selected = select.selectedOptions[0] || select.options[0];
+  picker.querySelector(".select-picker-trigger strong").textContent = selected?.textContent || "Choose";
+  picker.querySelector(".select-picker-trigger span").textContent = selectPickerLabel(select);
+  picker.querySelectorAll(".select-picker-option").forEach((option) => {
+    option.setAttribute("aria-selected", String(option.dataset.selectValue === select.value));
+  });
+}
+
+function closeSelectPickers() {
+  document.querySelectorAll(".select-picker.is-open").forEach((picker) => {
+    picker.classList.remove("is-open");
+    picker.querySelector(".select-picker-trigger").setAttribute("aria-expanded", "false");
+  });
+}
+
+function enhanceSelectPickers(root = document) {
+  root.querySelectorAll("select:not(.native-builder-select)").forEach((select) => {
+    if (select.dataset.selectPickerReady === "true") {
+      syncSelectPicker(select);
+      return;
+    }
+
+    select.dataset.selectPickerReady = "true";
+    select.classList.add("native-select-picker");
+    const picker = document.createElement("div");
+    picker.className = "select-picker";
+    picker.innerHTML = `<button class="select-picker-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+      <span></span>
+      <strong></strong>
+      <i class="picker-caret" aria-hidden="true"></i>
+    </button>
+    <div class="select-picker-menu" role="listbox"></div>`;
+    select.insertAdjacentElement("afterend", picker);
+
+    const trigger = picker.querySelector(".select-picker-trigger");
+    const menu = picker.querySelector(".select-picker-menu");
+    menu.id = `${select.id || `select-${Math.random().toString(36).slice(2)}`}-picker-menu`;
+    trigger.setAttribute("aria-controls", menu.id);
+
+    const rebuild = () => {
+      menu.innerHTML = [...select.options]
+        .map((option) => `<button class="select-picker-option" type="button" role="option" data-select-value="${option.value}">
+          <span>${option.textContent}</span>
+        </button>`)
+        .join("");
+      menu.querySelectorAll(".select-picker-option").forEach((option) => {
+        option.addEventListener("click", () => {
+          select.value = option.dataset.selectValue;
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+          closeSelectPickers();
+          syncSelectPicker(select);
+        });
+      });
+      syncSelectPicker(select);
+    };
+
+    trigger.addEventListener("click", () => {
+      const willOpen = !picker.classList.contains("is-open");
+      closeSelectPickers();
+      closePickers();
+      picker.classList.toggle("is-open", willOpen);
+      trigger.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeSelectPickers();
+    });
+
+    select.addEventListener("change", () => syncSelectPicker(select));
+    rebuild();
+  });
+}
+
 function renderCategories() {
   const categories = [...new Set(parts.map((part) => part.category))];
-  document.getElementById("categoryGrid").innerHTML = categories
+  const grid = document.getElementById("categoryGrid");
+  grid.innerHTML = categories
     .map((category) => {
       const count = parts.filter((part) => part.category === category).length;
       return `<a class="category-card" href="#catalog" data-filter-link="${category}">
@@ -2873,10 +3246,15 @@ function renderCategories() {
 
   document.querySelectorAll("[data-filter-link]").forEach((link) => {
     link.addEventListener("click", () => {
-      document.getElementById("categoryFilter").value = link.dataset.filterLink;
-      renderProducts(link.dataset.filterLink);
+      catalogState.category = link.dataset.filterLink;
+      catalogState.filters = {};
+      document.getElementById("categoryFilter").value = catalogState.category;
+      syncSelectPicker(document.getElementById("categoryFilter"));
+      renderDynamicFilters();
+      renderProducts();
     });
   });
+  applyMotion(grid);
 }
 
 function renderDeals() {
@@ -2884,7 +3262,8 @@ function renderDeals() {
     .filter((part) => Number.isFinite(bestOffer(part).price))
     .sort((a, b) => compareAt(b) - bestOffer(b).price - (compareAt(a) - bestOffer(a).price))
     .slice(0, 6);
-  document.getElementById("dealGrid").innerHTML = deals
+  const grid = document.getElementById("dealGrid");
+  grid.innerHTML = deals
     .map((part) => {
       const offer = bestOffer(part);
       const was = compareAt(part);
@@ -2906,18 +3285,134 @@ function renderDeals() {
       </article>`;
     })
     .join("");
+  applyMotion(grid);
 }
 
 function renderFilter() {
   const categories = ["All", ...new Set(parts.map((part) => part.category))];
   const filter = document.getElementById("categoryFilter");
+  const sort = document.getElementById("sortFilter");
   filter.innerHTML = categories.map((category) => `<option value="${category}">${category}</option>`).join("");
-  filter.addEventListener("change", () => renderProducts(filter.value));
+  filter.value = catalogState.category;
+  sort.value = catalogState.sort;
+
+  filter.addEventListener("change", () => {
+    catalogState.category = filter.value;
+    catalogState.filters = {};
+    renderDynamicFilters();
+    renderProducts();
+  });
+
+  sort.addEventListener("change", () => {
+    catalogState.sort = sort.value;
+    renderProducts();
+  });
+
+  document.getElementById("clearFilters").addEventListener("click", () => {
+    catalogState.filters = {};
+    renderDynamicFilters();
+    renderProducts();
+  });
+
+  enhanceSelectPickers(document.querySelector(".catalog-heading"));
+  renderDynamicFilters();
 }
 
-function renderProducts(category = "All") {
-  const visible = category === "All" ? parts : parts.filter((part) => part.category === category);
-  document.getElementById("productGrid").innerHTML = visible
+function renderDynamicFilters() {
+  const panel = document.getElementById("filterPanel");
+  if (!panel) return;
+
+  const defs = selectedFilterDefs();
+  const validKeys = new Set(["minPrice", "maxPrice", ...defs.map((definition) => definition.key)]);
+  Object.keys(catalogState.filters).forEach((key) => {
+    if (!validKeys.has(key)) delete catalogState.filters[key];
+  });
+
+  const base = categoryBaseParts();
+  defs.forEach((definition) => {
+    const options = availableOptionsFor(definition, defs);
+    if (catalogState.filters[definition.key] && !options.includes(catalogState.filters[definition.key])) {
+      delete catalogState.filters[definition.key];
+    }
+  });
+
+  const priceBase = base.filter((part) => partMatchesCatalogFilters(part, defs, "minPrice"));
+  const prices = priceBase.map(partPrice).filter(Number.isFinite);
+  const min = prices.length ? Math.floor(Math.min(...prices)) : 0;
+  const max = prices.length ? Math.ceil(Math.max(...prices)) : 0;
+
+  panel.innerHTML = `<div class="filter-grid">
+    <div class="filter-field price-filter">
+      <span>Price</span>
+      <div class="price-inputs">
+        <input id="minPriceFilter" type="number" inputmode="numeric" min="${min}" max="${max}" placeholder="${formatMoney(min)}" value="${catalogState.filters.minPrice || ""}" aria-label="Minimum price" />
+        <input id="maxPriceFilter" type="number" inputmode="numeric" min="${min}" max="${max}" placeholder="${formatMoney(max)}" value="${catalogState.filters.maxPrice || ""}" aria-label="Maximum price" />
+      </div>
+    </div>
+    ${defs
+      .map((definition) => {
+        const options = availableOptionsFor(definition, defs);
+        return `<label class="filter-field">
+          <span>${definition.label}</span>
+          <select data-catalog-filter="${definition.key}" aria-label="${definition.label}">
+            <option value="">Any</option>
+            ${options.map((option) => `<option value="${option}" ${catalogState.filters[definition.key] === option ? "selected" : ""}>${option}</option>`).join("")}
+          </select>
+        </label>`;
+      })
+      .join("")}
+  </div>`;
+
+  panel.querySelectorAll("[data-catalog-filter]").forEach((select) => {
+    select.addEventListener("change", () => {
+      if (select.value) catalogState.filters[select.dataset.catalogFilter] = select.value;
+      else delete catalogState.filters[select.dataset.catalogFilter];
+      renderDynamicFilters();
+      renderProducts();
+    });
+  });
+
+  ["minPrice", "maxPrice"].forEach((key) => {
+    const input = document.getElementById(`${key}Filter`);
+    input.addEventListener("input", () => {
+      if (input.value) catalogState.filters[key] = input.value;
+      else delete catalogState.filters[key];
+      renderProducts();
+    });
+  });
+
+  enhanceSelectPickers(panel);
+}
+
+function filteredProducts() {
+  const defs = selectedFilterDefs();
+  const visible = categoryBaseParts().filter((part) => partMatchesCatalogFilters(part, defs));
+
+  return visible.sort((a, b) => {
+    if (catalogState.sort === "price-asc") return (Number.isFinite(partPrice(a)) ? partPrice(a) : Infinity) - (Number.isFinite(partPrice(b)) ? partPrice(b) : Infinity);
+    if (catalogState.sort === "price-desc") return (Number.isFinite(partPrice(b)) ? partPrice(b) : -Infinity) - (Number.isFinite(partPrice(a)) ? partPrice(a) : -Infinity);
+    if (catalogState.sort === "name-asc") return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+    return parts.indexOf(a) - parts.indexOf(b);
+  });
+}
+
+function renderProducts() {
+  const visible = filteredProducts();
+  const grid = document.getElementById("productGrid");
+  const baseCount = categoryBaseParts().length;
+  const label = catalogState.category === "All" ? "parts" : `${catalogState.category.toLowerCase()} parts`;
+  document.getElementById("resultCount").textContent = `Showing ${visible.length} of ${baseCount} ${label}`;
+
+  if (!visible.length) {
+    grid.innerHTML = `<div class="empty-state">
+      <strong>No exact matches</strong>
+      <span>Try widening the price range or clearing one filter.</span>
+    </div>`;
+    applyMotion(grid);
+    return;
+  }
+
+  grid.innerHTML = visible
     .map((part) => {
       const offer = bestOffer(part);
       const was = compareAt(part);
@@ -2943,6 +3438,7 @@ function renderProducts(category = "All") {
       </article>`;
     })
     .join("");
+  applyMotion(grid);
 }
 
 function renderBuilder() {
@@ -3013,12 +3509,15 @@ function renderBuilder() {
   });
   document.addEventListener("click", (event) => {
     if (!event.target.closest(".part-picker")) closePickers();
+    if (!event.target.closest(".select-picker")) closeSelectPickers();
   });
+  applyMotion(document.getElementById("builder"));
 }
 
 function closePickers() {
   document.querySelectorAll(".part-picker.is-open").forEach((picker) => {
     picker.classList.remove("is-open");
+    picker.closest(".slot")?.classList.remove("picker-active");
     picker.querySelector(".picker-trigger").setAttribute("aria-expanded", "false");
   });
 }
@@ -3026,9 +3525,16 @@ function closePickers() {
 function togglePicker(trigger) {
   const picker = trigger.closest(".part-picker");
   const isOpen = picker.classList.contains("is-open");
+  closeSelectPickers();
   closePickers();
   picker.classList.toggle("is-open", !isOpen);
+  picker.closest(".slot")?.classList.toggle("picker-active", !isOpen);
   trigger.setAttribute("aria-expanded", String(!isOpen));
+  if (!isOpen) {
+    window.requestAnimationFrame(() => {
+      picker.querySelector(".picker-menu")?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    });
+  }
 }
 
 function syncPicker(category, part) {
@@ -3056,7 +3562,11 @@ function updateBuilder() {
   const selected = getSelectedParts();
   const total = selected.reduce((sum, part) => sum + bestOffer(part).price, 0);
   const power = selected.reduce((sum, part) => sum + (part.power || 0), 0);
-  document.getElementById("buildTotal").textContent = formatMoney(total);
+  const totalNode = document.getElementById("buildTotal");
+  totalNode.textContent = formatMoney(total);
+  totalNode.classList.remove("value-pop");
+  void totalNode.offsetWidth;
+  totalNode.classList.add("value-pop");
   document.getElementById("buildPower").textContent = `${power}W estimated component draw`;
 
   builderCategories.forEach((category) => {
@@ -3153,9 +3663,11 @@ function renderProductDetail() {
 }
 
 initThemeToggle();
+initPressMotion();
 
 if (document.getElementById("productDetail")) {
   renderProductDetail();
+  applyMotion(document);
 } else {
   renderCategories();
   renderDeals();
@@ -3163,4 +3675,5 @@ if (document.getElementById("productDetail")) {
   renderProducts();
   renderBuilder();
   updateBuilder();
+  applyMotion(document);
 }
