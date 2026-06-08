@@ -2807,8 +2807,22 @@ function productUrl(part) {
   return `product.html?id=${slugify(part.name)}`;
 }
 
+const categoryImageMap = {
+  CPU: "assets/part-images/cpu.png",
+  GPU: "assets/part-images/gpu.png",
+  Motherboard: "assets/part-images/motherboard.png",
+  Memory: "assets/part-images/memory.png",
+  Storage: "assets/part-images/storage.png",
+  PSU: "assets/part-images/psu.png",
+  Case: "assets/part-images/case.png",
+};
+
 function productImage(part) {
-  return part.image || "assets/pc-parts-hero.png";
+  return categoryImageMap[part.category] || part.image || "assets/pc-parts-hero.png";
+}
+
+function productThumb(part, className = "part-thumb") {
+  return `<img class="${className}" src="${productImage(part)}" alt="${part.name}" loading="lazy" />`;
 }
 
 function pricedOffers(part) {
@@ -2882,8 +2896,13 @@ function renderDeals() {
       const offer = bestOffer(part);
       const was = compareAt(part);
       return `<article class="deal-card">
-        <span class="deal-tag">Best verified: ${offer.seller}</span>
-        <h3><a href="${productUrl(part)}">${part.name}</a></h3>
+        <div class="deal-head">
+          <a class="deal-image" href="${productUrl(part)}">${productThumb(part)}</a>
+          <div>
+            <span class="deal-tag">Best verified: ${offer.seller}</span>
+            <h3><a href="${productUrl(part)}">${part.name}</a></h3>
+          </div>
+        </div>
         <p>${part.specs}</p>
         <div class="price-row">
           <span class="price">${formatMoney(offer.price)}</span>
@@ -2910,11 +2929,16 @@ function renderProducts(category = "All") {
       const offer = bestOffer(part);
       const was = compareAt(part);
       return `<article class="product-card">
-        <div class="product-top">
-          <span class="category-pill">${part.category}</span>
-          <span class="discount">Verified ${verifiedAt}</span>
+        <div class="product-card-head">
+          <a class="product-image" href="${productUrl(part)}">${productThumb(part)}</a>
+          <div class="product-head-copy">
+            <div class="product-top">
+              <span class="category-pill">${part.category}</span>
+              <span class="discount">Verified ${verifiedAt}</span>
+            </div>
+            <h3><a href="${productUrl(part)}">${part.name}</a></h3>
+          </div>
         </div>
-        <h3><a href="${productUrl(part)}">${part.name}</a></h3>
         <p>${part.specs}</p>
         <div class="specs">${[part.socket, part.memory, part.power ? `${part.power}W draw` : "", `${part.offers.length} product-page offer${part.offers.length === 1 ? "" : "s"}`].filter(Boolean).join(" | ")}</div>
         <div class="price-row">
@@ -2932,16 +2956,45 @@ function renderBuilder() {
   const slots = document.getElementById("builderSlots");
   slots.innerHTML = builderCategories
     .map((category) => {
-      const options = parts
-        .filter((part) => part.category === category)
-        .map((part) => `<option value="${part.name}">${part.name}</option>`)
-        .join("");
+      const categoryParts = parts.filter((part) => part.category === category);
+      const options = categoryParts.map((part) => `<option value="${part.name}">${part.name}</option>`).join("");
+      const menuOptions = [
+        `<button class="picker-option" type="button" role="option" data-picker-value="">
+          <span class="picker-empty-thumb">${category.slice(0, 2).toUpperCase()}</span>
+          <span class="picker-option-copy">
+            <strong>Choose ${category}</strong>
+            <span>No ${category.toLowerCase()} selected</span>
+          </span>
+        </button>`,
+        ...categoryParts.map(
+          (part) => `<button class="picker-option" type="button" role="option" data-picker-value="${part.name}">
+            ${productThumb(part, "picker-thumb")}
+            <span class="picker-option-copy">
+              <strong>${part.name}</strong>
+              <span>${formatMoney(bestOffer(part).price)} at ${bestOffer(part).seller}</span>
+            </span>
+          </button>`,
+        ),
+      ].join("");
       return `<div class="slot">
         <label for="slot-${category}">${category}</label>
-        <select id="slot-${category}" data-builder-category="${category}">
+        <div class="part-picker" data-picker-category="${category}">
+          <select class="native-builder-select" id="slot-${category}" data-builder-category="${category}" tabindex="-1" aria-hidden="true">
           <option value="">Choose ${category}</option>
           ${options}
-        </select>
+          </select>
+          <button class="picker-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="picker-menu-${category}">
+            <span class="picker-trigger-media"><span class="picker-empty-thumb">${category.slice(0, 2).toUpperCase()}</span></span>
+            <span class="picker-trigger-copy">
+              <strong>Choose ${category}</strong>
+              <span>Open product picker</span>
+            </span>
+            <span class="picker-caret" aria-hidden="true"></span>
+          </button>
+          <div class="picker-menu" id="picker-menu-${category}" role="listbox" aria-label="${category} picker">
+            ${menuOptions}
+          </div>
+        </div>
         <p class="slot-meta" id="meta-${category}">No ${category.toLowerCase()} selected.</p>
       </div>`;
     })
@@ -2949,6 +3002,54 @@ function renderBuilder() {
 
   document.querySelectorAll("[data-builder-category]").forEach((select) => {
     select.addEventListener("change", updateBuilder);
+  });
+  document.querySelectorAll(".picker-trigger").forEach((trigger) => {
+    trigger.addEventListener("click", () => togglePicker(trigger));
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closePickers();
+    });
+  });
+  document.querySelectorAll(".picker-option").forEach((option) => {
+    option.addEventListener("click", () => {
+      const picker = option.closest(".part-picker");
+      const select = picker.querySelector("[data-builder-category]");
+      select.value = option.dataset.pickerValue;
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+      closePickers();
+    });
+  });
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".part-picker")) closePickers();
+  });
+}
+
+function closePickers() {
+  document.querySelectorAll(".part-picker.is-open").forEach((picker) => {
+    picker.classList.remove("is-open");
+    picker.querySelector(".picker-trigger").setAttribute("aria-expanded", "false");
+  });
+}
+
+function togglePicker(trigger) {
+  const picker = trigger.closest(".part-picker");
+  const isOpen = picker.classList.contains("is-open");
+  closePickers();
+  picker.classList.toggle("is-open", !isOpen);
+  trigger.setAttribute("aria-expanded", String(!isOpen));
+}
+
+function syncPicker(category, part) {
+  const picker = document.querySelector(`[data-picker-category="${category}"]`);
+  if (!picker) return;
+  const trigger = picker.querySelector(".picker-trigger");
+  const media = trigger.querySelector(".picker-trigger-media");
+  const copy = trigger.querySelector(".picker-trigger-copy");
+  media.innerHTML = part ? productThumb(part, "picker-thumb") : `<span class="picker-empty-thumb">${category.slice(0, 2).toUpperCase()}</span>`;
+  copy.innerHTML = part
+    ? `<strong>${part.name}</strong><span>${formatMoney(bestOffer(part).price)} at ${bestOffer(part).seller}</span>`
+    : `<strong>Choose ${category}</strong><span>Open product picker</span>`;
+  picker.querySelectorAll(".picker-option").forEach((option) => {
+    option.setAttribute("aria-selected", String(option.dataset.pickerValue === (part?.name || "")));
   });
 }
 
@@ -2968,6 +3069,7 @@ function updateBuilder() {
   builderCategories.forEach((category) => {
     const select = document.getElementById(`slot-${category}`);
     const part = parts.find((item) => item.name === select.value);
+    syncPicker(category, part);
     document.getElementById(`meta-${category}`).textContent = part
       ? `${formatMoney(bestOffer(part).price)} at ${bestOffer(part).seller} - ${part.specs}`
       : `No ${category.toLowerCase()} selected.`;
