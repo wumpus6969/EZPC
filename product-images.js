@@ -40,7 +40,7 @@ window.productImageMap = {
   "asus-proart-pa602-wood-edition-black-mid-tower-case": "https://dlcdnwebimgs.asus.com/files/media/091835dc-527b-4783-b800-69f0e3d05819/v1/img/gallery/gallery-1.jpg",
   "asus-proart-pa602-wood-edition-modern-black-mid-tower-case": "https://dlcdnwebimgs.asus.com/files/media/091835dc-527b-4783-b800-69f0e3d05819/v1/img/gallery/gallery-1.jpg",
   "asus-rog-astral-geforce-rtx-5090-oc-32gb-graphics-card": "https://media.ldlc.com/r1600/ld/products/00/06/20/51/LD0006205114.jpg",
-  "asus-rog-hyperion-gr701-black-full-tower-case": "https://dlcdnwebimgs.asus.com/files/media/87F606EE-FB9D-483A-AE34-FC745A967C99/v2/img/rog-hyperion-gr701-white.png",
+  "asus-rog-hyperion-gr701-black-full-tower-case": "https://dlcdnimgs.asus.com/websites/global/Sno/79183.jpg",
   "asus-rog-maximus-z890-hero-lga1851-atx-motherboard": "https://dlcdnrog.asus.com/rog/media/1739244391385.webp",
   "asus-rog-strix-1200w-platinum-modular-psu": "https://dlcdnwebimgs.asus.com/gain/CC24A593-7041-4152-A5E4-63628FF95576",
   "asus-rog-strix-b650e-f-gaming-wifi-am5-atx-motherboard": "https://dlcdnwebimgs.asus.com/files/media/398D9060-E4B9-4A5E-B3AC-53FE4DC9144E/v1/img/ksp/power-stages.png",

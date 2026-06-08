@@ -2341,12 +2341,6 @@ const lowestPriceOffers = {
     status: "Lowest verified retailer",
     url: "https://www.bhphotovideo.com/c/product/1731165-REG/msi_mag_z790_tomahawk_wifi.html"
   },
-  "Corsair Vengeance RGB 64GB DDR5-6400 CL32 Kit": {
-    seller: "Doren Tech",
-    price: 1215.99,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1689SIC70SKYG8207"
-  },
   "Silicon Power Zenith RGB 32GB DDR5-6000 CL30 Kit": {
     seller: "B&H",
     price: 489.99,
@@ -2503,18 +2497,6 @@ const lowestPriceOffers = {
     status: "Lowest verified retailer",
     url: "https://www.newegg.com/p/N82E16813144678"
   },
-  "ASUS TUF Gaming X870-PLUS WiFi AM5 ATX Motherboard": {
-    seller: "Computer Headquarters",
-    price: 179.99,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1689SIADFRKUW8514"
-  },
-  "ASUS ROG Strix B650E-F Gaming WiFi AM5 ATX Motherboard": {
-    seller: "Silicon Alley Electronics",
-    price: 129.95,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1689SIBDUMKYB7156"
-  },
   "MSI MAG Z890 Tomahawk WiFi LGA1851 ATX Motherboard": {
     seller: "Newegg",
     price: 229.99,
@@ -2539,12 +2521,6 @@ const lowestPriceOffers = {
     status: "Lowest verified retailer",
     url: "https://www.newegg.com/gigabyte-z890-aorus-pro-ice-atx-motherboards-intel-intel-z890-lga-1851/p/N82E16813145524"
   },
-  "G.Skill Trident Z5 Neo RGB 32GB DDR5-6000 CL30 Kit": {
-    seller: "EvoMicro",
-    price: 488,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1689SIAG5BKUH7798"
-  },
   "G.Skill Trident Z5 RGB 48GB DDR5-7200 CL36 Kit": {
     seller: "Newegg",
     price: 599.99,
@@ -2557,12 +2533,6 @@ const lowestPriceOffers = {
     status: "Lowest verified retailer",
     url: "https://www.bestbuy.com/product/corsair-dominator-titanium-64gb-2-x-32gb-ddr5-6000-cl30-36-36-76-1-40v-intel-xmp-amd-expo-gray/J39QHTCXCW/sku/6645750"
   },
-  "Kingston Fury Beast RGB 32GB DDR5-6000 CL30 Kit": {
-    seller: "TELeasy",
-    price: 553.58,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1689SIA8N2KNP9621"
-  },
   "TeamGroup T-Force Delta RGB 32GB DDR5-6400 CL40 Kit": {
     seller: "Newegg",
     price: 429.99,
@@ -2574,12 +2544,6 @@ const lowestPriceOffers = {
     price: 414.99,
     status: "Lowest verified retailer",
     url: "https://www.newegg.com/p/N82E16820156406"
-  },
-  "Patriot Viper Venom RGB 32GB DDR5-6000 CL30 Kit": {
-    seller: "Newegg",
-    price: 409.99,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1680RN002U004U6"
   },
   "Samsung 990 EVO Plus 2TB PCIe 5.0 x2 NVMe M.2 SSD": {
     seller: "Amazon",
@@ -2635,12 +2599,6 @@ const lowestPriceOffers = {
     status: "Lowest verified retailer",
     url: "https://www.newegg.com/p/N82E16817139351"
   },
-  "Seasonic Vertex GX-1000 1000W 80+ Gold ATX 3.0 PSU": {
-    seller: "C.N.E Technology",
-    price: 377.33,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1689SIBZW0KPB9293"
-  },
   "be quiet! Straight Power 12 1000W 80+ Platinum PSU": {
     seller: "Newegg",
     price: 159.9,
@@ -2653,24 +2611,6 @@ const lowestPriceOffers = {
     status: "Lowest verified retailer",
     url: "https://www.evga.com/products/product.aspx?pn=220-GT-1000-X1"
   },
-  "MSI MPG A1000G PCIE5 1000W 80+ Gold PSU": {
-    seller: "BTE Outlet",
-    price: 375.71,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1689SIAD6HJ8E1641"
-  },
-  "Thermaltake Toughpower GF A3 1200W 80+ Gold PSU": {
-    seller: "Thermaltake",
-    price: 204.98,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1689SIA8EFJUS8785"
-  },
-  "Lian Li Edge 1000W 80+ Platinum ATX 3.1 PSU": {
-    seller: "Newegg",
-    price: 124.6,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1681HU01PP00022"
-  },
   "Fractal Design North XL Charcoal Black Mesh Case": {
     seller: "Newegg",
     price: 207.98,
@@ -2682,12 +2622,6 @@ const lowestPriceOffers = {
     price: 147.98,
     status: "Lowest verified retailer",
     url: "https://www.newegg.com/p/N82E16811352140"
-  },
-  "Lian Li O11 Vision Compact Black Case": {
-    seller: "Newegg",
-    price: 124.99,
-    status: "Lowest verified retailer",
-    url: "https://www.newegg.com/p/N82E1682AM000Z000D8"
   },
   "Corsair 5000D Airflow Black Mid-Tower Case": {
     seller: "Newegg",
