@@ -2807,22 +2807,15 @@ function productUrl(part) {
   return `product.html?id=${slugify(part.name)}`;
 }
 
-const categoryImageMap = {
-  CPU: "assets/part-images/cpu.png",
-  GPU: "assets/part-images/gpu.png",
-  Motherboard: "assets/part-images/motherboard.png",
-  Memory: "assets/part-images/memory.png",
-  Storage: "assets/part-images/storage.png",
-  PSU: "assets/part-images/psu.png",
-  Case: "assets/part-images/case.png",
-};
-
 function productImage(part) {
-  return window.productImageMap?.[slugify(part.name)] || part.image || categoryImageMap[part.category] || "assets/pc-parts-hero.png";
+  return window.productImageMap?.[slugify(part.name)] || part.image || "";
 }
 
 function productThumb(part, className = "part-thumb") {
-  return `<img class="${className}" src="${productImage(part)}" alt="${part.name}" loading="lazy" />`;
+  const image = productImage(part);
+  return image
+    ? `<img class="${className}" src="${image}" alt="${part.name}" loading="lazy" />`
+    : `<span class="${className} part-thumb-missing" aria-label="Image pending for ${part.name}">Image pending</span>`;
 }
 
 function pricedOffers(part) {

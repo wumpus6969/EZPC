@@ -718,6 +718,21 @@ h3 {
   padding: 6px;
 }
 
+.part-thumb-missing {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background:
+    linear-gradient(135deg, rgba(14, 165, 189, 0.08), rgba(246, 197, 96, 0.08)),
+    var(--surface-soft);
+}
+
 .deal-tag,
 .category-pill {
   display: inline-flex;
