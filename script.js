@@ -3051,7 +3051,17 @@ const newSegmentParts = [
 
 parts.push(...newSegmentParts);
 
-const SHIPS_TO_ISRAEL_RETAILERS = new Set(["B&H", "Bug", "Dominator", "Ivory", "KSP", "Newegg", "TMS"]);
+const SHIPS_TO_ISRAEL_RETAILERS = new Set([
+  "Amazon",
+  "B&H",
+  "Bug",
+  "Dominator",
+  "eBay",
+  "Ivory",
+  "KSP",
+  "Newegg",
+  "TMS",
+]);
 
 Object.entries(israeliRetailerOffers).forEach(([name, offers]) => {
   const part = parts.find((item) => item.name === name);
@@ -3065,6 +3075,259 @@ Object.entries(israeliRetailerOffers).forEach(([name, offers]) => {
     return true;
   });
 });
+
+// Extra Amazon US and eBay offers that ship to Israel via Amazon Global
+// or eBay Global Shipping. Each entry attaches to an existing part by
+// exact name and adds the offer alongside whatever is already there.
+const internationalShipsToIsraelOffers = {
+  "AMD Ryzen 7 9800X3D 8-Core AM5 Processor": [
+    { seller: "Amazon", price: 439, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0DKFMSMYK" },
+    { seller: "eBay", price: 408.95, status: "eBay Global Shipping to Israel", url: "https://www.ebay.com/itm/226979575818" },
+  ],
+  "AMD Ryzen 9 9950X 16-Core AM5 Processor": [
+    { seller: "Amazon", price: 498, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0D6NNRBGP" },
+    { seller: "eBay", price: 469.99, status: "eBay Global Shipping to Israel", url: "https://www.ebay.com/itm/227350463994" },
+  ],
+  "Intel Core Ultra 9 285K LGA1851 Processor": [
+    { seller: "Amazon", price: 539, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0DFKC99VL" },
+  ],
+  "Intel Core i7-14700K LGA1700 Processor": [
+    { seller: "Amazon", price: 399.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CGJ41C9W" },
+  ],
+  "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card": [
+    { seller: "Amazon", price: 1355.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0DS2R7N4F" },
+  ],
+  "ASUS TUF Gaming GeForce RTX 5070 Ti OC 16GB Graphics Card": [
+    { seller: "Amazon", price: 849.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0DS6WTXGP" },
+  ],
+  "ASUS ROG Strix X870E-E Gaming WiFi AM5 ATX Motherboard": [
+    { seller: "Amazon", price: 356, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0DDZNZF76" },
+  ],
+  "MSI MAG X870 Tomahawk WiFi AM5 ATX Motherboard": [
+    { seller: "Amazon", price: 209.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0DG3HK897" },
+  ],
+  "Samsung 990 PRO 2TB PCIe 4.0 NVMe M.2 SSD": [
+    { seller: "Amazon", price: 399.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0BHJJ9Y77" },
+    { seller: "eBay", price: 303.99, status: "eBay Global Shipping to Israel", url: "https://www.ebay.com/itm/146214736097" },
+  ],
+  "Fractal Design North XL RC Charcoal Black TG Case": [
+    { seller: "Amazon", price: 219.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0DG33HWNM" },
+  ],
+  "NZXT H7 Flow RGB 2024 Black Mid-Tower Case": [
+    { seller: "Amazon", price: 99.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CV4RRBNJ" },
+  ],
+  "ASUS ROG Strix G16 G614 Gaming Laptop": [
+    { seller: "Amazon", price: 1699, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CRDD79FX" },
+  ],
+  "MSI Raider GE78 HX 14V Gaming Laptop": [
+    { seller: "Amazon", price: 3299, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CTHXJ29Y" },
+  ],
+  "Apple MacBook Pro 14 M4 Pro Laptop": [
+    { seller: "Amazon", price: 1899, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0DLHRZL59" },
+  ],
+  "Apple MacBook Air 15 M3 Laptop": [
+    { seller: "Amazon", price: 1249, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CX23V2ZK" },
+  ],
+  "LG UltraGear 27GR93U-B 27-inch 4K 144Hz Monitor": [
+    { seller: "Amazon", price: 599, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0BX1NHX2L" },
+  ],
+  "Samsung Odyssey OLED G80SD 32-inch 4K 240Hz Monitor": [
+    { seller: "Amazon", price: 1299, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CYR7TG6R" },
+  ],
+  "ASUS ROG Swift OLED PG27AQDM 27-inch QHD 240Hz Monitor": [
+    { seller: "Amazon", price: 899, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CFFD52L4" },
+  ],
+  "Alienware AW3423DWF 34-inch QD-OLED Ultrawide Monitor": [
+    { seller: "Amazon", price: 799, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0BJZ29ZRX" },
+  ],
+  "LG UltraGear 27GP850-B 27-inch QHD 165Hz Monitor": [
+    { seller: "Amazon", price: 379, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0915TBQ6T" },
+  ],
+  "Dell UltraSharp U2723QE 27-inch 4K USB-C Hub Monitor": [
+    { seller: "Amazon", price: 599, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B09VG6WGB1" },
+  ],
+  "ASUS ProArt Display PA279CRV 27-inch 4K Creator Monitor": [
+    { seller: "Amazon", price: 429, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0BS2VVZNB" },
+  ],
+  "Gigabyte M27Q rev 2.0 27-inch QHD 170Hz Monitor": [
+    { seller: "Amazon", price: 299, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0BWZQHFP3" },
+  ],
+  "Acer Predator X32 FP 32-inch 4K Mini-LED 160Hz Monitor": [
+    { seller: "Amazon", price: 1299, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0BTC4LCYC" },
+  ],
+  "BenQ PD3220U 32-inch 4K Designer Monitor": [
+    { seller: "Amazon", price: 1199, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B07VTGW7H8" },
+  ],
+};
+
+Object.entries(internationalShipsToIsraelOffers).forEach(([name, offers]) => {
+  const part = parts.find((item) => item.name === name);
+  if (!part) return;
+  const seen = new Set((part.offers || []).map((offer) => `${offer.seller}|${offer.url}`));
+  offers.forEach((offer) => {
+    const key = `${offer.seller}|${offer.url}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    part.offers.push(offer);
+  });
+});
+
+// Additional Amazon US products that ship to Israel via Amazon Global,
+// covering popular PC parts, laptops, and monitors that were not in
+// the original curated catalog.
+const amazonShipsToIsraelExtras = [
+  {
+    category: "CPU",
+    name: "AMD Ryzen 5 7600 6-Core AM5 Processor",
+    socket: "AM5",
+    memory: "DDR5",
+    power: 65,
+    specs: "6 cores, Zen 4, included cooler, value AM5",
+    overview: "AMD Ryzen 5 7600 is a 6-core, 12-thread Zen 4 desktop processor for AM5 motherboards. It pairs DDR5 memory support with an included Wraith Stealth cooler, making it a practical entry into AM5 builds.",
+    oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-5-7600.html",
+    image: "https://m.media-amazon.com/images/I/61RcGy-tDbL._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 199, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0BBHHT8LY" },
+    ],
+  },
+  {
+    category: "CPU",
+    name: "Intel Core i5-14600K LGA1700 Processor",
+    socket: "LGA1700",
+    memory: "DDR5",
+    power: 181,
+    specs: "14 cores, unlocked, value gaming CPU",
+    overview: "Intel Core i5-14600K is an unlocked 14th Gen LGA1700 desktop processor with 14 cores (6P + 8E) and 20 threads, up to 5.3 GHz turbo, and broad DDR4/DDR5 platform support for mainstream gaming.",
+    oemUrl: "https://www.intel.com/content/www/us/en/products/sku/236781/intel-core-i514600k-processor-24m-cache-up-to-5-30-ghz/specifications.html",
+    image: "https://m.media-amazon.com/images/I/61n2hcfMUuL._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 289.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CGJDKLB8" },
+    ],
+  },
+  {
+    category: "GPU",
+    name: "MSI GeForce RTX 4070 SUPER 12G Ventus 2X OC Graphics Card",
+    power: 220,
+    specs: "12GB GDDR6X, dual-fan Ventus cooler, 1440p GPU",
+    overview: "MSI GeForce RTX 4070 SUPER Ventus 2X OC is a compact dual-fan RTX 4070 SUPER card with 12GB of GDDR6X memory. It targets 1440p high-refresh gaming with NVIDIA DLSS 3 support.",
+    oemUrl: "https://www.msi.com/Graphics-Card/GeForce-RTX-4070-SUPER-12G-VENTUS-2X-OC",
+    image: "https://m.media-amazon.com/images/I/81WLA-AAYBL._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 599.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CSL9JR74" },
+    ],
+  },
+  {
+    category: "GPU",
+    name: "ASUS Dual GeForce RTX 4060 Ti OC 8GB Graphics Card",
+    power: 165,
+    specs: "8GB GDDR6, compact dual-fan 1080p/1440p GPU",
+    overview: "ASUS Dual GeForce RTX 4060 Ti OC is a compact dual-fan RTX 4060 Ti card with 8GB of GDDR6 memory, factory overclock, and a 2.5-slot cooler for small and mid-tower 1080p/1440p builds.",
+    oemUrl: "https://www.asus.com/motherboards-components/graphics-cards/dual/dual-rtx4060ti-o8g/",
+    image: "https://m.media-amazon.com/images/I/81PgK+jHy2L._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 399.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0C39B85ZW" },
+    ],
+  },
+  {
+    category: "Memory",
+    name: "G.Skill Trident Z5 Neo RGB 32GB DDR5-6000 CL30 Kit",
+    memory: "DDR5",
+    power: 8,
+    specs: "2x16GB, AMD EXPO, RGB heat spreaders",
+    overview: "G.Skill Trident Z5 Neo RGB DDR5-6000 CL30 is a 32GB two-DIMM kit tuned for AMD EXPO platforms with RGB lighting and a sweet-spot speed/latency profile for AM5 gaming builds.",
+    oemUrl: "https://www.gskill.com/product/165/390/1665020956/F5-6000J3038F16GX2-TZ5NR",
+    image: "https://m.media-amazon.com/images/I/71jvzlqDPHL._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 109.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0BZSZBRJG" },
+    ],
+  },
+  {
+    category: "Storage",
+    name: "WD Black SN850X 2TB PCIe 4.0 NVMe M.2 SSD",
+    power: 7,
+    specs: "2TB, PCIe 4.0, gaming NVMe drive",
+    overview: "WD Black SN850X is a PCIe 4.0 NVMe SSD line for high-end gaming and creator desktops. The 2TB model offers high sequential speeds, broad capacity, and optional integrated heatsink versions.",
+    oemUrl: "https://www.westerndigital.com/products/internal-drives/wd-black-sn850x-nvme-ssd",
+    image: "https://m.media-amazon.com/images/I/71QnG7CR-2L._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 169.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0B7CQ2CRX" },
+    ],
+  },
+  {
+    category: "PSU",
+    name: "Corsair RM850e 850W 80+ Gold ATX 3.1 PSU",
+    power: 0,
+    specs: "850W, ATX 3.1, modular, Gold efficiency",
+    overview: "Corsair RM850e is a fully modular 850W ATX 3.1 power supply with 80 PLUS Gold efficiency, native 12V-2x6 connector for modern GPUs, and low-noise fluid bearing fan for quiet operation.",
+    oemUrl: "https://www.corsair.com/us/en/p/psu/cp-9020263-na/rm850e-fully-modular-low-noise-atx-power-supply-cp-9020263-na",
+    image: "https://m.media-amazon.com/images/I/71nm1Tk-vbL._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 119.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CC7K8MXP" },
+    ],
+  },
+  {
+    category: "Case",
+    name: "Corsair 4000D Airflow Black Mid-Tower Case",
+    power: 0,
+    specs: "ATX mid-tower, mesh front, clean cable routing",
+    overview: "Corsair 4000D Airflow is a mid-tower ATX case with a high-airflow mesh front, RapidRoute cable management, and tool-free side panels for tidy mainstream gaming builds.",
+    oemUrl: "https://www.corsair.com/us/en/p/pc-cases/cc-9011200-ww/4000d-airflow-tempered-glass-mid-tower-atx-case-black-cc-9011200-ww",
+    image: "https://m.media-amazon.com/images/I/81WqMcdvCnL._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 94.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B08C7BGV3D" },
+    ],
+  },
+  {
+    category: "Laptop",
+    name: "ASUS ROG Zephyrus G14 GA403 Gaming Laptop",
+    specs: "14-inch 3K OLED 120Hz, Ryzen 9 8945HS, RTX 4070, 32GB LPDDR5X",
+    power: 180,
+    overview: "ASUS ROG Zephyrus G14 GA403 is a 14-inch thin-and-light gaming laptop with AMD Ryzen 8040 Series, GeForce RTX 40 Series graphics, a 3K OLED 120Hz display, and a CNC aluminum chassis.",
+    oemUrl: "https://rog.asus.com/laptops/rog-zephyrus/rog-zephyrus-g14-2024/",
+    image: "https://m.media-amazon.com/images/I/71kJa4OoZBL._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 1999, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CTBSY2KL" },
+    ],
+  },
+  {
+    category: "Laptop",
+    name: "Lenovo Yoga 9i 14 2-in-1 Laptop",
+    specs: "14-inch 4K OLED, Core Ultra 7 155H, 16GB LPDDR5X, 1TB SSD",
+    power: 65,
+    overview: "Lenovo Yoga 9i 14 is a 14-inch premium 2-in-1 convertible laptop with Intel Core Ultra processors, a 4K OLED touch display, rotating soundbar hinge, and an included pen for creator and productivity use.",
+    oemUrl: "https://www.lenovo.com/us/en/p/laptops/yoga/yoga-9-series/yoga-9i-gen-9-14-inch-intel/83b1",
+    image: "https://m.media-amazon.com/images/I/71eobUUaTLL._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 1499, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CR4FMHX6" },
+    ],
+  },
+  {
+    category: "Monitor",
+    name: "Dell G2724D 27-inch QHD 165Hz Gaming Monitor",
+    specs: "27-inch QHD, 165Hz, IPS, 1ms, FreeSync Premium",
+    power: 32,
+    overview: "Dell G2724D is a 27-inch QHD IPS gaming monitor with a 165Hz refresh rate, 1ms response, AMD FreeSync Premium, and a tilt/swivel/height-adjustable stand.",
+    oemUrl: "https://www.dell.com/en-us/shop/dell-27-gaming-monitor-g2724d/apd/210-bjcr",
+    image: "https://m.media-amazon.com/images/I/61bxHexBkJL._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 249.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CSDR6S8B" },
+    ],
+  },
+  {
+    category: "Monitor",
+    name: "MSI MPG 321URX 32-inch QD-OLED 240Hz Monitor",
+    specs: "32-inch 4K QD-OLED, 240Hz, 0.03ms, HDMI 2.1, USB-C",
+    power: 100,
+    overview: "MSI MPG 321URX is a 32-inch 4K QD-OLED gaming monitor with 240Hz refresh, 0.03ms response, HDMI 2.1 with VRR, USB-C, and MSI OLED Care features.",
+    oemUrl: "https://www.msi.com/Monitor/MPG-321URX-QD-OLED",
+    image: "https://m.media-amazon.com/images/I/71qq+IxYLrL._AC_SL1500_.jpg",
+    offers: [
+      { seller: "Amazon", price: 949.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CTPWZTL2" },
+    ],
+  },
+];
+
+parts.push(...amazonShipsToIsraelExtras);
 
 for (let index = parts.length - 1; index >= 0; index -= 1) {
   const part = parts[index];
