@@ -3142,12 +3142,56 @@ function offerUsd(offer) {
   return offer.price;
 }
 
+const ISRAEL_VAT_RATE = 0.18;
+const ISRAELI_RETAILERS = new Set(["Bug", "Dominator", "Ivory", "KSP", "TMS"]);
+const DOMESTIC_SHIPPING_USD = {
+  Case: 20,
+  Laptop: 15,
+  Monitor: 20,
+  Prebuilt: 35,
+};
+const INTERNATIONAL_SHIPPING_USD = {
+  CPU: 25,
+  GPU: 45,
+  Motherboard: 45,
+  Memory: 25,
+  Storage: 25,
+  PSU: 55,
+  Case: 90,
+  Prebuilt: 180,
+  Laptop: 55,
+  Monitor: 90,
+};
+
+function roundMoney(value) {
+  return Math.round(value * 100) / 100;
+}
+
+function isIsraeliRetailer(offer) {
+  return ISRAELI_RETAILERS.has(offer?.seller);
+}
+
+function shippingEstimateUsd(part, offer) {
+  if (!Number.isFinite(offerUsd(offer))) return Number.NaN;
+  const table = isIsraeliRetailer(offer) ? DOMESTIC_SHIPPING_USD : INTERNATIONAL_SHIPPING_USD;
+  return table[part.category] ?? (isIsraeliRetailer(offer) ? 10 : 45);
+}
+
+function landedPriceUsd(part, offer, baseOverride) {
+  const base = Number.isFinite(baseOverride) ? baseOverride : offerUsd(offer);
+  if (!Number.isFinite(base)) return Number.NaN;
+  const shipping = shippingEstimateUsd(part, offer);
+  if (!Number.isFinite(shipping)) return Number.NaN;
+  const taxable = isIsraeliRetailer(offer) ? 0 : (base + shipping) * ISRAEL_VAT_RATE;
+  return roundMoney(base + shipping + taxable);
+}
+
 function pricedOffers(part) {
-  return part.offers.filter((offer) => Number.isFinite(offerUsd(offer)));
+  return part.offers.filter((offer) => Number.isFinite(landedPriceUsd(part, offer)));
 }
 
 function bestOffer(part) {
-  return [...pricedOffers(part)].sort((a, b) => offerUsd(a) - offerUsd(b))[0] || part.offers[0];
+  return [...pricedOffers(part)].sort((a, b) => landedPriceUsd(part, a) - landedPriceUsd(part, b))[0] || part.offers[0];
 }
 
 const CATALOG_ROWS = 3;
@@ -3170,7 +3214,7 @@ function catalogPageSize() {
 }
 
 function partPrice(part) {
-  return offerUsd(bestOffer(part));
+  return landedPriceUsd(part, bestOffer(part));
 }
 
 function partText(part) {
@@ -3425,9 +3469,9 @@ function availableOptionsFor(definition, defs) {
 function compareAt(part) {
   const offer = bestOffer(part);
   if (!offer) return null;
-  if (Number.isFinite(offer.was)) return { price: offer.was, currency: offerCurrency(offer) };
+  if (Number.isFinite(offer.was)) return { price: landedPriceUsd(part, offer, offer.was), currency: offerCurrency(offer) };
   const price = offer.price;
-  return offerCurrency(offer) === "USD" && Number.isFinite(price) ? { price: Math.round(price * 1.12), currency: "USD" } : null;
+  return offerCurrency(offer) === "USD" && Number.isFinite(price) ? { price: landedPriceUsd(part, offer, Math.round(price * 1.12)), currency: "USD" } : null;
 }
 
 function compareAtUsd(part) {
@@ -3455,8 +3499,8 @@ function formatMoney(value) {
   return formatCurrencyAmount(value, "USD");
 }
 
-function formatOfferPrice(offer) {
-  return offer ? formatCurrencyAmount(offer.price, offerCurrency(offer)) : "Check price";
+function formatOfferPrice(part, offer) {
+  return offer ? formatCurrencyAmount(landedPriceUsd(part, offer), "USD") : "Check price";
 }
 
 function wasMarkup(value) {
@@ -3470,7 +3514,7 @@ function offerLinks(part, compact = false) {
     .map(
       (offer) => `<a class="seller-link" href="${offer.url}" target="_blank" rel="noopener noreferrer" title="${offer.status} at ${offer.seller}">
         <span>${offer.seller}</span>
-        <strong>${formatOfferPrice(offer)}</strong>
+        <strong>${formatOfferPrice(part, offer)}</strong>
       </a>`,
     )
     .join("");
@@ -3478,13 +3522,13 @@ function offerLinks(part, compact = false) {
 
 function lowestOfferBadge(part) {
   const offer = bestOffer(part);
-  return `<div class="lowest-price">Lowest price: <strong>${formatOfferPrice(offer)}</strong> at ${offer.seller}</div>`;
+  return `<div class="lowest-price">Lowest landed price to Israel: <strong>${formatOfferPrice(part, offer)}</strong> at ${offer.seller}</div>`;
 }
 
 function cheapestOfferLink(part) {
   const offer = bestOffer(part);
   if (!offer) return "";
-  const priceLabel = Number.isFinite(offer.price) ? formatOfferPrice(offer) : "Check";
+  const priceLabel = Number.isFinite(offer.price) ? formatOfferPrice(part, offer) : "Check";
   return `<a class="seller-link summary-seller-link" href="${offer.url}" target="_blank" rel="noopener noreferrer" title="${offer.status} at ${offer.seller}">
     <span class="seller-link-meta">
       <span class="seller-link-category">${part.category}</span>
@@ -3659,7 +3703,7 @@ function renderHeroDeals() {
         <img src="${productImage(part)}" alt="${part.name}" />
         <span>${part.category}</span>
         <strong>${part.name}</strong>
-        <em>${formatOfferPrice(offer)}${showWas ? ` <s>${formatCurrencyAmount(was.price, was.currency)}</s>` : ""}</em>
+        <em>${formatOfferPrice(part, offer)}${showWas ? ` <s>${formatCurrencyAmount(was.price, was.currency)}</s>` : ""}</em>
       </a>`;
     })
     .join("");
@@ -3685,7 +3729,7 @@ function renderDeals() {
         </div>
         <p>${part.specs}</p>
         <div class="price-row">
-          <span class="price">${formatOfferPrice(offer)}</span>
+          <span class="price">${formatOfferPrice(part, offer)}</span>
           ${wasMarkup(was)}
         </div>
         ${lowestOfferBadge(part)}
@@ -3751,7 +3795,7 @@ function renderDynamicFilters() {
 
   panel.innerHTML = `<div class="filter-grid">
     <div class="filter-field price-filter">
-      <span>Price</span>
+      <span>Landed price to Israel</span>
       <div class="price-inputs">
         <input id="minPriceFilter" type="number" inputmode="numeric" min="${min}" max="${max}" placeholder="${formatMoney(min)}" value="${catalogState.filters.minPrice || ""}" aria-label="Minimum price" />
         <input id="maxPriceFilter" type="number" inputmode="numeric" min="${min}" max="${max}" placeholder="${formatMoney(max)}" value="${catalogState.filters.maxPrice || ""}" aria-label="Maximum price" />
@@ -3846,7 +3890,7 @@ function renderProducts({ append = false } = {}) {
         <p>${part.specs}</p>
         <div class="specs">${[part.socket, part.memory, part.power ? `${part.power}W draw` : "", `${part.offers.length} product-page offer${part.offers.length === 1 ? "" : "s"}`].filter(Boolean).join(" | ")}</div>
         <div class="price-row">
-          <span class="price">${formatOfferPrice(offer)}</span>
+          <span class="price">${formatOfferPrice(part, offer)}</span>
           ${wasMarkup(was)}
         </div>
         ${lowestOfferBadge(part)}
@@ -3892,7 +3936,7 @@ function renderBuilder() {
             ${productThumb(part, "picker-thumb")}
             <span class="picker-option-copy">
               <strong>${part.name}</strong>
-              <span>${formatOfferPrice(bestOffer(part))} at ${bestOffer(part).seller}</span>
+              <span>${formatOfferPrice(part, bestOffer(part))} at ${bestOffer(part).seller}</span>
             </span>
           </button>`,
         ),
@@ -4023,7 +4067,7 @@ function syncPicker(category, part) {
   const copy = trigger.querySelector(".picker-trigger-copy");
   media.innerHTML = part ? productThumb(part, "picker-thumb") : `<span class="picker-empty-thumb">${category.slice(0, 2).toUpperCase()}</span>`;
   copy.innerHTML = part
-    ? `<strong>${part.name}</strong><span>${formatOfferPrice(bestOffer(part))} at ${bestOffer(part).seller}</span>`
+    ? `<strong>${part.name}</strong><span>${formatOfferPrice(part, bestOffer(part))} at ${bestOffer(part).seller}</span>`
     : `<strong>Choose ${category}</strong><span>Open product picker</span>`;
   picker.querySelectorAll(".picker-option").forEach((option) => {
     option.setAttribute("aria-selected", String(option.dataset.pickerValue === (part?.name || "")));
@@ -4052,7 +4096,7 @@ function updateBuilder() {
     const part = parts.find((item) => item.name === select.value);
     syncPicker(category, part);
     document.getElementById(`meta-${category}`).textContent = part
-      ? `${formatOfferPrice(bestOffer(part))} at ${bestOffer(part).seller} - ${part.specs}`
+      ? `${formatOfferPrice(part, bestOffer(part))} at ${bestOffer(part).seller} - ${part.specs}`
       : `No ${category.toLowerCase()} selected.`;
   });
 
@@ -4104,7 +4148,7 @@ function renderProductDetail() {
         <h1>${selected.name}</h1>
         <p class="hero-copy">${selected.specs}</p>
         <div class="price-row">
-          <span class="price">${formatOfferPrice(offer)}</span>
+          <span class="price">${formatOfferPrice(selected, offer)}</span>
           ${wasMarkup(was)}
         </div>
         ${lowestOfferBadge(selected)}
@@ -4131,7 +4175,7 @@ function renderProductDetail() {
           .map(
             (item) => `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="retailer-row">
               <span>${item.seller}</span>
-              <strong>${formatOfferPrice(item)}</strong>
+              <strong>${formatOfferPrice(selected, item)}</strong>
               <em>${item.status}</em>
             </a>`,
           )
