@@ -2715,7 +2715,7 @@ const categoryDescriptions = {
   PSU: "Modern ATX power supplies sized for current GPUs.",
   Case: "Airflow and showcase chassis for full-size builds.",
   Prebuilt: "Ready-to-ship gaming desktops with current-gen CPUs and GPUs.",
-  Laptop: "Gaming, creator, and productivity laptops with direct OEM product pages.",
+  Laptop: "Gaming, creator, and productivity laptops with Israel-shippable retailer offers.",
   Monitor: "4K, ultrawide, OLED, and high-refresh gaming displays.",
 };
 
@@ -3051,6 +3051,8 @@ const newSegmentParts = [
 
 parts.push(...newSegmentParts);
 
+const SHIPS_TO_ISRAEL_RETAILERS = new Set(["B&H", "Bug", "Dominator", "Ivory", "KSP", "Newegg", "TMS"]);
+
 Object.entries(israeliRetailerOffers).forEach(([name, offers]) => {
   const part = parts.find((item) => item.name === name);
   if (!part) return;
@@ -3063,6 +3065,12 @@ Object.entries(israeliRetailerOffers).forEach(([name, offers]) => {
     return true;
   });
 });
+
+for (let index = parts.length - 1; index >= 0; index -= 1) {
+  const part = parts[index];
+  part.offers = (part.offers || []).filter((offer) => SHIPS_TO_ISRAEL_RETAILERS.has(offer.seller));
+  if (!part.offers.length) parts.splice(index, 1);
+}
 
 const builderCategories = ["CPU", "GPU", "Motherboard", "Memory", "Storage", "PSU", "Case"];
 
@@ -4156,10 +4164,6 @@ function renderProductDetail() {
         <section class="product-overview">
           <p class="eyebrow">General information</p>
           <p>${selected.overview}</p>
-          <a class="seller-link source-link" href="${selected.oemUrl}" target="_blank" rel="noopener noreferrer">
-            <span>OEM source</span>
-            <strong>Open</strong>
-          </a>
         </section>
       </article>
     </div>
