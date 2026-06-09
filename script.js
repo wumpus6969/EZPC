@@ -3440,9 +3440,24 @@ const amazonShipsToIsraelExtras = [
 
 parts.push(...amazonShipsToIsraelExtras);
 
+// Categories where Amazon Global and eBay Global Shipping commonly
+// refuse delivery to Israel (oversized, heavy, high-value, regulated).
+// Offers from those sellers are stripped for these categories so the
+// catalog never advertises a retailer that will reject the order at
+// checkout.
+const INTL_RETAILER_BLOCKED_CATEGORIES = {
+  Amazon: new Set(["GPU", "Prebuilt", "PSU", "Case"]),
+  eBay: new Set(["GPU", "Prebuilt", "PSU", "Case", "Monitor", "Laptop"]),
+};
+
 for (let index = parts.length - 1; index >= 0; index -= 1) {
   const part = parts[index];
-  part.offers = (part.offers || []).filter((offer) => SHIPS_TO_ISRAEL_RETAILERS.has(offer.seller));
+  part.offers = (part.offers || []).filter((offer) => {
+    if (!SHIPS_TO_ISRAEL_RETAILERS.has(offer.seller)) return false;
+    const blocked = INTL_RETAILER_BLOCKED_CATEGORIES[offer.seller];
+    if (blocked && blocked.has(part.category)) return false;
+    return true;
+  });
   if (!part.offers.length) parts.splice(index, 1);
 }
 
