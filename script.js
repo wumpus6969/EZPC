@@ -2706,6 +2706,117 @@ const israeliRetailerOffers = {
   ],
 };
 
+// TMS (Israeli) product pages mapped from sitemap. Prices left null
+// so the front-end shows "Check price" until the nightly refresh fills
+// them in.
+const tmsCatalogOffers = {
+  "AMD Ryzen 5 5500 6-Core AM4 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-5-5500-am4-tray" },
+  ],
+  "AMD Ryzen 7 5700X 8-Core AM4 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-5700x-am4-tray" },
+  ],
+  "AMD Ryzen 5 7600X 6-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-5-7600x-am5-tray" },
+  ],
+  "AMD Ryzen 7 7700X 8-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-7700x-am5-tray" },
+  ],
+  "AMD Ryzen 7 7800X3D 8-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-7800x3d-am5-tray" },
+  ],
+  "AMD Ryzen 9 7900X 12-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-7900x-am5-box" },
+  ],
+  "AMD Ryzen 9 7950X 16-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-7950x-am5-tray" },
+  ],
+  "AMD Ryzen 5 9600X 6-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-5-9600x-am5-tray" },
+  ],
+  "AMD Ryzen 7 9700X 8-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-9700x-am5-tray" },
+  ],
+  "AMD Ryzen 9 9900X 12-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-9900x-am5-tray" },
+  ],
+  "AMD Ryzen 9 9950X 16-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-9950x-am5-tray" },
+  ],
+  "AMD Ryzen 7 9800X3D 8-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-9800x3d-am5-tray" },
+  ],
+  "AMD Ryzen 9 9950X3D 16-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-9950x3d-am5-tray" },
+  ],
+  "AMD Ryzen 9 9900X3D 12-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-9900x3d-am5-tray" },
+  ],
+  "AMD Ryzen 7 9850X3D 8-Core AM5 Processor": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-9850x3d-am5-tray" },
+  ],
+  "Gigabyte X870E AORUS PRO AM5 ATX Motherboard": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/gigabyte-x870e-aorus-pro" },
+  ],
+  "Gigabyte B850M DS3H AM5 Micro-ATX Motherboard": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/gigabyte-b850m-ds3h" },
+  ],
+  "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/gigabyte-rtx-5080-gv-n5080wf3-16gd" },
+  ],
+  "Gigabyte GeForce RTX 5060 Eagle OC 8G Graphics Card": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/gigabyte-rtx-5060-gv-n5060oc-8gl" },
+  ],
+  "Corsair 4000D Airflow Black Mid-Tower Case": [
+    { seller: "TMS", price: null, status: "TMS product page, 4000D RGB Airflow variant", url: "https://tms.co.il/corsair-4000d-rgb-airflow-case-black" },
+  ],
+  "Cooler Master V850 SFX Gold 850W Modular PSU": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/coolermaster-850w-v850-gold-fully-modular" },
+  ],
+  "Corsair RM750e White 750W Gold Modular PSU": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-750w-rm750e-low-noise-atx-31-gold-fully-modular" },
+  ],
+  "Corsair RM850e 850W 80+ Gold ATX 3.1 PSU": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-850w-rm850e-low-noise-atx-31-gold-fully-modular" },
+  ],
+  "Corsair RM850x Shift 850W 80+ Gold ATX 3.1 PSU": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-850w-rm850x-atx-31-gold-fully-modular" },
+  ],
+  "Corsair RM1000x Shift 1000W 80+ Gold ATX 3.1 PSU": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-1000w-rm1000x-atx-31-gold-fully-modular" },
+  ],
+  "Corsair HX1200i 1200W Platinum Modular ATX 3.1 PSU": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-1200w-hx1200i-shift-fully-modular-80-platinum" },
+  ],
+  "Corsair HX1500i Ultra-Low Noise 1500W Platinum PSU": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-1500w-hx1500i-shift-fully-modular-80-platinum" },
+  ],
+  "Corsair SF1000 1000W Platinum Fully Modular SFX PSU": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-1000w-sf1000-fully-modular-80-platinum-sfx" },
+  ],
+  "Corsair Vengeance RGB 64GB DDR5-6400 CL32 Kit": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-ddr5-64gb-4x16gb-6400-cl32-vengeance-xmp-30" },
+  ],
+  "Samsung 1TB 9100 PRO PCIe 5.0 NVMe M.2 SSD": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/samsung-ssd-1tb-9100-pro-pcie-50-nvme-m2" },
+  ],
+  "Crucial P310 2TB PCIe 4.0 NVMe M.2 SSD": [
+    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/crucial-p310-2tb-pcie-gen4-nvme-2280-m2-ssd" },
+  ],
+};
+
+Object.entries(tmsCatalogOffers).forEach(([name, offers]) => {
+  const part = parts.find((item) => item.name === name);
+  if (!part) return;
+  const seen = new Set((part.offers || []).map((offer) => `${offer.seller}|${offer.url}`));
+  offers.forEach((offer) => {
+    const key = `${offer.seller}|${offer.url}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    (part.offers ||= []).push(offer);
+  });
+});
+
 const categoryDescriptions = {
   CPU: "Verified processor product pages with socket metadata for the builder.",
   GPU: "Exact-model graphics cards with direct retailer product pages.",
