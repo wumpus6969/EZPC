@@ -2678,6 +2678,49 @@ parts.forEach((part) => {
     : existingOffers;
 });
 
+const USD_ILS_RATE = 2.93;
+
+const israeliRetailerOffers = {
+  "AMD Ryzen 7 9800X3D 8-Core AM5 Processor": [
+    { seller: "Ivory", price: 1849, currency: "ILS", status: "Ivory product page", url: "https://www.ivory.co.il/catalog.php?id=119039" },
+  ],
+  "AMD Ryzen 9 9950X 16-Core AM5 Processor": [
+    { seller: "TMS", price: 1766, currency: "ILS", status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-9950x-am5-tray?eilat=1" },
+    { seller: "Ivory", price: 2397, currency: "ILS", status: "Ivory product page", url: "https://www.ivory.co.il/catalog.php?id=105808" },
+  ],
+  "Intel Core Ultra 9 285K LGA1851 Processor": [
+    { seller: "TMS", price: 2101, currency: "ILS", status: "TMS product page", url: "https://tms.co.il/processor/intel-core-ultra-9-285k-1851-tray?eilat=1" },
+  ],
+  "AMD Ryzen 9 9950X3D 16-Core AM5 Processor": [
+    { seller: "KSP", price: null, currency: "ILS", status: "KSP product page", url: "https://ksp.co.il/web/item/371313" },
+  ],
+  "MSI GeForce RTX 5080 16G Gaming Trio OC Graphics Card": [
+    { seller: "Ivory", price: 6850, currency: "ILS", status: "Ivory product page", url: "https://www.ivory.co.il/catalog.php?id=126756" },
+  ],
+  "WD Black SN850X 2TB PCIe 4.0 NVMe M.2 SSD": [
+    { seller: "Dominator", price: null, currency: "ILS", status: "Dominator product page, currently unavailable", url: "https://www.dominator.co.il/product/%D7%9B%D7%95%D7%A0%D7%9F-wd-black-sn850x-2tb-nvme-with-heatsink-ssd" },
+  ],
+  "Apple MacBook Pro 14 M4 Pro Laptop": [
+    { seller: "Bug", price: 9899, currency: "ILS", status: "Bug product page", url: "https://www.bug.co.il/brand/apple/macbook/pro/14/m4/2024/z1fb000z2/silver" },
+  ],
+  "Samsung Odyssey OLED G80SD 32-inch 4K 240Hz Monitor": [
+    { seller: "Bug", price: 4490, currency: "ILS", status: "Bug product page", url: "https://www.bug.co.il/brand/samsung/32/odyssey/smart/g8/s32dg802sm" },
+  ],
+};
+
+Object.entries(israeliRetailerOffers).forEach(([name, offers]) => {
+  const part = parts.find((item) => item.name === name);
+  if (!part) return;
+
+  const seen = new Set();
+  part.offers = [...offers, ...(part.offers || [])].filter((offer) => {
+    const key = `${offer.seller}|${offer.url}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+});
+
 const categoryDescriptions = {
   CPU: "Verified processor product pages with socket metadata for the builder.",
   GPU: "Exact-model graphics cards with direct retailer product pages.",
@@ -3091,12 +3134,22 @@ function productThumb(part, className = "part-thumb") {
     : `<span class="${className} part-thumb-missing" aria-label="Image pending for ${part.name}">Image pending</span>`;
 }
 
+function offerCurrency(offer) {
+  return offer?.currency || "USD";
+}
+
+function offerUsd(offer) {
+  if (Number.isFinite(offer?.priceUsd)) return offer.priceUsd;
+  if (!Number.isFinite(offer?.price)) return Number.NaN;
+  return offerCurrency(offer) === "ILS" ? offer.price / USD_ILS_RATE : offer.price;
+}
+
 function pricedOffers(part) {
-  return part.offers.filter((offer) => Number.isFinite(offer.price));
+  return part.offers.filter((offer) => Number.isFinite(offerUsd(offer)));
 }
 
 function bestOffer(part) {
-  return [...pricedOffers(part)].sort((a, b) => a.price - b.price)[0] || part.offers[0];
+  return [...pricedOffers(part)].sort((a, b) => offerUsd(a) - offerUsd(b))[0] || part.offers[0];
 }
 
 const CATALOG_ROWS = 3;
@@ -3119,7 +3172,7 @@ function catalogPageSize() {
 }
 
 function partPrice(part) {
-  return bestOffer(part).price;
+  return offerUsd(bestOffer(part));
 }
 
 function partText(part) {
@@ -3363,18 +3416,46 @@ function availableOptionsFor(definition, defs) {
 }
 
 function compareAt(part) {
-  const offerWas = part.offers.map((offer) => offer.was).filter(Number.isFinite).sort((a, b) => b - a)[0];
-  const price = bestOffer(part).price;
-  return offerWas || (Number.isFinite(price) ? Math.round(price * 1.12) : null);
+  const offer = bestOffer(part);
+  if (!offer) return null;
+  if (Number.isFinite(offer.was)) return { price: offer.was, currency: offerCurrency(offer) };
+  const price = offer.price;
+  return offerCurrency(offer) === "USD" && Number.isFinite(price) ? { price: Math.round(price * 1.12), currency: "USD" } : null;
+}
+
+function compareAtUsd(part) {
+  const was = compareAt(part);
+  if (!was) return Number.NaN;
+  return was.currency === "ILS" ? was.price / USD_ILS_RATE : was.price;
+}
+
+function dealSavingsUsd(part) {
+  const wasUsd = compareAtUsd(part);
+  const priceUsd = partPrice(part);
+  return Number.isFinite(wasUsd) && Number.isFinite(priceUsd) ? wasUsd - priceUsd : 0;
+}
+
+function formatCurrencyAmount(value, currency = "USD") {
+  if (!Number.isFinite(value)) return "Check price";
+  return new Intl.NumberFormat(currency === "ILS" ? "he-IL" : "en-US", {
+    style: "currency",
+    currency,
+    maximumFractionDigits: currency === "ILS" ? 0 : value % 1 ? 2 : 0,
+  }).format(value);
 }
 
 function formatMoney(value) {
-  if (!Number.isFinite(value)) return "Check price";
-  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: value % 1 ? 2 : 0 }).format(value);
+  return formatCurrencyAmount(value, "USD");
+}
+
+function formatOfferPrice(offer) {
+  return offer ? formatCurrencyAmount(offer.price, offerCurrency(offer)) : "Check price";
 }
 
 function wasMarkup(value) {
-  return Number.isFinite(value) ? `<span class="was">${formatMoney(value)}</span>` : "";
+  if (!value) return "";
+  if (Number.isFinite(value)) return `<span class="was">${formatMoney(value)}</span>`;
+  return Number.isFinite(value.price) ? `<span class="was">${formatCurrencyAmount(value.price, value.currency)}</span>` : "";
 }
 
 function offerLinks(part, compact = false) {
@@ -3382,7 +3463,7 @@ function offerLinks(part, compact = false) {
     .map(
       (offer) => `<a class="seller-link" href="${offer.url}" target="_blank" rel="noopener noreferrer" title="${offer.status} at ${offer.seller}">
         <span>${offer.seller}</span>
-        <strong>${formatMoney(offer.price)}</strong>
+        <strong>${formatOfferPrice(offer)}</strong>
       </a>`,
     )
     .join("");
@@ -3390,13 +3471,13 @@ function offerLinks(part, compact = false) {
 
 function lowestOfferBadge(part) {
   const offer = bestOffer(part);
-  return `<div class="lowest-price">Lowest price: <strong>${formatMoney(offer.price)}</strong> at ${offer.seller}</div>`;
+  return `<div class="lowest-price">Lowest price: <strong>${formatOfferPrice(offer)}</strong> at ${offer.seller}</div>`;
 }
 
 function cheapestOfferLink(part) {
   const offer = bestOffer(part);
   if (!offer) return "";
-  const priceLabel = Number.isFinite(offer.price) ? formatMoney(offer.price) : "Check";
+  const priceLabel = Number.isFinite(offer.price) ? formatOfferPrice(offer) : "Check";
   return `<a class="seller-link summary-seller-link" href="${offer.url}" target="_blank" rel="noopener noreferrer" title="${offer.status} at ${offer.seller}">
     <span class="seller-link-meta">
       <span class="seller-link-category">${part.category}</span>
@@ -3555,24 +3636,23 @@ function renderHeroDeals() {
   if (!market) return;
 
   const candidates = parts
-    .filter((part) => Number.isFinite(bestOffer(part).price))
+    .filter((part) => Number.isFinite(partPrice(part)))
     .map((part) => {
       const offer = bestOffer(part);
-      const was = Number.isFinite(offer.was) ? offer.was : compareAt(part);
-      const savings = Number.isFinite(was) ? was - offer.price : 0;
-      return { part, offer, was, savings };
+      const was = compareAt(part);
+      return { part, offer, was, savings: dealSavingsUsd(part) };
     })
     .sort((a, b) => b.savings - a.savings)
     .slice(0, 6);
 
   market.innerHTML = candidates
     .map(({ part, offer, was }) => {
-      const showWas = Number.isFinite(was) && was > offer.price;
+      const showWas = dealSavingsUsd(part) > 0;
       return `<a class="hero-part" href="${productUrl(part)}">
         <img src="${productImage(part)}" alt="${part.name}" />
         <span>${part.category}</span>
         <strong>${part.name}</strong>
-        <em>${formatMoney(offer.price)}${showWas ? ` <s>${formatMoney(was)}</s>` : ""}</em>
+        <em>${formatOfferPrice(offer)}${showWas ? ` <s>${formatCurrencyAmount(was.price, was.currency)}</s>` : ""}</em>
       </a>`;
     })
     .join("");
@@ -3580,8 +3660,8 @@ function renderHeroDeals() {
 
 function renderDeals() {
   const deals = [...parts]
-    .filter((part) => Number.isFinite(bestOffer(part).price))
-    .sort((a, b) => compareAt(b) - bestOffer(b).price - (compareAt(a) - bestOffer(a).price))
+    .filter((part) => Number.isFinite(partPrice(part)))
+    .sort((a, b) => dealSavingsUsd(b) - dealSavingsUsd(a))
     .slice(0, 6);
   const grid = document.getElementById("dealGrid");
   grid.innerHTML = deals
@@ -3598,7 +3678,7 @@ function renderDeals() {
         </div>
         <p>${part.specs}</p>
         <div class="price-row">
-          <span class="price">${formatMoney(offer.price)}</span>
+          <span class="price">${formatOfferPrice(offer)}</span>
           ${wasMarkup(was)}
         </div>
         ${lowestOfferBadge(part)}
@@ -3759,7 +3839,7 @@ function renderProducts({ append = false } = {}) {
         <p>${part.specs}</p>
         <div class="specs">${[part.socket, part.memory, part.power ? `${part.power}W draw` : "", `${part.offers.length} product-page offer${part.offers.length === 1 ? "" : "s"}`].filter(Boolean).join(" | ")}</div>
         <div class="price-row">
-          <span class="price">${formatMoney(offer.price)}</span>
+          <span class="price">${formatOfferPrice(offer)}</span>
           ${wasMarkup(was)}
         </div>
         ${lowestOfferBadge(part)}
@@ -3805,7 +3885,7 @@ function renderBuilder() {
             ${productThumb(part, "picker-thumb")}
             <span class="picker-option-copy">
               <strong>${part.name}</strong>
-              <span>${formatMoney(bestOffer(part).price)} at ${bestOffer(part).seller}</span>
+              <span>${formatOfferPrice(bestOffer(part))} at ${bestOffer(part).seller}</span>
             </span>
           </button>`,
         ),
@@ -3936,7 +4016,7 @@ function syncPicker(category, part) {
   const copy = trigger.querySelector(".picker-trigger-copy");
   media.innerHTML = part ? productThumb(part, "picker-thumb") : `<span class="picker-empty-thumb">${category.slice(0, 2).toUpperCase()}</span>`;
   copy.innerHTML = part
-    ? `<strong>${part.name}</strong><span>${formatMoney(bestOffer(part).price)} at ${bestOffer(part).seller}</span>`
+    ? `<strong>${part.name}</strong><span>${formatOfferPrice(bestOffer(part))} at ${bestOffer(part).seller}</span>`
     : `<strong>Choose ${category}</strong><span>Open product picker</span>`;
   picker.querySelectorAll(".picker-option").forEach((option) => {
     option.setAttribute("aria-selected", String(option.dataset.pickerValue === (part?.name || "")));
@@ -3951,7 +4031,7 @@ function getSelectedParts() {
 
 function updateBuilder() {
   const selected = getSelectedParts();
-  const total = selected.reduce((sum, part) => sum + bestOffer(part).price, 0);
+  const total = selected.reduce((sum, part) => sum + (Number.isFinite(partPrice(part)) ? partPrice(part) : 0), 0);
   const power = selected.reduce((sum, part) => sum + (part.power || 0), 0);
   const totalNode = document.getElementById("buildTotal");
   totalNode.textContent = formatMoney(total);
@@ -3965,7 +4045,7 @@ function updateBuilder() {
     const part = parts.find((item) => item.name === select.value);
     syncPicker(category, part);
     document.getElementById(`meta-${category}`).textContent = part
-      ? `${formatMoney(bestOffer(part).price)} at ${bestOffer(part).seller} - ${part.specs}`
+      ? `${formatOfferPrice(bestOffer(part))} at ${bestOffer(part).seller} - ${part.specs}`
       : `No ${category.toLowerCase()} selected.`;
   });
 
@@ -4017,7 +4097,7 @@ function renderProductDetail() {
         <h1>${selected.name}</h1>
         <p class="hero-copy">${selected.specs}</p>
         <div class="price-row">
-          <span class="price">${formatMoney(offer.price)}</span>
+          <span class="price">${formatOfferPrice(offer)}</span>
           ${wasMarkup(was)}
         </div>
         ${lowestOfferBadge(selected)}
@@ -4044,7 +4124,7 @@ function renderProductDetail() {
           .map(
             (item) => `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="retailer-row">
               <span>${item.seller}</span>
-              <strong>${formatMoney(item.price)}</strong>
+              <strong>${formatOfferPrice(item)}</strong>
               <em>${item.status}</em>
             </a>`,
           )
