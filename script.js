@@ -2678,33 +2678,31 @@ parts.forEach((part) => {
     : existingOffers;
 });
 
-const USD_ILS_RATE = 2.93;
-
 const israeliRetailerOffers = {
   "AMD Ryzen 7 9800X3D 8-Core AM5 Processor": [
-    { seller: "Ivory", price: 1849, currency: "ILS", status: "Ivory product page", url: "https://www.ivory.co.il/catalog.php?id=119039" },
+    { seller: "Ivory", price: 631.06, status: "Ivory product page, converted to USD", url: "https://www.ivory.co.il/catalog.php?id=119039" },
   ],
   "AMD Ryzen 9 9950X 16-Core AM5 Processor": [
-    { seller: "TMS", price: 1766, currency: "ILS", status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-9950x-am5-tray?eilat=1" },
-    { seller: "Ivory", price: 2397, currency: "ILS", status: "Ivory product page", url: "https://www.ivory.co.il/catalog.php?id=105808" },
+    { seller: "TMS", price: 602.73, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-ryzen-9-9950x-am5-tray?eilat=1" },
+    { seller: "Ivory", price: 818.09, status: "Ivory product page, converted to USD", url: "https://www.ivory.co.il/catalog.php?id=105808" },
   ],
   "Intel Core Ultra 9 285K LGA1851 Processor": [
-    { seller: "TMS", price: 2101, currency: "ILS", status: "TMS product page", url: "https://tms.co.il/processor/intel-core-ultra-9-285k-1851-tray?eilat=1" },
+    { seller: "TMS", price: 717.06, status: "TMS product page, converted to USD", url: "https://tms.co.il/processor/intel-core-ultra-9-285k-1851-tray?eilat=1" },
   ],
   "AMD Ryzen 9 9950X3D 16-Core AM5 Processor": [
-    { seller: "KSP", price: null, currency: "ILS", status: "KSP product page", url: "https://ksp.co.il/web/item/371313" },
+    { seller: "KSP", price: null, status: "KSP product page", url: "https://ksp.co.il/web/item/371313" },
   ],
   "MSI GeForce RTX 5080 16G Gaming Trio OC Graphics Card": [
-    { seller: "Ivory", price: 6850, currency: "ILS", status: "Ivory product page", url: "https://www.ivory.co.il/catalog.php?id=126756" },
+    { seller: "Ivory", price: 2337.88, status: "Ivory product page, converted to USD", url: "https://www.ivory.co.il/catalog.php?id=126756" },
   ],
   "WD Black SN850X 2TB PCIe 4.0 NVMe M.2 SSD": [
-    { seller: "Dominator", price: null, currency: "ILS", status: "Dominator product page, currently unavailable", url: "https://www.dominator.co.il/product/%D7%9B%D7%95%D7%A0%D7%9F-wd-black-sn850x-2tb-nvme-with-heatsink-ssd" },
+    { seller: "Dominator", price: null, status: "Dominator product page, currently unavailable", url: "https://www.dominator.co.il/product/%D7%9B%D7%95%D7%A0%D7%9F-wd-black-sn850x-2tb-nvme-with-heatsink-ssd" },
   ],
   "Apple MacBook Pro 14 M4 Pro Laptop": [
-    { seller: "Bug", price: 9899, currency: "ILS", status: "Bug product page", url: "https://www.bug.co.il/brand/apple/macbook/pro/14/m4/2024/z1fb000z2/silver" },
+    { seller: "Bug", price: 3378.5, status: "Bug product page, converted to USD", url: "https://www.bug.co.il/brand/apple/macbook/pro/14/m4/2024/z1fb000z2/silver" },
   ],
   "Samsung Odyssey OLED G80SD 32-inch 4K 240Hz Monitor": [
-    { seller: "Bug", price: 4490, currency: "ILS", status: "Bug product page", url: "https://www.bug.co.il/brand/samsung/32/odyssey/smart/g8/s32dg802sm" },
+    { seller: "Bug", price: 1532.42, status: "Bug product page, converted to USD", url: "https://www.bug.co.il/brand/samsung/32/odyssey/smart/g8/s32dg802sm" },
   ],
 };
 
@@ -3141,7 +3139,7 @@ function offerCurrency(offer) {
 function offerUsd(offer) {
   if (Number.isFinite(offer?.priceUsd)) return offer.priceUsd;
   if (!Number.isFinite(offer?.price)) return Number.NaN;
-  return offerCurrency(offer) === "ILS" ? offer.price / USD_ILS_RATE : offer.price;
+  return offer.price;
 }
 
 function pricedOffers(part) {
@@ -3426,7 +3424,7 @@ function compareAt(part) {
 function compareAtUsd(part) {
   const was = compareAt(part);
   if (!was) return Number.NaN;
-  return was.currency === "ILS" ? was.price / USD_ILS_RATE : was.price;
+  return was.price;
 }
 
 function dealSavingsUsd(part) {
