@@ -2706,19 +2706,6 @@ const israeliRetailerOffers = {
   ],
 };
 
-Object.entries(israeliRetailerOffers).forEach(([name, offers]) => {
-  const part = parts.find((item) => item.name === name);
-  if (!part) return;
-
-  const seen = new Set();
-  part.offers = [...offers, ...(part.offers || [])].filter((offer) => {
-    const key = `${offer.seller}|${offer.url}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-});
-
 const categoryDescriptions = {
   CPU: "Verified processor product pages with socket metadata for the builder.",
   GPU: "Exact-model graphics cards with direct retailer product pages.",
@@ -3064,6 +3051,19 @@ const newSegmentParts = [
 
 parts.push(...newSegmentParts);
 
+Object.entries(israeliRetailerOffers).forEach(([name, offers]) => {
+  const part = parts.find((item) => item.name === name);
+  if (!part) return;
+
+  const seen = new Set();
+  part.offers = [...offers, ...(part.offers || [])].filter((offer) => {
+    const key = `${offer.seller}|${offer.url}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+});
+
 const builderCategories = ["CPU", "GPU", "Motherboard", "Memory", "Storage", "PSU", "Case"];
 
 function storedTheme() {
@@ -3194,6 +3194,15 @@ function manufacturerOf(part) {
   ];
   const match = brandPatterns.find(([, pattern]) => pattern.test(name));
   return match ? match[0] : name.split(" ")[0];
+}
+
+function retailersOf(part) {
+  return [...new Set((part.offers || []).map((offer) => offer.seller).filter(Boolean))];
+}
+
+function filterValues(part, definition) {
+  const value = definition.value(part);
+  return Array.isArray(value) ? value.filter(Boolean) : [value].filter(Boolean);
 }
 
 function matchValue(text, patterns) {
@@ -3333,6 +3342,7 @@ function seriesOf(part) {
 function filterDefinitions(category) {
   const definitions = [
     { key: "manufacturer", label: "Manufacturer", value: manufacturerOf },
+    { key: "retailer", label: "Retailer", value: retailersOf },
     { key: "series", label: category === "All" ? "Series / type" : `${category} series`, value: seriesOf },
   ];
   const categoryDefinitions = {
@@ -3382,7 +3392,7 @@ function categoryBaseParts() {
 
 function selectedFilterDefs() {
   return filterDefinitions(catalogState.category).filter((definition) => {
-    const options = [...new Set(categoryBaseParts().map((part) => definition.value(part)).filter(Boolean))];
+    const options = [...new Set(categoryBaseParts().flatMap((part) => filterValues(part, definition)))];
     return definition.always ? options.length > 0 : options.length > 1;
   });
 }
@@ -3398,7 +3408,7 @@ function partMatchesCatalogFilters(part, defs, ignoredKey = "") {
   return defs.every((definition) => {
     if (definition.key === ignoredKey) return true;
     const selected = catalogState.filters[definition.key];
-    return !selected || definition.value(part) === selected;
+    return !selected || filterValues(part, definition).includes(selected);
   });
 }
 
@@ -3407,8 +3417,7 @@ function availableOptionsFor(definition, defs) {
     ...new Set(
       categoryBaseParts()
         .filter((part) => partMatchesCatalogFilters(part, defs, definition.key))
-        .map((part) => definition.value(part))
-        .filter(Boolean),
+        .flatMap((part) => filterValues(part, definition)),
     ),
   ].sort(optionSort);
 }
