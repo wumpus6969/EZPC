@@ -2711,49 +2711,49 @@ const israeliRetailerOffers = {
 // them in.
 const tmsCatalogOffers = {
   "AMD Ryzen 5 5500 6-Core AM4 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-5-5500-am4-tray" },
+    { seller: "TMS", price: 90.27, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000000457" },
   ],
   "AMD Ryzen 7 5700X 8-Core AM4 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-5700x-am4-tray" },
+    { seller: "TMS", price: 203.78, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000000926" },
   ],
   "AMD Ryzen 5 7600X 6-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-5-7600x-am5-tray" },
+    { seller: "TMS", price: 222.43, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000000593" },
   ],
   "AMD Ryzen 7 7700X 8-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-7700x-am5-tray" },
+    { seller: "TMS", price: 298.65, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000000591" },
   ],
   "AMD Ryzen 7 7800X3D 8-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-7800x3d-am5-tray" },
+    { seller: "TMS", price: 394.59, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000000910" },
   ],
   "AMD Ryzen 9 7900X 12-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-7900x-am5-box" },
+    { seller: "TMS", price: 417.57, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-100000589wof" },
   ],
   "AMD Ryzen 9 7950X 16-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-7950x-am5-tray" },
+    { seller: "TMS", price: 583.78, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000000514" },
   ],
   "AMD Ryzen 5 9600X 6-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-5-9600x-am5-tray" },
+    { seller: "TMS", price: 236.76, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000001405" },
   ],
   "AMD Ryzen 7 9700X 8-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-9700x-am5-tray" },
+    { seller: "TMS", price: 339.73, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000001404" },
   ],
   "AMD Ryzen 9 9900X 12-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-9900x-am5-tray" },
+    { seller: "TMS", price: 489.46, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000000662" },
   ],
   "AMD Ryzen 9 9950X 16-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-9950x-am5-tray" },
+    { seller: "TMS", price: 580, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000001277" },
   ],
   "AMD Ryzen 7 9800X3D 8-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-9800x3d-am5-tray" },
+    { seller: "TMS", price: 522.97, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000001084" },
   ],
   "AMD Ryzen 9 9950X3D 16-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-9950x3d-am5-tray" },
+    { seller: "TMS", price: 797.03, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000000719" },
   ],
   "AMD Ryzen 9 9900X3D 12-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-9-9900x3d-am5-tray" },
+    { seller: "TMS", price: 678.11, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000001368" },
   ],
   "AMD Ryzen 7 9850X3D 8-Core AM5 Processor": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-9850x3d-am5-tray" },
+    { seller: "TMS", price: 624.05, status: "TMS product page, converted to USD", url: "https://tms.co.il/amd-100-000001973" },
   ],
   "Gigabyte X870E AORUS PRO AM5 ATX Motherboard": [
     { seller: "TMS", price: 445.14, status: "TMS product page, converted to USD", url: "https://tms.co.il/gigabyte-x870e-aorus-pro" },
@@ -2765,43 +2765,43 @@ const tmsCatalogOffers = {
     { seller: "TMS", price: 1639.46, status: "TMS product page, converted to USD", url: "https://tms.co.il/gigabyte-rtx-5080-gv-n5080wf3-16gd" },
   ],
   "Gigabyte GeForce RTX 5060 Eagle OC 8G Graphics Card": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/gigabyte-rtx-5060-gv-n5060oc-8gl" },
+    { seller: "TMS", price: 436.49, status: "TMS product page, converted to USD", url: "https://tms.co.il/gigabyte-n5060oc8gl" },
   ],
   "Corsair 4000D Airflow Black Mid-Tower Case": [
-    { seller: "TMS", price: null, status: "TMS product page, 4000D RGB Airflow variant", url: "https://tms.co.il/corsair-4000d-rgb-airflow-case-black" },
+    { seller: "TMS", price: 137.84, status: "TMS product page, converted to USD", url: "https://tms.co.il/corsair-cc-9011240-ww" },
   ],
   "Cooler Master V850 SFX Gold 850W Modular PSU": [
     { seller: "TMS", price: 105.41, status: "TMS product page, converted to USD", url: "https://tms.co.il/coolermaster-850w-v850-gold-fully-modular" },
   ],
   "Corsair RM750e White 750W Gold Modular PSU": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-750w-rm750e-low-noise-atx-31-gold-fully-modular" },
+    { seller: "TMS", price: 150.81, status: "TMS product page, converted to USD", url: "https://tms.co.il/corsair-cp-9020295-eu" },
   ],
   "Corsair RM850e 850W 80+ Gold ATX 3.1 PSU": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-850w-rm850e-low-noise-atx-31-gold-fully-modular" },
+    { seller: "TMS", price: 159.46, status: "TMS product page, converted to USD", url: "https://tms.co.il/corsair-cp-9020296-eu" },
   ],
   "Corsair RM850x Shift 850W 80+ Gold ATX 3.1 PSU": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-850w-rm850x-atx-31-gold-fully-modular" },
+    { seller: "TMS", price: 159.46, status: "TMS product page, converted to USD", url: "https://tms.co.il/corsair-psu-850w-rm850x-gold-fully-modular" },
   ],
   "Corsair RM1000x Shift 1000W 80+ Gold ATX 3.1 PSU": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-1000w-rm1000x-atx-31-gold-fully-modular" },
+    { seller: "TMS", price: 218.92, status: "TMS product page, converted to USD", url: "https://tms.co.il/corsair-cp-9020271-eu" },
   ],
   "Corsair HX1200i 1200W Platinum Modular ATX 3.1 PSU": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-1200w-hx1200i-shift-fully-modular-80-platinum" },
+    { seller: "TMS", price: 317.84, status: "TMS product page, converted to USD", url: "https://tms.co.il/corsair-cp-9020267-eu" },
   ],
   "Corsair HX1500i Ultra-Low Noise 1500W Platinum PSU": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-1500w-hx1500i-shift-fully-modular-80-platinum" },
+    { seller: "TMS", price: 368.65, status: "TMS product page, converted to USD", url: "https://tms.co.il/corsair-cp-9020269-eu" },
   ],
   "Corsair SF1000 1000W Platinum Fully Modular SFX PSU": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-1000w-sf1000-fully-modular-80-platinum-sfx" },
+    { seller: "TMS", price: 269.46, status: "TMS product page, converted to USD", url: "https://tms.co.il/corsair-cp-9020257-eu" },
   ],
   "Corsair Vengeance RGB 64GB DDR5-6400 CL32 Kit": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-ddr5-64gb-4x16gb-6400-cl32-vengeance-xmp-30" },
+    { seller: "TMS", price: 1346.76, status: "TMS product page, converted to USD", url: "https://tms.co.il/corsair-ddr5-64g-6400-cl32-vengeance-rgb-black" },
   ],
   "Samsung 1TB 9100 PRO PCIe 5.0 NVMe M.2 SSD": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/samsung-ssd-1tb-9100-pro-pcie-50-nvme-m2" },
+    { seller: "TMS", price: 309.19, status: "TMS product page, converted to USD", url: "https://tms.co.il/samsung-ssd-1tb-9100-pro-pcie5-nvme-m2" },
   ],
   "Crucial P310 2TB PCIe 4.0 NVMe M.2 SSD": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/crucial-p310-2tb-pcie-gen4-nvme-2280-m2-ssd" },
+    { seller: "TMS", price: 319.19, status: "TMS product page, converted to USD", url: "https://tms.co.il/crucial-ct2000p310ssd8" },
   ],
 };
 
