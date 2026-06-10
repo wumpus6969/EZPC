@@ -2756,13 +2756,13 @@ const tmsCatalogOffers = {
     { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/amd-ryzen-7-9850x3d-am5-tray" },
   ],
   "Gigabyte X870E AORUS PRO AM5 ATX Motherboard": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/gigabyte-x870e-aorus-pro" },
+    { seller: "TMS", price: 445.14, status: "TMS product page, converted to USD", url: "https://tms.co.il/gigabyte-x870e-aorus-pro" },
   ],
   "Gigabyte B850M DS3H AM5 Micro-ATX Motherboard": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/gigabyte-b850m-ds3h" },
+    { seller: "TMS", price: 189.73, status: "TMS product page, converted to USD", url: "https://tms.co.il/gigabyte-b850m-ds3h" },
   ],
   "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/gigabyte-rtx-5080-gv-n5080wf3-16gd" },
+    { seller: "TMS", price: 1639.46, status: "TMS product page, converted to USD", url: "https://tms.co.il/gigabyte-rtx-5080-gv-n5080wf3-16gd" },
   ],
   "Gigabyte GeForce RTX 5060 Eagle OC 8G Graphics Card": [
     { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/gigabyte-rtx-5060-gv-n5060oc-8gl" },
@@ -2771,7 +2771,7 @@ const tmsCatalogOffers = {
     { seller: "TMS", price: null, status: "TMS product page, 4000D RGB Airflow variant", url: "https://tms.co.il/corsair-4000d-rgb-airflow-case-black" },
   ],
   "Cooler Master V850 SFX Gold 850W Modular PSU": [
-    { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/coolermaster-850w-v850-gold-fully-modular" },
+    { seller: "TMS", price: 105.41, status: "TMS product page, converted to USD", url: "https://tms.co.il/coolermaster-850w-v850-gold-fully-modular" },
   ],
   "Corsair RM750e White 750W Gold Modular PSU": [
     { seller: "TMS", price: null, status: "TMS product page", url: "https://tms.co.il/corsair-psu-750w-rm750e-low-noise-atx-31-gold-fully-modular" },

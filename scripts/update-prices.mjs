@@ -101,8 +101,8 @@ async function fetchPrice(url) {
       const data = JSON.parse(ld[1].trim());
       const nodes = Array.isArray(data) ? data : [data];
       for (const node of nodes) {
-        const price = extractLdPrice(node);
-        if (price) return price;
+        const hit = extractLdPrice(node);
+        if (hit) return hit;
       }
     } catch {
       // ignore malformed JSON-LD
@@ -115,10 +115,34 @@ async function fetchPrice(url) {
   );
   if (og) {
     const p = parseFloat(og[1]);
-    if (Number.isFinite(p) && p > 0) return p;
+    if (Number.isFinite(p) && p > 0) {
+      const cur = html.match(
+        /<meta[^>]+property=["']product:price:currency["'][^>]+content=["']([^"']+)["']/i,
+      );
+      return { price: p, currency: cur ? cur[1].toUpperCase() : "" };
+    }
   }
 
   return null;
+}
+
+// Israeli retailers list ILS prices. The catalog stores every offer
+// price in USD, so convert when the source currency is ILS (or the host
+// is a known Israeli store that omits the currency tag).
+const ILS_PER_USD = 3.7;
+const ILS_HOSTS = ["tms.co.il", "ksp.co.il", "ivory.co.il", "bug.co.il", "dominator.co.il"];
+
+function toUsd(hit, pageUrl) {
+  if (!hit) return null;
+  let host = "";
+  try {
+    host = new URL(pageUrl).host.replace(/^www\./, "");
+  } catch {
+    // ignore
+  }
+  const isIls = hit.currency === "ILS" || (!hit.currency && ILS_HOSTS.some((h) => host.endsWith(h)));
+  const usd = isIls ? hit.price / ILS_PER_USD : hit.price;
+  return Math.round(usd * 100) / 100;
 }
 
 function extractLdPrice(node) {
@@ -139,7 +163,10 @@ function extractLdPrice(node) {
   for (const c of candidates) {
     const raw = c.price ?? c.lowPrice ?? c.priceSpecification?.price;
     const num = typeof raw === "number" ? raw : parseFloat(raw);
-    if (Number.isFinite(num) && num > 0) return num;
+    if (Number.isFinite(num) && num > 0) {
+      const currency = c.priceCurrency || c.priceSpecification?.priceCurrency || "";
+      return { price: num, currency: String(currency).toUpperCase() };
+    }
   }
   return null;
 }
@@ -156,7 +183,8 @@ async function worker(id) {
     const key = `${offer.name}|${offer.seller}`;
     if (prices[key]) continue;
     inFlight++;
-    const price = await fetchPrice(offer.url);
+    const hit = await fetchPrice(offer.url);
+    const price = toUsd(hit, offer.url);
     inFlight--;
     completed++;
     if (price) {
