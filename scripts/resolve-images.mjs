@@ -58,8 +58,28 @@ function currentImage(part) {
 
 // --- Helpers ----------------------------------------------------------
 
+// Generic share images, site logos, and category banners that pages
+// expose as og:image but are not the product photo. Reject these so the
+// resolver keeps looking for a real product image.
+const JUNK_IMAGE_PATTERNS = [
+  /\/header\/ogimage/i,
+  /logo-square-letter/i,
+  /facebook-like/i,
+  /share-default/i,
+  /\/social\//i,
+  /\/category-pages\//i,
+  /clientlib-common\/resources\/images\/logo/i,
+  /sprite|placeholder|default\.(png|jpg|svg)/i,
+  /og[-_]?image\.(png|jpg)/i,
+];
+
+function isJunkImage(url) {
+  return JUNK_IMAGE_PATTERNS.some((re) => re.test(url));
+}
+
 async function isLoadableImage(url) {
   if (!url || !/^https?:\/\//i.test(url)) return false;
+  if (isJunkImage(url)) return false;
   try {
     const res = await fetch(url, {
       method: "GET",
