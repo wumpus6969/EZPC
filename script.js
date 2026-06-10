@@ -3514,8 +3514,17 @@ function productUrl(part) {
   return `product.html?id=${slugify(part.name)}`;
 }
 
+// CI-resolved image overrides (images.json) take precedence over the
+// static map and inline image, so a broken curated URL can be patched
+// without editing the data file.
 function productImage(part) {
-  return window.productImageMap?.[slugify(part.name)] || part.image || "";
+  const slug = slugify(part.name);
+  return (
+    window.resolvedImageMap?.[slug] ||
+    window.productImageMap?.[slug] ||
+    part.image ||
+    ""
+  );
 }
 
 function imageErrorHandler() {
@@ -4671,6 +4680,32 @@ if (document.getElementById("productDetail")) {
       if (typeof renderHeroDeals === "function") renderHeroDeals();
       if (typeof renderDeals === "function") renderDeals();
       if (typeof renderProducts === "function") renderProducts({ append: true });
+      if (typeof updateBuilder === "function") updateBuilder();
+    }
+  } catch {
+    // ignore
+  }
+})();
+
+// Merge CI-resolved product image overrides (images.json) and re-render
+// any view that shows product art. Silent on failure.
+(async function applyResolvedImages() {
+  try {
+    const res = await fetch("images.json", { cache: "no-store" });
+    if (!res.ok) return;
+    const payload = await res.json();
+    const map = payload && payload.images;
+    if (!map || typeof map !== "object") return;
+
+    window.resolvedImageMap = Object.assign(window.resolvedImageMap || {}, map);
+
+    if (document.getElementById("productDetail")) {
+      renderProductDetail();
+    } else {
+      if (typeof renderHeroDeals === "function") renderHeroDeals();
+      if (typeof renderDeals === "function") renderDeals();
+      if (typeof renderProducts === "function") renderProducts({ append: true });
+      if (typeof renderBuilder === "function") renderBuilder();
       if (typeof updateBuilder === "function") updateBuilder();
     }
   } catch {
