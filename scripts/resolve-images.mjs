@@ -24,7 +24,7 @@ const CONCURRENCY = 6;
 
 // --- Load the catalog by evaluating the data portion of script.js -----
 
-const rawScript = await fs.readFileSync(SCRIPT_PATH, "utf8");
+const rawScript = await fs.readFile(SCRIPT_PATH, "utf8");
 const rawImages = await fs.readFile(IMAGES_PATH, "utf8");
 
 const sandbox = { window: { productImageMap: {} } };
