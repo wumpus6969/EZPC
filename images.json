@@ -1,5 +1,18 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-06-10T06:08:46.586Z",
   "source": "scripts/resolve-images.mjs",
-  "images": {}
+  "images": {
+    "crucial-pro-overclocking-32gb-ddr5-6000-cl36-kit": "https://assets.micron.com/adobe/assets/urn:aaid:aem:db957370-be53-44b6-888e-5070f5b21972/renditions/transformpng-640-640.png/as/crucial-ddr5-pro-overclocking-kit-dynamic-right-view.png",
+    "crucial-t705-2tb-pcie-5-0-nvme-m-2-ssd": "https://assets.micron.com/adobe/assets/urn:aaid:aem:bc55fd78-4106-46b1-898e-ff39ee3122a1/renditions/transformpng-640-640.png/as/crucial-ssd-t705-topview.png",
+    "crucial-t500-2tb-pcie-4-0-nvme-m-2-ssd": "https://assets.micron.com/adobe/assets/urn:aaid:aem:d7a2c5ff-b9ff-4a6a-b511-4481a20ebddc/renditions/transformpng-640-640.png/as/crucial-ssd-t500-topdown.png",
+    "amd-ryzen-7-5700-8-core-am4-processor": "https://www.amd.com/content/dam/code/images/header/ogimage.jpg",
+    "crucial-p310-1tb-gen4-m-2-2230-nvme-ssd": "https://assets.micron.com/adobe/assets/urn:aaid:aem:e26568ef-e982-4cc7-9ac6-5fedf9dcc821/renditions/transformpng-640-640.png/as/crucial-ssd-p310-2230-top-view.png",
+    "crucial-bx500-2tb-sata-iii-2-5-inch-ssd": "https://assets.micron.com/adobe/assets/urn:aaid:aem:a6c63d71-8f02-4754-b9a9-c951efc5868b/renditions/cq5dam.thumbnail.319.319.png/as/crucial-bx500-front-image.png",
+    "crucial-p310-2tb-pcie-4-0-nvme-m-2-ssd": "https://assets.micron.com/adobe/assets/urn:aaid:aem:5ff98c77-5e37-47fb-bc6c-3d0fef464665/renditions/transformpng-640-640.png/as/crucial-ssd-p310-2280-isolated-front-view.png",
+    "crucial-p310-2tb-pcie-4-0-nvme-m-2-ssd-with-heatsink": "https://assets.micron.com/adobe/assets/urn:aaid:aem:315aa9ee-7898-4f13-9aa6-8d14d6dc135e/renditions/transformpng-640-640.png/as/crucial-ssd-p310-2280-heatsink-front-view.png",
+    "gigabyte-x870e-aorus-pro-am5-atx-motherboard": "https://tms.co.il/image/catalog/products/GX870EAORUSPRO/AKOsNhYJ5L.jpg",
+    "samsung-t7-shield-2tb-portable-ssd-blue": "https://www.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/logo-square-letter.png",
+    "benq-pd3220u-32-inch-4k-designer-monitor": "https://image.benq.com/is/image/benqco/pd3200u-right45-1?$ResponsivePreset$",
+    "dell-g2724d-27-inch-qhd-165hz-gaming-monitor": "https://i.dell.com/is/image/DellContent/content/dam/ss2/page-specific/category-pages/dlud22-wb7022-wl7022-km7321w-la7430nt-u2722d-xbt-800x620.png?qlt=95&fit=constrain,1&hei=620&wid=800&fmt=png-alpha"
+  }
 }
