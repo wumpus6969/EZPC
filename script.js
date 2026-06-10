@@ -3102,7 +3102,7 @@ const newSegmentParts = [
     power: 45,
     overview: "Dell UltraSharp U2723QE is a 27-inch 4K productivity monitor with an IPS Black panel for higher contrast, 90W USB-C charging, built-in KVM, and a comprehensive port hub for single-cable setups.",
     oemUrl: "https://www.dell.com/en-us/shop/dell-27-4k-usb-c-hub-monitor-u2723qe/apd/210-bdza",
-    image: "https://m.media-amazon.com/images/I/71y4QnyzPjL._AC_SL1500_.jpg",
+    image: "https://m.media-amazon.com/images/I/61XvmwaEVUL._AC_SL1100_.jpg",
     offers: [
       { seller: "Amazon", price: 599, status: "Amazon product page", url: "https://www.amazon.com/dp/B09VG6WGB1" },
       { seller: "Dell", price: 749, status: "Dell product page", url: "https://www.dell.com/en-us/shop/dell-27-4k-usb-c-hub-monitor-u2723qe/apd/210-bdza" },
@@ -3296,7 +3296,7 @@ const amazonShipsToIsraelExtras = [
     specs: "6 cores, Zen 4, included cooler, value AM5",
     overview: "AMD Ryzen 5 7600 is a 6-core, 12-thread Zen 4 desktop processor for AM5 motherboards. It pairs DDR5 memory support with an included Wraith Stealth cooler, making it a practical entry into AM5 builds.",
     oemUrl: "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-5-7600.html",
-    image: "https://m.media-amazon.com/images/I/61RcGy-tDbL._AC_SL1500_.jpg",
+    image: "https://m.media-amazon.com/images/I/51hfER1cZVL._AC_SL1500_.jpg",
     offers: [
       { seller: "Amazon", price: 199, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0BBHHT8LY" },
     ],
@@ -3310,7 +3310,7 @@ const amazonShipsToIsraelExtras = [
     specs: "14 cores, unlocked, value gaming CPU",
     overview: "Intel Core i5-14600K is an unlocked 14th Gen LGA1700 desktop processor with 14 cores (6P + 8E) and 20 threads, up to 5.3 GHz turbo, and broad DDR4/DDR5 platform support for mainstream gaming.",
     oemUrl: "https://www.intel.com/content/www/us/en/products/sku/236781/intel-core-i514600k-processor-24m-cache-up-to-5-30-ghz/specifications.html",
-    image: "https://m.media-amazon.com/images/I/61n2hcfMUuL._AC_SL1500_.jpg",
+    image: "https://m.media-amazon.com/images/I/619ytLAytAL._AC_SL1500_.jpg",
     offers: [
       { seller: "Amazon", price: 289.99, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CGJDKLB8" },
     ],
@@ -3395,7 +3395,7 @@ const amazonShipsToIsraelExtras = [
     power: 180,
     overview: "ASUS ROG Zephyrus G14 GA403 is a 14-inch thin-and-light gaming laptop with AMD Ryzen 8040 Series, GeForce RTX 40 Series graphics, a 3K OLED 120Hz display, and a CNC aluminum chassis.",
     oemUrl: "https://rog.asus.com/laptops/rog-zephyrus/rog-zephyrus-g14-2024/",
-    image: "https://m.media-amazon.com/images/I/71kJa4OoZBL._AC_SL1500_.jpg",
+    image: "https://dlcdnwebimgs.asus.com/gain/E0275281-F18B-42C3-A025-3331C35A888F",
     offers: [
       { seller: "Amazon", price: 1999, status: "Amazon Global to Israel", url: "https://www.amazon.com/dp/B0CTBSY2KL" },
     ],
