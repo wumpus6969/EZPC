@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-06-10T06:46:57.388Z",
+  "updatedAt": "2026-06-10T10:35:19.218Z",
   "source": "scripts/update-prices.mjs",
   "prices": {
     "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card|Newegg": {
       "price": 1399.99,
-      "fetchedAt": "2026-06-10T06:46:10.001Z"
+      "fetchedAt": "2026-06-10T10:34:29.673Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Newegg": {
       "price": 465.07,
-      "fetchedAt": "2026-06-10T06:46:25.815Z"
+      "fetchedAt": "2026-06-10T10:34:44.363Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Sabrent": {
       "price": 499.99,
-      "fetchedAt": "2026-06-10T06:46:32.736Z"
+      "fetchedAt": "2026-06-10T10:34:53.379Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Ivory": {
-      "price": 499.73,
-      "fetchedAt": "2026-06-10T06:46:32.824Z"
+      "price": 647.84,
+      "fetchedAt": "2026-06-10T10:34:56.266Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|TMS": {
       "price": 585.14,
-      "fetchedAt": "2026-06-10T06:46:34.001Z"
+      "fetchedAt": "2026-06-10T10:34:55.582Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Bug": {
-      "price": 1213.51,
-      "fetchedAt": "2026-06-10T06:46:34.362Z"
+      "price": 2675.41,
+      "fetchedAt": "2026-06-10T10:34:56.015Z"
     },
     "NZXT Player: Three Gaming Desktop|NZXT": {
       "price": 3,
-      "fetchedAt": "2026-06-10T06:46:34.410Z"
+      "fetchedAt": "2026-06-10T10:34:56.568Z"
     },
     "Razer Blade 16 Gaming Laptop|Razer": {
       "price": 2399.99,
-      "fetchedAt": "2026-06-10T06:46:35.224Z"
-    },
-    "Apple MacBook Air 15 M3 Laptop|Apple": {
-      "price": 1099,
-      "fetchedAt": "2026-06-10T06:46:35.329Z"
+      "fetchedAt": "2026-06-10T10:34:57.057Z"
     },
     "Apple MacBook Pro 14 M4 Pro Laptop|Apple": {
       "price": 1699,
-      "fetchedAt": "2026-06-10T06:46:35.332Z"
+      "fetchedAt": "2026-06-10T10:34:57.100Z"
+    },
+    "Apple MacBook Air 15 M3 Laptop|Apple": {
+      "price": 1099,
+      "fetchedAt": "2026-06-10T10:34:57.139Z"
     }
   }
 }
