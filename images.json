@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-10T06:12:21.210Z",
+  "updatedAt": "2026-06-15T11:34:34.705Z",
   "source": "scripts/resolve-images.mjs",
   "images": {
     "crucial-pro-overclocking-32gb-ddr5-6000-cl36-kit": "https://assets.micron.com/adobe/assets/urn:aaid:aem:db957370-be53-44b6-888e-5070f5b21972/renditions/transformpng-640-640.png/as/crucial-ddr5-pro-overclocking-kit-dynamic-right-view.png",
@@ -13,7 +13,7 @@
     "benq-pd3220u-32-inch-4k-designer-monitor": "https://image.benq.com/is/image/benqco/pd3200u-right45-1?$ResponsivePreset$",
     "intel-core-ultra-7-265kf-20-core-lga1851-processor": "https://tms.co.il/image/cache/catalog/products/C265KFT/akHTgJuM6k-700x700.jpg",
     "intel-core-i9-14900k-24-core-lga1700-processor": "https://tms.co.il/image/cache/catalog/products/C14900KT/g3mBnYeC8r-700x700.jpg",
-    "amd-ryzen-7-5700x-8-core-am4-processor": "https://tms.co.il/image/cache/catalog/products/100-000000926/HX7AlPTMrM-700x700.jpg",
+    "amd-ryzen-7-5700x-8-core-am4-processor": "https://tms.co.il/image/catalog/products/100-000000926/HX7AlPTMrM.jpg",
     "gigabyte-b650m-aorus-elite-ax-ice-am5-micro-atx-motherboard": "https://tms.co.il/image/cache/catalog/products/GB650MAORUSELITEAXICE/zKkehUl1qO-700x700.jpg",
     "gigabyte-x870-aorus-elite-wifi7-am5-atx-motherboard": "https://tms.co.il/image/cache/catalog/products/GX870AORUSELITEWIFI/9g4FVQ8TpH-700x700.jpg",
     "gigabyte-x870-aorus-elite-wifi7-ice-am5-atx-motherboard": "https://tms.co.il/image/cache/catalog/products/GX870AORUSELITEWIFI7/8W5K9ARbyD-700x700.jpg",
@@ -24,7 +24,6 @@
     "gigabyte-b550i-aorus-pro-ax-wi-fi-am4-mini-itx-motherboard": "https://i.ebayimg.com/images/g/HHYAAOSw9zVgTar5/s-l500.jpg",
     "silicon-power-2tb-endura-ed90-nvme-pcie-4-0-m-2-ssd": "https://c1.neweggimages.com/productimage/nb640/BDGPS2301030605S028.jpg",
     "silicon-power-2tb-endura-ed90-nvme-pcie-4-0-nas-m-2-ssd": "https://c1.neweggimages.com/productimage/nb640/BDGPS2301030605S028.jpg",
-    "crucial-p310-1tb-gen4-m-2-2230-nvme-ssd": "https://cdn.thepcenthusiast.com/wp-content/uploads/2024/10/crucial-p310-2280-gen4-ssd-review-03-980x551.jpg",
     "samsung-t7-shield-2tb-portable-ssd-blue": "https://images-na.ssl-images-amazon.com/images/I/61xRiaROewL.jpg",
     "be-quiet-power-zone-2-1000w-platinum-fully-modular-atx-psu": "https://c1.neweggimages.com/BizIntell/item/Case/Power%20Supplies/17-222-039/4.jpg",
     "msi-raider-ge78-hx-14v-gaming-laptop": "https://www.pcguide.com/wp-content/uploads/2024/07/MSI-Raider-GE78-HX-14VHG-front-on-Image-by-PC-Guide.jpg",
@@ -36,6 +35,9 @@
     "gigabyte-m27q-rev-2-0-27-inch-qhd-170hz-monitor": "https://cdn.computechstore.in/uploads/wp/2022/10/Gigabyte-M27Q-Gaming-Monitor-2.png",
     "msi-mpg-321urx-32-inch-qd-oled-240hz-monitor": "https://fr-store.msi.com/cdn/shop/files/1024_a98e3abe-0f7d-4402-9f31-7c2cc59feb1c.png?v=1771856575&width=640",
     "samsung-odyssey-oled-g80sd-32-inch-4k-240hz-monitor": "https://m.media-amazon.com/images/I/716HqAu+u8L._AC_SL1500_.jpg",
-    "dell-g2724d-27-inch-qhd-165hz-gaming-monitor": "https://m.media-amazon.com/images/I/51h-DRWDW3L.jpg"
+    "dell-g2724d-27-inch-qhd-165hz-gaming-monitor": "https://m.media-amazon.com/images/I/51h-DRWDW3L.jpg",
+    "amd-ryzen-7-9850x3d-8-core-am5-processor": "https://tms.co.il/image/catalog/products/100-000001973/8b1a06YZ3u.jpg",
+    "amd-ryzen-5-5500-6-core-am4-processor": "https://tms.co.il/image/catalog/products/100-000000457/W5zB07obP7.jpg",
+    "samsung-1tb-9100-pro-pcie-5-0-nvme-m-2-ssd": "https://tms.co.il/image/catalog/products/MZ-VAP1T0BW/6zRgFuAvzD.jpg"
   }
 }
