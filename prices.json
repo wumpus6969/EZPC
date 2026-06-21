@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-06-20T09:44:23.879Z",
+  "updatedAt": "2026-06-21T10:07:18.745Z",
   "source": "scripts/update-prices.mjs",
   "prices": {
     "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card|Newegg": {
       "price": 1399.99,
-      "fetchedAt": "2026-06-20T09:43:36.639Z"
+      "fetchedAt": "2026-06-21T10:06:32.416Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Newegg": {
       "price": 463.54,
-      "fetchedAt": "2026-06-20T09:43:50.383Z"
+      "fetchedAt": "2026-06-21T10:06:36.147Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Sabrent": {
       "price": 499.99,
-      "fetchedAt": "2026-06-20T09:43:59.472Z"
+      "fetchedAt": "2026-06-21T10:06:54.950Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Ivory": {
-      "price": 499.73,
-      "fetchedAt": "2026-06-20T09:43:59.647Z"
+      "price": 1851.35,
+      "fetchedAt": "2026-06-21T10:06:57.121Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|TMS": {
       "price": 477.3,
-      "fetchedAt": "2026-06-20T09:44:00.348Z"
+      "fetchedAt": "2026-06-21T10:06:55.971Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Bug": {
       "price": 1213.51,
-      "fetchedAt": "2026-06-20T09:44:00.705Z"
+      "fetchedAt": "2026-06-21T10:06:57.139Z"
     },
     "NZXT Player: Three Gaming Desktop|NZXT": {
       "price": 3,
-      "fetchedAt": "2026-06-20T09:44:01.452Z"
+      "fetchedAt": "2026-06-21T10:06:56.472Z"
     },
     "Razer Blade 16 Gaming Laptop|Razer": {
       "price": 2399.99,
-      "fetchedAt": "2026-06-20T09:44:01.549Z"
+      "fetchedAt": "2026-06-21T10:06:56.636Z"
     },
     "Apple MacBook Pro 14 M4 Pro Laptop|Apple": {
       "price": 1699,
-      "fetchedAt": "2026-06-20T09:44:01.686Z"
+      "fetchedAt": "2026-06-21T10:06:56.718Z"
     },
     "Apple MacBook Air 15 M3 Laptop|Apple": {
       "price": 1099,
-      "fetchedAt": "2026-06-20T09:44:01.765Z"
+      "fetchedAt": "2026-06-21T10:06:56.721Z"
     }
   }
 }
