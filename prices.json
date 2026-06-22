@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-06-21T10:07:18.745Z",
+  "updatedAt": "2026-06-22T12:28:17.229Z",
   "source": "scripts/update-prices.mjs",
   "prices": {
     "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card|Newegg": {
       "price": 1399.99,
-      "fetchedAt": "2026-06-21T10:06:32.416Z"
+      "fetchedAt": "2026-06-22T12:27:27.587Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Newegg": {
       "price": 463.54,
-      "fetchedAt": "2026-06-21T10:06:36.147Z"
+      "fetchedAt": "2026-06-22T12:27:43.104Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Sabrent": {
       "price": 499.99,
-      "fetchedAt": "2026-06-21T10:06:54.950Z"
+      "fetchedAt": "2026-06-22T12:27:50.421Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Ivory": {
-      "price": 1851.35,
-      "fetchedAt": "2026-06-21T10:06:57.121Z"
+      "price": 499.73,
+      "fetchedAt": "2026-06-22T12:27:50.853Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|TMS": {
-      "price": 477.3,
-      "fetchedAt": "2026-06-21T10:06:55.971Z"
+      "price": 448.38,
+      "fetchedAt": "2026-06-22T12:27:51.853Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Bug": {
-      "price": 1213.51,
-      "fetchedAt": "2026-06-21T10:06:57.139Z"
+      "price": 2675.41,
+      "fetchedAt": "2026-06-22T12:27:53.919Z"
     },
     "NZXT Player: Three Gaming Desktop|NZXT": {
       "price": 3,
-      "fetchedAt": "2026-06-21T10:06:56.472Z"
+      "fetchedAt": "2026-06-22T12:27:52.839Z"
     },
     "Razer Blade 16 Gaming Laptop|Razer": {
       "price": 2399.99,
-      "fetchedAt": "2026-06-21T10:06:56.636Z"
+      "fetchedAt": "2026-06-22T12:27:54.096Z"
     },
     "Apple MacBook Pro 14 M4 Pro Laptop|Apple": {
       "price": 1699,
-      "fetchedAt": "2026-06-21T10:06:56.718Z"
+      "fetchedAt": "2026-06-22T12:27:54.139Z"
     },
     "Apple MacBook Air 15 M3 Laptop|Apple": {
       "price": 1099,
-      "fetchedAt": "2026-06-21T10:06:56.721Z"
+      "fetchedAt": "2026-06-22T12:27:54.196Z"
     }
   }
 }
