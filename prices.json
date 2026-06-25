@@ -1,46 +1,42 @@
 {
-  "updatedAt": "2026-06-24T09:52:21.225Z",
+  "updatedAt": "2026-06-25T09:46:35.765Z",
   "source": "scripts/update-prices.mjs",
   "prices": {
     "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card|Newegg": {
       "price": 1399.99,
-      "fetchedAt": "2026-06-24T09:51:33.935Z"
+      "fetchedAt": "2026-06-25T09:45:49.346Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Newegg": {
       "price": 463.54,
-      "fetchedAt": "2026-06-24T09:51:47.766Z"
-    },
-    "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Sabrent": {
-      "price": 499.99,
-      "fetchedAt": "2026-06-24T09:51:56.695Z"
+      "fetchedAt": "2026-06-25T09:45:51.450Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Ivory": {
       "price": 499.73,
-      "fetchedAt": "2026-06-24T09:51:56.829Z"
+      "fetchedAt": "2026-06-25T09:46:11.698Z"
+    },
+    "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Sabrent": {
+      "price": 499.99,
+      "fetchedAt": "2026-06-25T09:46:11.783Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|TMS": {
-      "price": 462.7,
-      "fetchedAt": "2026-06-24T09:51:57.694Z"
-    },
-    "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Bug": {
-      "price": 1213.51,
-      "fetchedAt": "2026-06-24T09:51:58.116Z"
+      "price": 84.86,
+      "fetchedAt": "2026-06-25T09:46:12.853Z"
     },
     "NZXT Player: Three Gaming Desktop|NZXT": {
       "price": 3,
-      "fetchedAt": "2026-06-24T09:51:58.180Z"
-    },
-    "Apple MacBook Pro 14 M4 Pro Laptop|Apple": {
-      "price": 1699,
-      "fetchedAt": "2026-06-24T09:51:58.859Z"
+      "fetchedAt": "2026-06-25T09:46:12.891Z"
     },
     "Razer Blade 16 Gaming Laptop|Razer": {
       "price": 2399.99,
-      "fetchedAt": "2026-06-24T09:51:58.886Z"
+      "fetchedAt": "2026-06-25T09:46:13.468Z"
+    },
+    "Apple MacBook Pro 14 M4 Pro Laptop|Apple": {
+      "price": 1699,
+      "fetchedAt": "2026-06-25T09:46:13.544Z"
     },
     "Apple MacBook Air 15 M3 Laptop|Apple": {
       "price": 1099,
-      "fetchedAt": "2026-06-24T09:51:58.897Z"
+      "fetchedAt": "2026-06-25T09:46:13.634Z"
     }
   }
 }
