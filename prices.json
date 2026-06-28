@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-06-27T09:06:51.258Z",
+  "updatedAt": "2026-06-28T09:34:19.931Z",
   "source": "scripts/update-prices.mjs",
   "prices": {
     "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card|Newegg": {
       "price": 1399.99,
-      "fetchedAt": "2026-06-27T09:06:01.993Z"
+      "fetchedAt": "2026-06-28T09:33:31.404Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Newegg": {
-      "price": 463.54,
-      "fetchedAt": "2026-06-27T09:06:16.411Z"
+      "price": 461.54,
+      "fetchedAt": "2026-06-28T09:33:46.431Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Sabrent": {
       "price": 499.99,
-      "fetchedAt": "2026-06-27T09:06:24.692Z"
+      "fetchedAt": "2026-06-28T09:33:54.203Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Ivory": {
       "price": 499.73,
-      "fetchedAt": "2026-06-27T09:06:25.130Z"
+      "fetchedAt": "2026-06-28T09:33:54.884Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|TMS": {
       "price": 462.7,
-      "fetchedAt": "2026-06-27T09:06:26.076Z"
+      "fetchedAt": "2026-06-28T09:33:55.762Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Bug": {
-      "price": 1213.51,
-      "fetchedAt": "2026-06-27T09:06:27.742Z"
+      "price": 2675.41,
+      "fetchedAt": "2026-06-28T09:34:05.382Z"
     },
     "NZXT Player: Three Gaming Desktop|NZXT": {
       "price": 3,
-      "fetchedAt": "2026-06-27T09:06:27.803Z"
+      "fetchedAt": "2026-06-28T09:33:56.833Z"
     },
     "Razer Blade 16 Gaming Laptop|Razer": {
       "price": 2399.99,
-      "fetchedAt": "2026-06-27T09:06:28.369Z"
+      "fetchedAt": "2026-06-28T09:33:57.688Z"
     },
     "Apple MacBook Pro 14 M4 Pro Laptop|Apple": {
       "price": 1999,
-      "fetchedAt": "2026-06-27T09:06:28.487Z"
+      "fetchedAt": "2026-06-28T09:33:57.838Z"
     },
     "Apple MacBook Air 15 M3 Laptop|Apple": {
       "price": 1299,
-      "fetchedAt": "2026-06-27T09:06:28.620Z"
+      "fetchedAt": "2026-06-28T09:33:57.920Z"
     }
   }
 }
