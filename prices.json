@@ -1,46 +1,42 @@
 {
-  "updatedAt": "2026-06-30T10:03:21.110Z",
+  "updatedAt": "2026-07-01T10:17:06.517Z",
   "source": "scripts/update-prices.mjs",
   "prices": {
     "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card|Newegg": {
       "price": 1399.99,
-      "fetchedAt": "2026-06-30T10:02:31.894Z"
+      "fetchedAt": "2026-07-01T10:16:16.490Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Newegg": {
       "price": 462,
-      "fetchedAt": "2026-06-30T10:02:45.988Z"
+      "fetchedAt": "2026-07-01T10:16:31.298Z"
+    },
+    "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Ivory": {
+      "price": 499.73,
+      "fetchedAt": "2026-07-01T10:16:39.320Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Sabrent": {
       "price": 499.99,
-      "fetchedAt": "2026-06-30T10:02:54.587Z"
+      "fetchedAt": "2026-07-01T10:16:39.492Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|TMS": {
       "price": 462.7,
-      "fetchedAt": "2026-06-30T10:02:56.377Z"
-    },
-    "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Ivory": {
-      "price": 1851.35,
-      "fetchedAt": "2026-06-30T10:02:58.133Z"
-    },
-    "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Bug": {
-      "price": 2675.41,
-      "fetchedAt": "2026-06-30T10:02:57.643Z"
+      "fetchedAt": "2026-07-01T10:16:40.492Z"
     },
     "NZXT Player: Three Gaming Desktop|NZXT": {
       "price": 3,
-      "fetchedAt": "2026-06-30T10:02:58.141Z"
+      "fetchedAt": "2026-07-01T10:16:42.087Z"
     },
     "Razer Blade 16 Gaming Laptop|Razer": {
       "price": 2399.99,
-      "fetchedAt": "2026-06-30T10:02:58.539Z"
+      "fetchedAt": "2026-07-01T10:16:43.523Z"
     },
     "Apple MacBook Pro 14 M4 Pro Laptop|Apple": {
       "price": 1999,
-      "fetchedAt": "2026-06-30T10:02:58.694Z"
+      "fetchedAt": "2026-07-01T10:16:43.946Z"
     },
     "Apple MacBook Air 15 M3 Laptop|Apple": {
       "price": 1299,
-      "fetchedAt": "2026-06-30T10:02:58.718Z"
+      "fetchedAt": "2026-07-01T10:16:44.129Z"
     }
   }
 }
