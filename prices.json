@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-07-02T09:34:50.123Z",
+  "updatedAt": "2026-07-03T09:36:52.819Z",
   "source": "scripts/update-prices.mjs",
   "prices": {
     "Gigabyte GeForce RTX 5080 WINDFORCE OC SFF 16G Graphics Card|Newegg": {
       "price": 1399.99,
-      "fetchedAt": "2026-07-02T09:34:01.085Z"
+      "fetchedAt": "2026-07-03T09:36:05.620Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Newegg": {
       "price": 462,
-      "fetchedAt": "2026-07-02T09:34:14.805Z"
+      "fetchedAt": "2026-07-03T09:36:20.508Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Sabrent": {
       "price": 499.99,
-      "fetchedAt": "2026-07-02T09:34:23.832Z"
+      "fetchedAt": "2026-07-03T09:36:28.561Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Ivory": {
       "price": 499.73,
-      "fetchedAt": "2026-07-02T09:34:24.109Z"
+      "fetchedAt": "2026-07-03T09:36:28.746Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|TMS": {
       "price": 462.7,
-      "fetchedAt": "2026-07-02T09:34:25.986Z"
-    },
-    "NZXT Player: Three Gaming Desktop|NZXT": {
-      "price": 3,
-      "fetchedAt": "2026-07-02T09:34:26.692Z"
+      "fetchedAt": "2026-07-03T09:36:29.621Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Bug": {
       "price": 1213.51,
-      "fetchedAt": "2026-07-02T09:34:29.729Z"
+      "fetchedAt": "2026-07-03T09:36:29.970Z"
     },
-    "Razer Blade 16 Gaming Laptop|Razer": {
-      "price": 2399.99,
-      "fetchedAt": "2026-07-02T09:34:27.676Z"
+    "NZXT Player: Three Gaming Desktop|NZXT": {
+      "price": 3,
+      "fetchedAt": "2026-07-03T09:36:30.103Z"
     },
     "Apple MacBook Pro 14 M4 Pro Laptop|Apple": {
       "price": 1999,
-      "fetchedAt": "2026-07-02T09:34:27.849Z"
+      "fetchedAt": "2026-07-03T09:36:30.625Z"
+    },
+    "Razer Blade 16 Gaming Laptop|Razer": {
+      "price": 2399.99,
+      "fetchedAt": "2026-07-03T09:36:30.652Z"
     },
     "Apple MacBook Air 15 M3 Laptop|Apple": {
       "price": 1299,
-      "fetchedAt": "2026-07-02T09:34:28.054Z"
+      "fetchedAt": "2026-07-03T09:36:30.680Z"
     }
   }
 }
