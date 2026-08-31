@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-24T06:07:03.369Z",
+  "updatedAt": "2026-08-31T11:49:10.081Z",
   "source": "scripts/resolve-images.mjs",
   "images": {
     "crucial-pro-overclocking-32gb-ddr5-6000-cl36-kit": "https://assets.micron.com/adobe/assets/urn:aaid:aem:db957370-be53-44b6-888e-5070f5b21972/renditions/transformpng-640-640.png/as/crucial-ddr5-pro-overclocking-kit-dynamic-right-view.png",
@@ -40,6 +40,7 @@
     "amd-ryzen-5-5500-6-core-am4-processor": "https://tms.co.il/image/catalog/products/100-000000457/W5zB07obP7.jpg",
     "samsung-1tb-9100-pro-pcie-5-0-nvme-m-2-ssd": "https://tms.co.il/image/catalog/products/MZ-VAP1T0BW/6zRgFuAvzD.jpg",
     "asus-proart-pa401-wood-edition-black-tempered-glass-mid-tower-case": "https://www.asus.com/media/Odin/Websites/global/ProductLine/20240131112901.png",
-    "fractal-design-north-xl-charcoal-black-mesh-case": "https://www.fractal-design.com/app/uploads/2022/12/North_KV_4_Chalk_Mesh-2560-1131x800.jpg"
+    "fractal-design-north-xl-charcoal-black-mesh-case": "https://cdn.sanity.io/images/uxzbxy2o/production/1d30913173340ec3066800938816cc20e6a6e227-2460x1845.jpg?w=1200&h=630&fit=crop&auto=format&q=80",
+    "fractal-design-meshify-2-compact-black-tg-case": "https://cdn.sanity.io/images/uxzbxy2o/production/1d30913173340ec3066800938816cc20e6a6e227-2460x1845.jpg?w=1200&h=630&fit=crop&auto=format&q=80"
   }
 }
