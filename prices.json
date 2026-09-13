@@ -1,34 +1,34 @@
 {
-  "updatedAt": "2026-09-12T10:51:25.740Z",
+  "updatedAt": "2026-09-13T11:56:46.647Z",
   "source": "scripts/update-prices.mjs",
   "prices": {
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Sabrent": {
       "price": 499.99,
-      "fetchedAt": "2026-09-12T10:50:57.973Z"
+      "fetchedAt": "2026-09-13T11:56:20.776Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Ivory": {
       "price": 448.38,
-      "fetchedAt": "2026-09-12T10:51:01.669Z"
+      "fetchedAt": "2026-09-13T11:56:21.481Z"
     },
     "ASUS Dual GeForce RTX 5060 Ti OC 8GB Graphics Card|Bug": {
       "price": 2675.41,
-      "fetchedAt": "2026-09-12T10:51:03.052Z"
+      "fetchedAt": "2026-09-13T11:56:22.257Z"
     },
     "NZXT Player: Three Gaming Desktop|NZXT": {
       "price": 3,
-      "fetchedAt": "2026-09-12T10:51:02.765Z"
+      "fetchedAt": "2026-09-13T11:56:23.367Z"
     },
     "Razer Blade 16 Gaming Laptop|Razer": {
       "price": 2399.99,
-      "fetchedAt": "2026-09-12T10:51:03.162Z"
+      "fetchedAt": "2026-09-13T11:56:23.628Z"
     },
     "Apple MacBook Pro 14 M4 Pro Laptop|Apple": {
       "price": 1999,
-      "fetchedAt": "2026-09-12T10:51:03.328Z"
+      "fetchedAt": "2026-09-13T11:56:23.965Z"
     },
     "Apple MacBook Air 15 M3 Laptop|Apple": {
       "price": 1299,
-      "fetchedAt": "2026-09-12T10:51:03.442Z"
+      "fetchedAt": "2026-09-13T11:56:23.974Z"
     }
   }
 }
